@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>BLX</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -19,10 +17,6 @@ body{
     color:#111827;
 }
 
-/* =========================
-   GENERAL
-========================= */
-
 .hidden{
     display:none !important;
 }
@@ -32,7 +26,7 @@ body{
 }
 
 /* =========================
-   LOGIN / ACCOUNT PAGES
+   AUTH
 ========================= */
 
 .auth-page{
@@ -41,17 +35,12 @@ body{
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:
-        linear-gradient(
-            135deg,
-            #06101d,
-            #12304f
-        );
+    background:linear-gradient(135deg,#06101d,#12304f);
 }
 
 .auth-card{
     width:100%;
-    max-width:420px;
+    max-width:430px;
     background:white;
     padding:30px;
     border-radius:20px;
@@ -64,14 +53,13 @@ body{
     font-weight:900;
     letter-spacing:5px;
     color:#12304f;
-    margin-bottom:5px;
 }
 
 .logo-subtitle{
     text-align:center;
     color:#6b7280;
     font-size:13px;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .auth-title{
@@ -91,16 +79,19 @@ body{
     margin-bottom:6px;
 }
 
-.input-group input{
+.input-group input,
+.input-group select{
     width:100%;
     padding:14px;
     border:1px solid #d1d5db;
     border-radius:10px;
     font-size:16px;
-    outline:none;
+    background:white;
 }
 
-.input-group input:focus{
+.input-group input:focus,
+.input-group select:focus{
+    outline:none;
     border-color:#2563eb;
     box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
@@ -115,11 +106,11 @@ body{
     font-size:16px;
     font-weight:800;
     cursor:pointer;
-    margin-top:5px;
 }
 
-.primary-button:hover{
-    background:#1d4ed8;
+.primary-button:disabled{
+    background:#9ca3af;
+    cursor:not-allowed;
 }
 
 .secondary-button{
@@ -130,7 +121,6 @@ body{
     background:white;
     color:#111827;
     font-weight:700;
-    cursor:pointer;
 }
 
 .auth-link{
@@ -145,7 +135,6 @@ body{
     background:none;
     color:#2563eb;
     font-weight:800;
-    cursor:pointer;
 }
 
 .message{
@@ -164,6 +153,41 @@ body{
 .success{
     background:#ecfdf5;
     color:#166534;
+}
+
+/* PASSWORD */
+
+.password-requirements{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:12px;
+    margin-top:-5px;
+    margin-bottom:15px;
+    font-size:12px;
+}
+
+.password-requirements div{
+    margin:5px 0;
+    color:#dc2626;
+}
+
+.password-requirements div.valid{
+    color:#16a34a;
+}
+
+.password-strength{
+    height:6px;
+    background:#e5e7eb;
+    border-radius:10px;
+    margin-top:8px;
+    overflow:hidden;
+}
+
+.password-strength-bar{
+    height:100%;
+    width:0%;
+    background:#dc2626;
+    transition:.3s;
 }
 
 /* =========================
@@ -199,7 +223,6 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:15px;
 }
 
 .home-logo{
@@ -226,7 +249,6 @@ body{
     padding:9px 13px;
     border-radius:8px;
     font-weight:700;
-    cursor:pointer;
 }
 
 .home-container{
@@ -251,10 +273,6 @@ body{
     color:#6b7280;
 }
 
-/* =========================
-   SEARCH
-========================= */
-
 .search-box{
     display:flex;
     gap:8px;
@@ -277,15 +295,10 @@ body{
     font-weight:800;
 }
 
-/* =========================
-   FEATURE CARDS
-========================= */
-
 .feature-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:15px;
-    margin-top:18px;
 }
 
 .feature-card{
@@ -309,15 +322,11 @@ body{
     line-height:1.5;
 }
 
-/* =========================
-   COMPANY RESULT
-========================= */
-
 .company-result{
     background:white;
     padding:20px;
     border-radius:15px;
-    margin-top:18px;
+    margin-bottom:18px;
     box-shadow:0 5px 20px rgba(15,23,42,.05);
 }
 
@@ -355,10 +364,6 @@ body{
     margin-top:5px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 footer{
     text-align:center;
     color:#6b7280;
@@ -366,26 +371,10 @@ footer{
     padding:30px;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
 @media(max-width:600px){
 
     .auth-card{
         padding:25px 20px;
-    }
-
-    .home-header-inner{
-        align-items:flex-start;
-    }
-
-    .home-logo{
-        font-size:25px;
-    }
-
-    .username-display{
-        display:none;
     }
 
     .feature-grid{
@@ -403,26 +392,26 @@ footer{
     .search-box button{
         width:100%;
     }
-}
 
+    .username-display{
+        display:none;
+    }
+}
 </style>
 </head>
-
 
 <body>
 
 
 <!-- =====================================================
-     LOGIN PAGE
+LOGIN
 ===================================================== -->
 
 <section id="loginPage" class="page auth-page">
 
 <div class="auth-card">
 
-<div class="logo">
-BLX
-</div>
+<div class="logo">BLX</div>
 
 <div class="logo-subtitle">
 Fundamental Research Platform
@@ -436,35 +425,27 @@ Welcome Back
 
 <div class="input-group">
 
-<label>
-Username
-</label>
+<label>Username</label>
 
 <input
 id="loginUsername"
 type="text"
 placeholder="Enter username"
-autocomplete="username"
 >
 
 </div>
 
-
 <div class="input-group">
 
-<label>
-Password
-</label>
+<label>Password</label>
 
 <input
 id="loginPassword"
 type="password"
 placeholder="Enter password"
-autocomplete="current-password"
 >
 
 </div>
-
 
 <button
 class="primary-button"
@@ -472,7 +453,6 @@ onclick="login()"
 >
 LOGIN
 </button>
-
 
 <div class="auth-link">
 
@@ -491,16 +471,14 @@ Create Account
 
 
 <!-- =====================================================
-     CREATE ACCOUNT PAGE
+CREATE ACCOUNT
 ===================================================== -->
 
 <section id="registerPage" class="page auth-page hidden">
 
 <div class="auth-card">
 
-<div class="logo">
-BLX
-</div>
+<div class="logo">BLX</div>
 
 <div class="logo-subtitle">
 Create your BLX account
@@ -513,11 +491,11 @@ Create Account
 <div id="registerError" class="message error"></div>
 
 
+<!-- EMAIL -->
+
 <div class="input-group">
 
-<label>
-Email
-</label>
+<label>Email</label>
 
 <input
 id="registerEmail"
@@ -528,11 +506,11 @@ placeholder="example@email.com"
 </div>
 
 
+<!-- USERNAME -->
+
 <div class="input-group">
 
-<label>
-Username
-</label>
+<label>Username</label>
 
 <input
 id="registerUsername"
@@ -543,54 +521,99 @@ placeholder="Choose a username"
 </div>
 
 
+<!-- PASSWORD -->
+
 <div class="input-group">
 
-<label>
-Password
-</label>
+<label>Password</label>
 
 <input
 id="registerPassword"
 type="password"
-placeholder="Create a password"
+placeholder="Create a strong password"
+oninput="checkPassword()"
 >
+
+<div class="password-strength">
+
+<div
+id="passwordStrengthBar"
+class="password-strength-bar">
+</div>
+
+</div>
 
 </div>
 
 
-<div class="input-group">
+<!-- PASSWORD REQUIREMENTS -->
 
-<label>
-Country
-</label>
+<div class="password-requirements">
 
-<input
-id="registerCountry"
-type="text"
-placeholder="Malaysia"
->
+<strong>Password must contain:</strong>
+
+<div id="reqLength">
+✗ At least 8 characters
+</div>
+
+<div id="reqUpper">
+✗ At least 1 uppercase letter
+</div>
+
+<div id="reqLower">
+✗ At least 1 lowercase letter
+</div>
+
+<div id="reqNumber">
+✗ At least 1 number
+</div>
+
+<div id="reqSpecial">
+✗ At least 1 special character
+</div>
 
 </div>
 
 
+<!-- COUNTRY -->
+
 <div class="input-group">
 
-<label>
-Place
-</label>
+<label>Country</label>
 
-<input
-id="registerPlace"
-type="text"
-placeholder="Selangor"
->
+<select id="registerCountry">
+
+<option value="">
+Select your country
+</option>
+
+</select>
+
+</div>
+
+
+<!-- MALAYSIA STATE -->
+
+<div class="input-group">
+
+<label>State</label>
+
+<select id="registerState">
+
+<option value="">
+Select your state
+</option>
+
+</select>
 
 </div>
 
 
 <button
+id="createAccountButton"
 class="primary-button"
 onclick="createAccount()"
+disabled
 >
 CREATE ACCOUNT
 </button>
@@ -613,16 +636,14 @@ Login
 
 
 <!-- =====================================================
-     EMAIL VERIFICATION PAGE
+VERIFICATION
 ===================================================== -->
 
 <section id="verifyPage" class="page auth-page hidden">
 
 <div class="auth-card">
 
-<div class="logo">
-BLX
-</div>
+<div class="logo">BLX</div>
 
 <div class="verify-icon">
 📧
@@ -634,13 +655,10 @@ Verify Your Email
 
 <div
 id="verifyEmailText"
-class="verify-text"
->
+class="verify-text">
 </div>
 
-
 <div id="verifyMessage" class="message success"></div>
-
 
 <button
 class="primary-button"
@@ -649,9 +667,7 @@ onclick="verifyEmail()"
 I HAVE VERIFIED MY EMAIL
 </button>
 
-
 <br><br>
-
 
 <button
 class="secondary-button"
@@ -667,11 +683,10 @@ BACK TO LOGIN
 
 
 <!-- =====================================================
-     HOMEPAGE
+HOME
 ===================================================== -->
 
 <section id="homePage" class="page hidden">
-
 
 <header class="home-header">
 
@@ -685,14 +700,12 @@ BLX
 
 <div
 id="usernameDisplay"
-class="username-display"
->
+class="username-display">
 </div>
 
 <button
 class="logout-button"
-onclick="logout()"
->
+onclick="logout()">
 Logout
 </button>
 
@@ -705,7 +718,6 @@ Logout
 
 <div class="home-container">
 
-
 <div class="welcome-card">
 
 <h1>
@@ -713,9 +725,8 @@ Welcome to BLX
 </h1>
 
 <p>
-Research companies using fundamental financial information.
+Fundamental research and financial analysis platform.
 </p>
-
 
 <div class="search-box">
 
@@ -739,19 +750,14 @@ SEARCH
 
 <div class="feature-grid">
 
-
 <div class="feature-card">
 
-<div class="feature-icon">
-📊
-</div>
+<div class="feature-icon">📊</div>
 
-<h3>
-Fundamental Analysis
-</h3>
+<h3>Fundamental Analysis</h3>
 
 <p>
-View revenue, profit, assets, liabilities, ROE, ROA and other fundamental information.
+Revenue, profit, assets, liabilities, ROE, ROA and other financial information.
 </p>
 
 </div>
@@ -759,16 +765,12 @@ View revenue, profit, assets, liabilities, ROE, ROA and other fundamental inform
 
 <div class="feature-card">
 
-<div class="feature-icon">
-📈
-</div>
+<div class="feature-icon">📈</div>
 
-<h3>
-5–10 Year History
-</h3>
+<h3>5–10 Year History</h3>
 
 <p>
-Compare a company's financial performance across multiple years.
+Compare company financial performance over multiple years.
 </p>
 
 </div>
@@ -776,13 +778,9 @@ Compare a company's financial performance across multiple years.
 
 <div class="feature-card">
 
-<div class="feature-icon">
-🧮
-</div>
+<div class="feature-icon">🧮</div>
 
-<h3>
-Financial Calculators
-</h3>
+<h3>Financial Calculators</h3>
 
 <p>
 DCF, WACC, liquidity and profitability calculations.
@@ -793,13 +791,9 @@ DCF, WACC, liquidity and profitability calculations.
 
 <div class="feature-card">
 
-<div class="feature-icon">
-⭐
-</div>
+<div class="feature-icon">⭐</div>
 
-<h3>
-Watchlist
-</h3>
+<h3>Watchlist</h3>
 
 <p>
 Save companies you want to monitor.
@@ -810,16 +804,12 @@ Save companies you want to monitor.
 
 <div class="feature-card">
 
-<div class="feature-icon">
-📰
-</div>
+<div class="feature-icon">📰</div>
 
-<h3>
-Financial News
-</h3>
+<h3>Financial News</h3>
 
 <p>
-Find company news and financial information with references.
+Company news and financial information with references.
 </p>
 
 </div>
@@ -827,20 +817,15 @@ Find company news and financial information with references.
 
 <div class="feature-card">
 
-<div class="feature-icon">
-📚
-</div>
+<div class="feature-icon">📚</div>
 
-<h3>
-Financial Glossary
-</h3>
+<h3>Financial Glossary</h3>
 
 <p>
 Learn important investment and financial terms.
 </p>
 
 </div>
-
 
 </div>
 
@@ -857,6 +842,283 @@ Prototype Version
 
 
 <script>
+
+/* =====================================================
+   COUNTRY LIST
+===================================================== */
+
+const countries = [
+
+"Afghanistan",
+"Albania",
+"Algeria",
+"Andorra",
+"Angola",
+"Antigua and Barbuda",
+"Argentina",
+"Armenia",
+"Australia",
+"Austria",
+"Azerbaijan",
+"Bahamas",
+"Bahrain",
+"Bangladesh",
+"Barbados",
+"Belarus",
+"Belgium",
+"Belize",
+"Benin",
+"Bhutan",
+"Bolivia",
+"Bosnia and Herzegovina",
+"Botswana",
+"Brazil",
+"Brunei",
+"Bulgaria",
+"Burkina Faso",
+"Burundi",
+"Cabo Verde",
+"Cambodia",
+"Cameroon",
+"Canada",
+"Central African Republic",
+"Chad",
+"Chile",
+"China",
+"Colombia",
+"Comoros",
+"Costa Rica",
+"Croatia",
+"Cuba",
+"Cyprus",
+"Czech Republic",
+"Democratic Republic of the Congo",
+"Denmark",
+"Djibouti",
+"Dominica",
+"Dominican Republic",
+"Ecuador",
+"Egypt",
+"El Salvador",
+"Equatorial Guinea",
+"Eritrea",
+"Estonia",
+"Eswatini",
+"Ethiopia",
+"Fiji",
+"Finland",
+"France",
+"Gabon",
+"Gambia",
+"Georgia",
+"Germany",
+"Ghana",
+"Greece",
+"Grenada",
+"Guatemala",
+"Guinea",
+"Guinea-Bissau",
+"Guyana",
+"Haiti",
+"Honduras",
+"Hungary",
+"Iceland",
+"India",
+"Indonesia",
+"Iran",
+"Iraq",
+"Ireland",
+"Israel",
+"Italy",
+"Ivory Coast",
+"Jamaica",
+"Japan",
+"Jordan",
+"Kazakhstan",
+"Kenya",
+"Kiribati",
+"Kosovo",
+"Kuwait",
+"Kyrgyzstan",
+"Laos",
+"Latvia",
+"Lebanon",
+"Lesotho",
+"Liberia",
+"Libya",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Madagascar",
+"Malawi",
+"Malaysia",
+"Maldives",
+"Mali",
+"Malta",
+"Marshall Islands",
+"Mauritania",
+"Mauritius",
+"Mexico",
+"Micronesia",
+"Moldova",
+"Monaco",
+"Mongolia",
+"Montenegro",
+"Morocco",
+"Mozambique",
+"Myanmar",
+"Namibia",
+"Nauru",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Nicaragua",
+"Niger",
+"Nigeria",
+"North Korea",
+"North Macedonia",
+"Norway",
+"Oman",
+"Pakistan",
+"Palau",
+"Palestine",
+"Panama",
+"Papua New Guinea",
+"Paraguay",
+"Peru",
+"Philippines",
+"Poland",
+"Portugal",
+"Qatar",
+"Republic of the Congo",
+"Romania",
+"Russia",
+"Rwanda",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Samoa",
+"San Marino",
+"Sao Tome and Principe",
+"Saudi Arabia",
+"Senegal",
+"Serbia",
+"Seychelles",
+"Sierra Leone",
+"Singapore",
+"Slovakia",
+"Slovenia",
+"Solomon Islands",
+"Somalia",
+"South Africa",
+"South Korea",
+"South Sudan",
+"Spain",
+"Sri Lanka",
+"Sudan",
+"Suriname",
+"Sweden",
+"Switzerland",
+"Syria",
+"Taiwan",
+"Tajikistan",
+"Tanzania",
+"Thailand",
+"Timor-Leste",
+"Togo",
+"Tonga",
+"Trinidad and Tobago",
+"Tunisia",
+"Turkey",
+"Turkmenistan",
+"Tuvalu",
+"Uganda",
+"Ukraine",
+"United Arab Emirates",
+"United Kingdom",
+"United States",
+"Uruguay",
+"Uzbekistan",
+"Vanuatu",
+"Vatican City",
+"Venezuela",
+"Vietnam",
+"Yemen",
+"Zambia",
+"Zimbabwe"
+
+];
+
+
+/* =====================================================
+   MALAYSIA STATES + FEDERAL TERRITORIES
+===================================================== */
+
+const malaysiaStates = [
+
+"Johor",
+"Kedah",
+"Kelantan",
+"Melaka",
+"Negeri Sembilan",
+"Pahang",
+"Perak",
+"Perlis",
+"Pulau Pinang",
+"Sabah",
+"Sarawak",
+"Selangor",
+"Terengganu",
+"Kuala Lumpur",
+"Labuan",
+"Putrajaya"
+
+];
+
+
+/* =====================================================
+   LOAD DROPDOWNS
+===================================================== */
+
+function loadCountries(){
+
+    const select =
+    document.getElementById("registerCountry");
+
+    countries.forEach(function(country){
+
+        const option =
+        document.createElement("option");
+
+        option.value=country;
+        option.textContent=country;
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+function loadStates(){
+
+    const select =
+    document.getElementById("registerState");
+
+    malaysiaStates.forEach(function(state){
+
+        const option =
+        document.createElement("option");
+
+        option.value=state;
+        option.textContent=state;
+
+        select.appendChild(option);
+
+    });
+
+}
+
 
 /* =====================================================
    PAGE CONTROL
@@ -879,6 +1141,7 @@ function hideAllPages(){
     document
     .getElementById("homePage")
     .classList.add("hidden");
+
 }
 
 
@@ -891,6 +1154,7 @@ function showLogin(){
     .classList.remove("hidden");
 
     clearMessages();
+
 }
 
 
@@ -903,6 +1167,7 @@ function showRegister(){
     .classList.remove("hidden");
 
     clearMessages();
+
 }
 
 
@@ -917,9 +1182,15 @@ function showVerification(email){
     document
     .getElementById("verifyEmailText")
     .innerHTML =
-    "We have sent a verification request to:<br><br>" +
-    "<strong>" + email + "</strong><br><br>" +
-    "For this prototype, press the button below to simulate email verification.";
+
+    "Verification is required for:<br><br>" +
+
+    "<strong>" +
+    email +
+    "</strong><br><br>" +
+
+    "For this prototype, tap the button below to simulate email verification.";
+
 }
 
 
@@ -931,10 +1202,12 @@ function showHome(){
     .getElementById("homePage")
     .classList.remove("hidden");
 
-    var user =
+
+    const user =
     JSON.parse(
         localStorage.getItem("blxUser")
     );
+
 
     if(user){
 
@@ -944,26 +1217,140 @@ function showHome(){
         "Hi, " + user.username;
 
     }
+
 }
 
 
 /* =====================================================
-   CLEAR MESSAGES
+   PASSWORD VALIDATION
 ===================================================== */
 
-function clearMessages(){
+function checkPassword(){
+
+    const password =
+    document
+    .getElementById("registerPassword")
+    .value;
+
+
+    const length =
+    password.length >= 8;
+
+    const upper =
+    /[A-Z]/.test(password);
+
+    const lower =
+    /[a-z]/.test(password);
+
+    const number =
+    /[0-9]/.test(password);
+
+    const special =
+    /[^A-Za-z0-9]/.test(password);
+
+
+    updateRequirement(
+        "reqLength",
+        length,
+        "At least 8 characters"
+    );
+
+    updateRequirement(
+        "reqUpper",
+        upper,
+        "At least 1 uppercase letter"
+    );
+
+    updateRequirement(
+        "reqLower",
+        lower,
+        "At least 1 lowercase letter"
+    );
+
+    updateRequirement(
+        "reqNumber",
+        number,
+        "At least 1 number"
+    );
+
+    updateRequirement(
+        "reqSpecial",
+        special,
+        "At least 1 special character"
+    );
+
+
+    const strength =
+    [length,upper,lower,number,special]
+    .filter(Boolean)
+    .length;
+
+
+    const bar =
+    document.getElementById(
+        "passwordStrengthBar"
+    );
+
+
+    bar.style.width =
+    (strength * 20) + "%";
+
+
+    if(strength <= 2){
+
+        bar.style.background="#dc2626";
+
+    }
+    else if(strength <= 4){
+
+        bar.style.background="#f59e0b";
+
+    }
+    else{
+
+        bar.style.background="#16a34a";
+
+    }
+
 
     document
-    .getElementById("loginError")
-    .style.display="none";
+    .getElementById("createAccountButton")
+    .disabled =
+    strength !== 5;
 
-    document
-    .getElementById("registerError")
-    .style.display="none";
 
-    document
-    .getElementById("verifyMessage")
-    .style.display="none";
+    return strength === 5;
+
+}
+
+
+function updateRequirement(
+    id,
+    valid,
+    text
+){
+
+    const element =
+    document.getElementById(id);
+
+
+    if(valid){
+
+        element.classList.add("valid");
+
+        element.textContent =
+        "✓ " + text;
+
+    }
+    else{
+
+        element.classList.remove("valid");
+
+        element.textContent =
+        "✗ " + text;
+
+    }
+
 }
 
 
@@ -973,73 +1360,105 @@ function clearMessages(){
 
 function createAccount(){
 
-    var email =
+    const email =
     document
     .getElementById("registerEmail")
     .value
     .trim();
 
-    var username =
+
+    const username =
     document
     .getElementById("registerUsername")
     .value
     .trim();
 
-    var password =
+
+    const password =
     document
     .getElementById("registerPassword")
     .value;
 
-    var country =
+
+    const country =
     document
     .getElementById("registerCountry")
-    .value
-    .trim();
+    .value;
 
-    var place =
+
+    const state =
     document
-    .getElementById("registerPlace")
-    .value
-    .trim();
+    .getElementById("registerState")
+    .value;
 
 
-    if(
-        !email ||
-        !username ||
-        !password ||
-        !country ||
-        !place
-    ){
+    if(!email){
 
         showRegisterError(
-            "Please complete all fields."
+            "Please enter your email."
         );
 
         return;
+
     }
 
 
     if(!email.includes("@")){
 
         showRegisterError(
-            "Please enter a valid email address."
+            "Please enter a valid email."
         );
 
         return;
+
     }
 
 
-    if(password.length < 6){
+    if(!username){
 
         showRegisterError(
-            "Password must contain at least 6 characters."
+            "Please enter a username."
         );
 
         return;
+
     }
 
 
-    var user = {
+    if(!checkPassword()){
+
+        showRegisterError(
+            "Please create a stronger password that meets all requirements."
+        );
+
+        return;
+
+    }
+
+
+    if(!country){
+
+        showRegisterError(
+            "Please select your country."
+        );
+
+        return;
+
+    }
+
+
+    if(!state){
+
+        showRegisterError(
+            "Please select your Malaysian state / federal territory."
+        );
+
+        return;
+
+    }
+
+
+    const user = {
 
         email:email,
 
@@ -1049,7 +1468,7 @@ function createAccount(){
 
         country:country,
 
-        place:place,
+        state:state,
 
         verified:false
 
@@ -1057,13 +1476,9 @@ function createAccount(){
 
 
     /*
-       PROTOTYPE ONLY
-
-       This stores the account
-       in the browser.
-
-       Do NOT use this method
-       for a real public website.
+       PROTOTYPE ONLY.
+       Do not use localStorage
+       for real passwords.
     */
 
     localStorage.setItem(
@@ -1073,27 +1488,31 @@ function createAccount(){
 
 
     showVerification(email);
+
 }
 
 
 /* =====================================================
-   VERIFY EMAIL
+   VERIFY
 ===================================================== */
 
 function verifyEmail(){
 
-    var user =
-    JSON.parse(
-        localStorage.getItem("blxUser")
-    );
+    const savedUser =
+    localStorage.getItem("blxUser");
 
 
-    if(!user){
+    if(!savedUser){
 
         showLogin();
 
         return;
+
     }
+
+
+    const user =
+    JSON.parse(savedUser);
 
 
     user.verified=true;
@@ -1105,14 +1524,17 @@ function verifyEmail(){
     );
 
 
-    document
-    .getElementById("verifyMessage")
-    .style.display="block";
+    const message =
+    document.getElementById(
+        "verifyMessage"
+    );
 
-    document
-    .getElementById("verifyMessage")
-    .textContent =
+
+    message.textContent =
     "Email verified successfully. Returning to login...";
+
+
+    message.style.display="block";
 
 
     setTimeout(function(){
@@ -1120,6 +1542,7 @@ function verifyEmail(){
         showLogin();
 
     },1500);
+
 }
 
 
@@ -1129,19 +1552,20 @@ function verifyEmail(){
 
 function login(){
 
-    var username =
+    const username =
     document
     .getElementById("loginUsername")
     .value
     .trim();
 
-    var password =
+
+    const password =
     document
     .getElementById("loginPassword")
     .value;
 
 
-    var savedUser =
+    const savedUser =
     localStorage.getItem("blxUser");
 
 
@@ -1152,10 +1576,11 @@ function login(){
         );
 
         return;
+
     }
 
 
-    var user =
+    const user =
     JSON.parse(savedUser);
 
 
@@ -1169,6 +1594,7 @@ function login(){
         );
 
         return;
+
     }
 
 
@@ -1179,12 +1605,9 @@ function login(){
         );
 
         return;
+
     }
 
-
-    /*
-       Remember that the user is logged in.
-    */
 
     localStorage.setItem(
         "blxLoggedIn",
@@ -1193,6 +1616,7 @@ function login(){
 
 
     showHome();
+
 }
 
 
@@ -1210,39 +1634,65 @@ function logout(){
     .getElementById("loginUsername")
     .value="";
 
+
     document
     .getElementById("loginPassword")
     .value="";
 
+
     showLogin();
+
 }
 
 
 /* =====================================================
-   ERROR MESSAGES
+   MESSAGES
 ===================================================== */
+
+function clearMessages(){
+
+    document
+    .getElementById("loginError")
+    .style.display="none";
+
+
+    document
+    .getElementById("registerError")
+    .style.display="none";
+
+
+    document
+    .getElementById("verifyMessage")
+    .style.display="none";
+
+}
+
 
 function showLoginError(message){
 
-    var box =
-    document
-    .getElementById("loginError");
+    const box =
+    document.getElementById(
+        "loginError"
+    );
 
     box.textContent=message;
 
     box.style.display="block";
+
 }
 
 
 function showRegisterError(message){
 
-    var box =
-    document
-    .getElementById("registerError");
+    const box =
+    document.getElementById(
+        "registerError"
+    );
 
     box.textContent=message;
 
     box.style.display="block";
+
 }
 
 
@@ -1250,67 +1700,67 @@ function showRegisterError(message){
    COMPANY DATA
 ===================================================== */
 
-var companies={
+const companies={
 
-    maybank:{
-        name:"Malayan Banking Berhad",
-        ticker:"1155",
-        industry:"Banking",
-        revenue:"RM 61.2B",
-        profit:"RM 10.1B",
-        assets:"RM 1.02T",
-        liabilities:"RM 950B",
-        roe:"11.8%",
-        roa:"1.0%"
-    },
+maybank:{
+name:"Malayan Banking Berhad",
+ticker:"1155",
+industry:"Banking",
+revenue:"RM 61.2B",
+profit:"RM 10.1B",
+assets:"RM 1.02T",
+liabilities:"RM 950B",
+roe:"11.8%",
+roa:"1.0%"
+},
 
-    cimb:{
-        name:"CIMB Group Holdings Berhad",
-        ticker:"1023",
-        industry:"Banking",
-        revenue:"RM 22.4B",
-        profit:"RM 7.8B",
-        assets:"RM 750B",
-        liabilities:"RM 690B",
-        roe:"12.6%",
-        roa:"1.04%"
-    },
+cimb:{
+name:"CIMB Group Holdings Berhad",
+ticker:"1023",
+industry:"Banking",
+revenue:"RM 22.4B",
+profit:"RM 7.8B",
+assets:"RM 750B",
+liabilities:"RM 690B",
+roe:"12.6%",
+roa:"1.04%"
+},
 
-    rhb:{
-        name:"RHB Bank Berhad",
-        ticker:"1066",
-        industry:"Banking",
-        revenue:"RM 16.8B",
-        profit:"RM 3.1B",
-        assets:"RM 320B",
-        liabilities:"RM 295B",
-        roe:"10.7%",
-        roa:"0.97%"
-    },
+rhb:{
+name:"RHB Bank Berhad",
+ticker:"1066",
+industry:"Banking",
+revenue:"RM 16.8B",
+profit:"RM 3.1B",
+assets:"RM 320B",
+liabilities:"RM 295B",
+roe:"10.7%",
+roa:"0.97%"
+},
 
-    "public bank":{
-        name:"Public Bank Berhad",
-        ticker:"1295",
-        industry:"Banking",
-        revenue:"RM 18.2B",
-        profit:"RM 6.4B",
-        assets:"RM 520B",
-        liabilities:"RM 480B",
-        roe:"13.1%",
-        roa:"1.23%"
-    },
+"public bank":{
+name:"Public Bank Berhad",
+ticker:"1295",
+industry:"Banking",
+revenue:"RM 18.2B",
+profit:"RM 6.4B",
+assets:"RM 520B",
+liabilities:"RM 480B",
+roe:"13.1%",
+roa:"1.23%"
+},
 
-    "bank islam":{
-        name:"Bank Islam Malaysia Berhad",
-        ticker:"5258",
-        industry:"Islamic Banking",
-        revenue:"RM 6.2B",
-        profit:"RM 0.8B",
-        assets:"RM 95B",
-        liabilities:"RM 88B",
-        roe:"8.4%",
-        roa:"0.84%"
-    }
+"bank islam":{
+name:"Bank Islam Malaysia Berhad",
+ticker:"5258",
+industry:"Islamic Banking",
+revenue:"RM 6.2B",
+profit:"RM 0.8B",
+assets:"RM 95B",
+liabilities:"RM 88B",
+roe:"8.4%",
+roa:"0.84%"
+}
 
 };
 
@@ -1321,7 +1771,7 @@ var companies={
 
 function searchCompany(){
 
-    var search =
+    const search =
     document
     .getElementById("companySearch")
     .value
@@ -1329,24 +1779,25 @@ function searchCompany(){
     .trim();
 
 
-    var company=null;
+    let company=null;
 
 
-    var keys=
+    const keys=
     Object.keys(companies);
 
 
     for(
-        var i=0;
+        let i=0;
         i<keys.length;
         i++
     ){
 
-        var key=keys[i];
+        const key=keys[i];
+
 
         if(
 
-            key === search ||
+            key===search ||
 
             companies[key]
             .name
@@ -1354,16 +1805,16 @@ function searchCompany(){
             .includes(search) ||
 
             companies[key]
-            .ticker
-            .toLowerCase()
-            === search
+            .ticker===search
 
         ){
 
             company=companies[key];
 
             break;
+
         }
+
     }
 
 
@@ -1371,23 +1822,24 @@ function searchCompany(){
 
         document
         .getElementById("companyResult")
-        .innerHTML =
+        .innerHTML=
 
         '<div class="company-result">' +
 
         '<strong>Company not found.</strong>' +
 
-        '<p>Please try Maybank, CIMB, RHB, Public Bank or Bank Islam.</p>' +
+        '<p>Try Maybank, CIMB, RHB, Public Bank or Bank Islam.</p>' +
 
         '</div>';
 
         return;
+
     }
 
 
     document
     .getElementById("companyResult")
-    .innerHTML =
+    .innerHTML=
 
     '<div class="company-result">' +
 
@@ -1404,15 +1856,21 @@ function searchCompany(){
     '<div class="metric-grid">' +
 
     metric("Revenue",company.revenue) +
+
     metric("Profit",company.profit) +
+
     metric("Assets",company.assets) +
+
     metric("Liabilities",company.liabilities) +
+
     metric("ROE",company.roe) +
+
     metric("ROA",company.roa) +
 
     '</div>' +
 
     '</div>';
+
 }
 
 
@@ -1433,60 +1891,48 @@ function metric(title,value){
         '</div>'
 
     );
+
 }
 
 
 /* =====================================================
-   ENTER KEY SEARCH
+   INITIALISE
 ===================================================== */
 
-document
-.getElementById("companySearch")
-.addEventListener(
-    "keydown",
-    function(event){
+loadCountries();
 
-        if(event.key==="Enter"){
+loadStates();
 
-            searchCompany();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   CHECK LOGIN WHEN PAGE OPENS
-===================================================== */
 
 window.onload=function(){
 
-    var loggedIn =
+    const loggedIn =
     localStorage.getItem(
         "blxLoggedIn"
     );
 
-    var user =
+
+    const savedUser =
     localStorage.getItem(
         "blxUser"
     );
 
 
     if(
-        loggedIn === "true" &&
-        user
+        loggedIn==="true" &&
+        savedUser
     ){
 
-        var savedUser =
-        JSON.parse(user);
+        const user =
+        JSON.parse(savedUser);
 
 
-        if(savedUser.verified){
+        if(user.verified){
 
             showHome();
 
             return;
+
         }
 
     }
