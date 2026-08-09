@@ -8,9 +8,13 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>BLX | Financial Research</title>
+<title>BLX | Fundamental Research</title>
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
 
 * {
     box-sizing: border-box;
@@ -18,29 +22,48 @@ content="width=device-width, initial-scale=1.0">
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont,
-                 "Segoe UI", Arial, sans-serif;
-    background: #f3f6fa;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #f4f7fb;
     color: #111827;
 }
 
-/* HEADER */
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =========================
+   HEADER
+========================= */
 
 header {
-    background: #07111f;
+    background:
+        linear-gradient(
+            135deg,
+            #06101d,
+            #10243c
+        );
+
     color: white;
     padding: 22px 18px;
 }
 
 .header-inner {
-    max-width: 950px;
+    max-width: 1050px;
     margin: auto;
 }
 
 .logo {
-    font-size: 30px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 3px;
 }
 
 .tagline {
@@ -49,26 +72,36 @@ header {
     margin-top: 4px;
 }
 
-/* MAIN */
+
+/* =========================
+   MAIN
+========================= */
 
 .container {
-    max-width: 950px;
+    max-width: 1050px;
     margin: auto;
     padding: 18px;
 }
 
-/* SEARCH */
+
+/* =========================
+   SEARCH
+========================= */
 
 .search-card {
     background: white;
     padding: 20px;
     border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+
+    box-shadow:
+        0 6px 25px
+        rgba(15,23,42,0.07);
 }
 
-.search-card h1 {
-    margin-top: 0;
+.search-title {
     font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 15px;
 }
 
 .search-row {
@@ -76,182 +109,610 @@ header {
     gap: 8px;
 }
 
-input {
+.search-row input {
     flex: 1;
+
     padding: 15px;
-    border: 1px solid #d1d5db;
+
+    border:
+        1px solid
+        #d1d5db;
+
     border-radius: 11px;
+
     font-size: 16px;
+
+    outline: none;
 }
 
-button {
-    padding: 15px 22px;
+.search-row input:focus {
+    border-color: #2563eb;
+}
+
+.search-button {
     background: #2563eb;
     color: white;
+
     border: none;
+
+    padding:
+        15px 22px;
+
     border-radius: 11px;
-    font-size: 16px;
-    font-weight: 700;
-}
 
-/* COMPANY */
-
-#result {
-    margin-top: 20px;
-}
-
-.company-header {
-    background: #07111f;
-    color: white;
-    padding: 22px;
-    border-radius: 18px 18px 0 0;
-}
-
-.company-name {
-    font-size: 25px;
     font-weight: 800;
 }
 
-.ticker {
-    color: #9ca3af;
-    margin-top: 5px;
+
+/* =========================
+   COMPANY HEADER
+========================= */
+
+.company-header {
+    margin-top: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #07111f,
+            #142b45
+        );
+
+    color: white;
+
+    padding: 24px;
+
+    border-radius:
+        18px 18px 0 0;
+}
+
+.company-name {
+    font-size: 27px;
+    font-weight: 900;
+}
+
+.company-meta {
+    margin-top: 6px;
+
+    color: #aab6c5;
+
+    font-size: 14px;
+}
+
+.score-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 18px;
 }
 
 .score {
-    display: inline-block;
-    margin-top: 15px;
     background: #16a34a;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-weight: bold;
+
+    padding:
+        8px 14px;
+
+    border-radius: 30px;
+
+    font-weight: 900;
 }
 
-/* SECTION */
+.score-label {
+    color: #d1d5db;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
     background: white;
+
     padding: 20px;
+
     margin-bottom: 14px;
-    border-radius: 0 0 18px 18px;
+
+    box-shadow:
+        0 4px 18px
+        rgba(15,23,42,0.05);
 }
 
 .section-title {
     font-size: 19px;
-    font-weight: 800;
+
+    font-weight: 900;
+
     margin-bottom: 15px;
 }
 
-/* METRICS */
+.section-description {
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-top: -8px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   METRIC CARDS
+========================= */
 
 .metrics {
     display: grid;
+
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(4, 1fr);
+
     gap: 12px;
 }
 
 .metric-card {
     background: #f8fafc;
+
     padding: 15px;
-    border-radius: 12px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid
+        #edf1f5;
 }
 
 .metric-name {
     color: #6b7280;
-    font-size: 13px;
+
+    font-size: 12px;
 }
 
 .metric-value {
     font-size: 18px;
-    font-weight: 800;
+
+    font-weight: 900;
+
     margin-top: 6px;
 }
 
-/* CHART */
 
-.chart {
-    margin-top: 15px;
+/* =========================
+   TABS
+========================= */
+
+.tabs {
+    display: flex;
+
+    gap: 7px;
+
+    margin-bottom: 15px;
+
+    overflow-x: auto;
+}
+
+.tab {
+    border:
+        1px solid
+        #d1d5db;
+
+    background: white;
+
+    padding:
+        9px 14px;
+
+    border-radius: 9px;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.tab.active {
+    background: #2563eb;
+
+    color: white;
+
+    border-color: #2563eb;
+}
+
+
+/* =========================
+   CHART / TABLE SWITCH
+========================= */
+
+.view-controls {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    gap: 10px;
+}
+
+.period-buttons,
+.view-buttons {
+    display: flex;
+
+    gap: 6px;
+}
+
+.small-button {
+    border:
+        1px solid
+        #d1d5db;
+
+    background: white;
+
+    padding:
+        8px 11px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.small-button.active {
+    background: #111827;
+
+    color: white;
+
+    border-color:
+        #111827;
+}
+
+
+/* =========================
+   CHART
+========================= */
+
+.chart-area {
+    padding-top: 10px;
 }
 
 .chart-row {
     display: flex;
+
     align-items: center;
-    margin: 12px 0;
+
+    gap: 8px;
+
+    margin:
+        14px 0;
 }
 
 .chart-year {
-    width: 50px;
-    font-size: 13px;
+    width: 48px;
+
+    font-size: 12px;
+
     color: #6b7280;
 }
 
-.bar-container {
+.chart-track {
     flex: 1;
-    background: #e5e7eb;
-    height: 28px;
+
+    height: 30px;
+
+    background: #edf1f5;
+
     border-radius: 7px;
+
     overflow: hidden;
 }
 
-.bar {
+.chart-bar {
     height: 100%;
-    background: #2563eb;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #60a5fa
+        );
+
     border-radius: 7px;
 }
 
-.bar-profit {
-    background: #16a34a;
-}
-
 .chart-value {
-    width: 80px;
+    width: 75px;
+
     text-align: right;
-    font-size: 13px;
-    font-weight: bold;
+
+    font-size: 12px;
+
+    font-weight: 800;
 }
 
-/* SOURCE */
 
-.source {
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse:
+        collapse;
+
+    min-width: 600px;
+}
+
+th,
+td {
+    padding: 12px;
+
+    border-bottom:
+        1px solid
+        #edf0f3;
+
+    text-align: right;
+
+    font-size: 13px;
+}
+
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+th {
     background: #f8fafc;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   FUNDAMENTAL SCORE
+========================= */
+
+.score-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.score-card {
+    background: #f8fafc;
+
     padding: 15px;
+
     border-radius: 12px;
+}
+
+.score-number {
+    font-size: 22px;
+
+    font-weight: 900;
+
+    color: #2563eb;
+}
+
+.score-description {
+    color: #6b7280;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================
+   SIGNALS
+========================= */
+
+.signal {
+    padding: 14px;
+
+    border-radius: 11px;
+
+    margin-bottom: 9px;
+
     font-size: 13px;
-    color: #6b7280;
 }
 
-/* ERROR */
+.signal-green {
+    background: #ecfdf5;
 
-.error {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
+    color: #166534;
+
+    border:
+        1px solid
+        #bbf7d0;
 }
 
-/* FOOTER */
+.signal-yellow {
+    background: #fffbeb;
 
-footer {
-    text-align: center;
-    padding: 30px;
+    color: #92400e;
+
+    border:
+        1px solid
+        #fde68a;
+}
+
+.signal-red {
+    background: #fef2f2;
+
+    color: #991b1b;
+
+    border:
+        1px solid
+        #fecaca;
+}
+
+
+/* =========================
+   SHAREHOLDERS
+========================= */
+
+.holder {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid
+        #edf0f3;
+
+    font-size: 13px;
+}
+
+.holder:last-child {
+    border-bottom: none;
+}
+
+.holder-percent {
+    font-weight: 800;
+}
+
+
+/* =========================
+   NEWS
+========================= */
+
+.news-card {
+    padding:
+        14px 0;
+
+    border-bottom:
+        1px solid
+        #edf0f3;
+}
+
+.news-card:last-child {
+    border-bottom: none;
+}
+
+.news-title {
+    font-weight: 800;
+
+    font-size: 14px;
+}
+
+.news-meta {
+    margin-top: 5px;
+
     color: #6b7280;
+
     font-size: 12px;
 }
 
-/* MOBILE */
 
-@media (max-width: 600px) {
+/* =========================
+   SOURCE
+========================= */
+
+.source-box {
+    background: #f8fafc;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    background: white;
+
+    padding: 22px;
+
+    margin-top: 18px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    color: #6b7280;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 35px 15px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .metrics {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 500px) {
 
     .search-row {
         flex-direction: column;
     }
 
-    button {
+    .search-button {
         width: 100%;
     }
 
     .metrics {
         grid-template-columns: 1fr;
+    }
+
+    .score-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .view-controls {
+        flex-direction: column;
+
+        align-items:
+            flex-start;
     }
 
 }
@@ -264,6 +725,10 @@ footer {
 <body>
 
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
 <div class="header-inner">
@@ -273,7 +738,7 @@ BLX
 </div>
 
 <div class="tagline">
-Financial Research Platform
+Fundamental Research Platform
 </div>
 
 </div>
@@ -284,25 +749,34 @@ Financial Research Platform
 <div class="container">
 
 
-<!-- SEARCH -->
+<!-- =========================
+     SEARCH
+========================= -->
 
 <div class="search-card">
 
-<h1>
+<div class="search-title">
+
 Search Company
-</h1>
+
+</div>
 
 <div class="search-row">
 
 <input
 id="searchInput"
 type="text"
-placeholder="Maybank, CIMB, RHB..."
+placeholder="Search Maybank, CIMB, RHB..."
 onkeydown="handleEnter(event)"
 >
 
-<button onclick="searchCompany()">
+<button
+class="search-button"
+onclick="searchCompany()"
+>
+
 Search
+
 </button>
 
 </div>
@@ -318,248 +792,617 @@ Search
 
 <footer>
 
-BLX Financial Research Platform<br>
+BLX Fundamental Research Platform
+
+<br><br>
+
 Prototype Version
 
 </footer>
 
 
+
 <script>
 
 
-/* COMPANY DATABASE */
+/* =====================================================
+   COMPANY DATABASE
+===================================================== */
+
 
 const companies = {
 
 
 maybank: {
 
-name: "Malayan Banking Berhad",
+name:
+"Malayan Banking Berhad",
 
-ticker: "1155",
+ticker:
+"1155",
 
-score: 83,
+industry:
+"Banking",
 
-revenue: "RM 61.2B",
+score:
+88,
 
-profitBeforeTax: "RM 13.5B",
 
-profitAfterTax: "RM 10.1B",
+/* CURRENT */
 
-assets: "RM 1.02T",
+revenue:
+61.2,
 
-liabilities: "RM 950B",
+profitBeforeTax:
+13.5,
 
-shares: "12.0B",
+profitAfterTax:
+10.1,
 
-roe: "11.8%",
+assets:
+1020,
 
-dividendYield: "5.4%",
+liabilities:
+950,
 
-revenueHistory: [
+equity:
+70,
 
-["2022", 52],
-["2023", 55],
-["2024", 58],
-["2025", 61]
+shares:
+12.0,
+
+roe:
+11.8,
+
+roa:
+1.0,
+
+netMargin:
+16.5,
+
+dividendYield:
+5.4,
+
+
+/* 10 YEAR DATA */
+
+history: {
+
+revenue: [
+
+[2016, 45.0],
+[2017, 46.5],
+[2018, 48.0],
+[2019, 49.5],
+[2020, 48.2],
+[2021, 51.0],
+[2022, 54.0],
+[2023, 57.0],
+[2024, 59.0],
+[2025, 61.2]
 
 ],
 
-profitHistory: [
+profit: [
 
-["2022", 8.2],
-["2023", 8.9],
-["2024", 9.5],
-["2025", 10.1]
+[2016, 6.2],
+[2017, 6.5],
+[2018, 7.0],
+[2019, 7.3],
+[2020, 6.8],
+[2021, 7.8],
+[2022, 8.2],
+[2023, 8.9],
+[2024, 9.5],
+[2025, 10.1]
+
+],
+
+assets: [
+
+[2016, 700],
+[2017, 735],
+[2018, 770],
+[2019, 800],
+[2020, 830],
+[2021, 870],
+[2022, 900],
+[2023, 940],
+[2024, 980],
+[2025, 1020]
+
+],
+
+roe: [
+
+[2016, 10.2],
+[2017, 10.5],
+[2018, 10.8],
+[2019, 11.0],
+[2020, 10.1],
+[2021, 10.8],
+[2022, 11.0],
+[2023, 11.3],
+[2024, 11.5],
+[2025, 11.8]
 
 ]
 
+}
+
 },
+
 
 
 cimb: {
 
-name: "CIMB Group Holdings Berhad",
+name:
+"CIMB Group Holdings Berhad",
 
-ticker: "1023",
+ticker:
+"1023",
 
-score: 86,
+industry:
+"Banking",
 
-revenue: "RM 22.4B",
+score:
+86,
 
-profitBeforeTax: "RM 10.2B",
+revenue:
+22.4,
 
-profitAfterTax: "RM 7.8B",
+profitBeforeTax:
+10.2,
 
-assets: "RM 750B",
+profitAfterTax:
+7.8,
 
-liabilities: "RM 690B",
+assets:
+750,
 
-shares: "10.6B",
+liabilities:
+690,
 
-roe: "12.6%",
+equity:
+60,
 
-dividendYield: "5.1%",
+shares:
+10.6,
 
-revenueHistory: [
+roe:
+12.6,
 
-["2022", 18],
-["2023", 19],
-["2024", 21],
-["2025", 22]
+roa:
+1.04,
+
+netMargin:
+34.8,
+
+dividendYield:
+5.1,
+
+
+history: {
+
+revenue: [
+
+[2016, 15.0],
+[2017, 16.0],
+[2018, 17.0],
+[2019, 18.0],
+[2020, 16.5],
+[2021, 17.5],
+[2022, 18.0],
+[2023, 19.0],
+[2024, 21.0],
+[2025, 22.4]
 
 ],
 
-profitHistory: [
+profit: [
 
-["2022", 5.6],
-["2023", 6.1],
-["2024", 7.0],
-["2025", 7.8]
+[2016, 4.2],
+[2017, 4.5],
+[2018, 4.8],
+[2019, 5.0],
+[2020, 4.5],
+[2021, 5.2],
+[2022, 5.6],
+[2023, 6.1],
+[2024, 7.0],
+[2025, 7.8]
+
+],
+
+assets: [
+
+[2016, 520],
+[2017, 545],
+[2018, 570],
+[2019, 590],
+[2020, 610],
+[2021, 650],
+[2022, 680],
+[2023, 700],
+[2024, 725],
+[2025, 750]
+
+],
+
+roe: [
+
+[2016, 10.0],
+[2017, 10.4],
+[2018, 10.7],
+[2019, 10.9],
+[2020, 9.8],
+[2021, 10.7],
+[2022, 11.1],
+[2023, 11.5],
+[2024, 12.0],
+[2025, 12.6]
 
 ]
 
+}
+
 },
+
 
 
 rhb: {
 
-name: "RHB Bank Berhad",
+name:
+"RHB Bank Berhad",
 
-ticker: "1066",
+ticker:
+"1066",
 
-score: 78,
+industry:
+"Banking",
 
-revenue: "RM 16.8B",
+score:
+78,
 
-profitBeforeTax: "RM 4.1B",
+revenue:
+16.8,
 
-profitAfterTax: "RM 3.1B",
+profitBeforeTax:
+4.1,
 
-assets: "RM 320B",
+profitAfterTax:
+3.1,
 
-liabilities: "RM 295B",
+assets:
+320,
 
-shares: "4.2B",
+liabilities:
+295,
 
-roe: "10.7%",
+equity:
+25,
 
-dividendYield: "5.8%",
+shares:
+4.2,
 
-revenueHistory: [
+roe:
+10.7,
 
-["2022", 13],
-["2023", 14],
-["2024", 15],
-["2025", 16.8]
+roa:
+0.97,
+
+netMargin:
+18.5,
+
+dividendYield:
+5.8,
+
+
+history: {
+
+revenue: [
+
+[2016, 11.0],
+[2017, 11.5],
+[2018, 12.0],
+[2019, 12.5],
+[2020, 11.8],
+[2021, 12.8],
+[2022, 13.0],
+[2023, 14.0],
+[2024, 15.0],
+[2025, 16.8]
 
 ],
 
-profitHistory: [
+profit: [
 
-["2022", 2.5],
-["2023", 2.7],
-["2024", 2.9],
-["2025", 3.1]
+[2016, 2.0],
+[2017, 2.1],
+[2018, 2.2],
+[2019, 2.3],
+[2020, 2.1],
+[2021, 2.4],
+[2022, 2.5],
+[2023, 2.7],
+[2024, 2.9],
+[2025, 3.1]
+
+],
+
+assets: [
+
+[2016, 230],
+[2017, 240],
+[2018, 250],
+[2019, 260],
+[2020, 270],
+[2021, 280],
+[2022, 290],
+[2023, 300],
+[2024, 310],
+[2025, 320]
+
+],
+
+roe: [
+
+[2016, 9.0],
+[2017, 9.2],
+[2018, 9.5],
+[2019, 9.7],
+[2020, 9.0],
+[2021, 9.6],
+[2022, 9.8],
+[2023, 10.0],
+[2024, 10.4],
+[2025, 10.7]
 
 ]
 
+}
+
 },
+
 
 
 "public bank": {
 
-name: "Public Bank Berhad",
+name:
+"Public Bank Berhad",
 
-ticker: "1295",
+ticker:
+"1295",
 
-score: 89,
+industry:
+"Banking",
 
-revenue: "RM 18.2B",
+score:
+89,
 
-profitBeforeTax: "RM 8.1B",
+revenue:
+18.2,
 
-profitAfterTax: "RM 6.4B",
+profitBeforeTax:
+8.1,
 
-assets: "RM 520B",
+profitAfterTax:
+6.4,
 
-liabilities: "RM 480B",
+assets:
+520,
 
-shares: "19.4B",
+liabilities:
+480,
 
-roe: "13.1%",
+equity:
+40,
 
-dividendYield: "3.9%",
+shares:
+19.4,
 
-revenueHistory: [
+roe:
+13.1,
 
-["2022", 15],
-["2023", 16],
-["2024", 17],
-["2025", 18.2]
+roa:
+1.23,
+
+netMargin:
+35.2,
+
+dividendYield:
+3.9,
+
+
+history: {
+
+revenue: [
+
+[2016, 12.0],
+[2017, 12.5],
+[2018, 13.0],
+[2019, 13.5],
+[2020, 13.0],
+[2021, 14.0],
+[2022, 15.0],
+[2023, 16.0],
+[2024, 17.0],
+[2025, 18.2]
 
 ],
 
-profitHistory: [
+profit: [
 
-["2022", 5.0],
-["2023", 5.4],
-["2024", 5.9],
-["2025", 6.4]
+[2016, 4.0],
+[2017, 4.2],
+[2018, 4.5],
+[2019, 4.7],
+[2020, 4.5],
+[2021, 4.8],
+[2022, 5.0],
+[2023, 5.4],
+[2024, 5.9],
+[2025, 6.4]
+
+],
+
+assets: [
+
+[2016, 360],
+[2017, 375],
+[2018, 390],
+[2019, 405],
+[2020, 420],
+[2021, 440],
+[2022, 460],
+[2023, 480],
+[2024, 500],
+[2025, 520]
+
+],
+
+roe: [
+
+[2016, 11.0],
+[2017, 11.2],
+[2018, 11.5],
+[2019, 11.7],
+[2020, 11.3],
+[2021, 11.7],
+[2022, 12.0],
+[2023, 12.4],
+[2024, 12.8],
+[2025, 13.1]
 
 ]
+
+}
 
 },
 
 
+
 "bank islam": {
 
-name: "Bank Islam Malaysia Berhad",
+name:
+"Bank Islam Malaysia Berhad",
 
-ticker: "5258",
+ticker:
+"5258",
 
-score: 75,
+industry:
+"Banking",
 
-revenue: "RM 6.2B",
+score:
+75,
 
-profitBeforeTax: "RM 1.1B",
+revenue:
+6.2,
 
-profitAfterTax: "RM 0.8B",
+profitBeforeTax:
+1.1,
 
-assets: "RM 95B",
+profitAfterTax:
+0.8,
 
-liabilities: "RM 88B",
+assets:
+95,
 
-shares: "2.2B",
+liabilities:
+88,
 
-roe: "8.4%",
+equity:
+7,
 
-dividendYield: "3.2%",
+shares:
+2.2,
 
-revenueHistory: [
+roe:
+8.4,
 
-["2022", 4.8],
-["2023", 5.2],
-["2024", 5.8],
-["2025", 6.2]
+roa:
+0.84,
+
+netMargin:
+12.9,
+
+dividendYield:
+3.2,
+
+
+history: {
+
+revenue: [
+
+[2016, 3.5],
+[2017, 3.7],
+[2018, 4.0],
+[2019, 4.2],
+[2020, 4.0],
+[2021, 4.5],
+[2022, 4.8],
+[2023, 5.2],
+[2024, 5.8],
+[2025, 6.2]
 
 ],
 
-profitHistory: [
+profit: [
 
-["2022", 0.55],
-["2023", 0.62],
-["2024", 0.71],
-["2025", 0.80]
+[2016, 0.35],
+[2017, 0.40],
+[2018, 0.45],
+[2019, 0.50],
+[2020, 0.45],
+[2021, 0.52],
+[2022, 0.55],
+[2023, 0.62],
+[2024, 0.71],
+[2025, 0.80]
+
+],
+
+assets: [
+
+[2016, 55],
+[2017, 58],
+[2018, 61],
+[2019, 64],
+[2020, 67],
+[2021, 72],
+[2022, 78],
+[2023, 84],
+[2024, 90],
+[2025, 95]
+
+],
+
+roe: [
+
+[2016, 7.0],
+[2017, 7.2],
+[2018, 7.4],
+[2019, 7.5],
+[2020, 7.2],
+[2021, 7.6],
+[2022, 7.8],
+[2023, 8.0],
+[2024, 8.2],
+[2025, 8.4]
 
 ]
+
+}
 
 }
 
 };
 
 
-/* SEARCH */
+/* =====================================================
+   SEARCH
+===================================================== */
+
 
 function cleanSearch(value) {
 
@@ -574,13 +1417,17 @@ return value
 function searchCompany() {
 
 const input =
-document.getElementById("searchInput").value;
+document.getElementById(
+"searchInput"
+).value;
 
 const search =
 cleanSearch(input);
 
 const result =
-document.getElementById("result");
+document.getElementById(
+"result"
+);
 
 
 if (!search) {
@@ -602,17 +1449,20 @@ return;
 }
 
 
-let company = companies[search];
+let company =
+companies[search];
 
 
 if (!company) {
 
 const key =
-Object.keys(companies).find(key =>
+Object.keys(companies)
+.find(key =>
 
 key.includes(search) ||
 
-companies[key].name
+companies[key]
+.name
 .toLowerCase()
 .includes(search)
 
@@ -620,7 +1470,8 @@ companies[key].name
 
 if (key) {
 
-company = companies[key];
+company =
+companies[key];
 
 }
 
@@ -656,27 +1507,65 @@ displayCompany(company);
 }
 
 
-/* DISPLAY COMPANY */
+/* =====================================================
+   DISPLAY COMPANY
+===================================================== */
+
 
 function displayCompany(company) {
 
 
-let revenueHTML = "";
+let currentPeriod =
+10;
 
-let profitHTML = "";
+let currentMetric =
+"revenue";
+
+let currentView =
+"chart";
 
 
-/* REVENUE CHART */
+function render() {
 
-company.revenueHistory.forEach(item => {
 
-const year = item[0];
+const data =
+company.history[
+currentMetric
+];
 
-const value = item[1];
 
-const width = value / 65 * 100;
+const filtered =
+data.slice(
+- currentPeriod
+);
 
-revenueHTML += `
+
+/* MAX VALUE */
+
+let maxValue =
+Math.max(
+...filtered.map(
+x => x[1]
+)
+);
+
+
+let chartHTML = "";
+
+
+filtered.forEach(item => {
+
+const year =
+item[0];
+
+const value =
+item[1];
+
+const width =
+(value / maxValue) * 100;
+
+
+chartHTML += `
 
 <div class="chart-row">
 
@@ -684,17 +1573,22 @@ revenueHTML += `
 ${year}
 </div>
 
-<div class="bar-container">
+<div class="chart-track">
 
 <div
-class="bar"
+class="chart-bar"
 style="width:${width}%">
 </div>
 
 </div>
 
 <div class="chart-value">
-RM${value}B
+
+${formatValue(
+value,
+currentMetric
+)}
+
 </div>
 
 </div>
@@ -704,45 +1598,98 @@ RM${value}B
 });
 
 
-/* PROFIT CHART */
+/* TABLE */
 
-company.profitHistory.forEach(item => {
+let tableHTML = `
 
-const year = item[0];
+<div class="table-wrapper">
 
-const value = item[1];
+<table>
 
-const width = value / 11 * 100;
+<tr>
 
-profitHTML += `
+<th>Year</th>
 
-<div class="chart-row">
+<th>Value</th>
 
-<div class="chart-year">
-${year}
-</div>
+<th>Change</th>
 
-<div class="bar-container">
+</tr>
 
-<div
-class="bar bar-profit"
-style="width:${width}%">
-</div>
+`;
 
-</div>
 
-<div class="chart-value">
-RM${value}B
-</div>
+filtered.forEach(
+(item,index) => {
 
-</div>
+let change = "-";
+
+if (index > 0) {
+
+const previous =
+filtered[index - 1][1];
+
+change =
+(
+((item[1] -
+previous)
+/
+previous)
+*
+100
+).toFixed(1)
++ "%";
+
+}
+
+tableHTML += `
+
+<tr>
+
+<td>
+${item[0]}
+</td>
+
+<td>
+${formatValue(
+item[1],
+currentMetric
+)}
+</td>
+
+<td>
+${change}
+</td>
+
+</tr>
 
 `;
 
 });
 
 
-document.getElementById("result").innerHTML = `
+tableHTML += `
+
+</table>
+
+</div>
+
+`;
+
+
+/* METRIC TITLE */
+
+let metricTitle =
+getMetricTitle(
+currentMetric
+);
+
+
+/* COMPANY HTML */
+
+document.getElementById(
+"result"
+).innerHTML = `
 
 
 <!-- COMPANY HEADER -->
@@ -755,30 +1702,41 @@ ${company.name}
 
 </div>
 
-<div class="ticker">
+<div class="company-meta">
 
 Bursa Malaysia:
 ${company.ticker}
 
+<br>
+
+Industry:
+${company.industry}
+
 </div>
+
+
+<div class="score-row">
 
 <div class="score">
 
-BLX Score:
+BLX Fundamental Score:
 ${company.score}/100
 
 </div>
 
 </div>
 
+</div>
 
-<!-- FINANCIAL METRICS -->
+
+
+<!-- CURRENT FUNDAMENTALS -->
 
 <div class="section">
 
 <div class="section-title">
 
-Financial Overview
+Current Fundamental Snapshot
 
 </div>
 
@@ -786,105 +1744,318 @@ Financial Overview
 <div class="metrics">
 
 
-<div class="metric-card">
+${metricCard(
+"Revenue",
+"RM " +
+company.revenue +
+"B"
+)}
 
-<div class="metric-name">
+
+${metricCard(
+"Profit Before Tax",
+"RM " +
+company.profitBeforeTax +
+"B"
+)}
+
+
+${metricCard(
+"Profit After Tax",
+"RM " +
+company.profitAfterTax +
+"B"
+)}
+
+
+${metricCard(
+"Total Assets",
+"RM " +
+company.assets +
+"B"
+)}
+
+
+${metricCard(
+"Liabilities",
+"RM " +
+company.liabilities +
+"B"
+)}
+
+
+${metricCard(
+"Equity",
+"RM " +
+company.equity +
+"B"
+)}
+
+
+${metricCard(
+"ROE",
+company.roe +
+"%"
+)}
+
+
+${metricCard(
+"ROA",
+company.roa +
+"%"
+)}
+
+
+${metricCard(
+"Net Margin",
+company.netMargin +
+"%"
+)}
+
+
+${metricCard(
+"Shares",
+company.shares +
+"B"
+)}
+
+
+${metricCard(
+"Dividend Yield",
+company.dividendYield +
+"%"
+)}
+
+</div>
+
+</div>
+
+
+
+<!-- HISTORY -->
+
+<div class="section">
+
+<div class="section-title">
+
+Fundamental History
+
+</div>
+
+<div class="section-description">
+
+Analyse the company's historical performance.
+
+</div>
+
+
+<!-- METRIC TABS -->
+
+<div class="tabs">
+
+<button
+class="tab active"
+onclick="changeMetric('revenue')">
+
 Revenue
-</div>
 
-<div class="metric-value">
-${company.revenue}
-</div>
+</button>
 
-</div>
+<button
+class="tab"
+onclick="changeMetric('profit')">
 
+Profit
 
-<div class="metric-card">
+</button>
 
-<div class="metric-name">
-Profit Before Tax
-</div>
+<button
+class="tab"
+onclick="changeMetric('assets')">
 
-<div class="metric-value">
-${company.profitBeforeTax}
-</div>
+Assets
 
-</div>
+</button>
 
+<button
+class="tab"
+onclick="changeMetric('roe')">
 
-<div class="metric-card">
-
-<div class="metric-name">
-Profit After Tax
-</div>
-
-<div class="metric-value">
-${company.profitAfterTax}
-</div>
-
-</div>
-
-
-<div class="metric-card">
-
-<div class="metric-name">
-Total Assets
-</div>
-
-<div class="metric-value">
-${company.assets}
-</div>
-
-</div>
-
-
-<div class="metric-card">
-
-<div class="metric-name">
-Total Liabilities
-</div>
-
-<div class="metric-value">
-${company.liabilities}
-</div>
-
-</div>
-
-
-<div class="metric-card">
-
-<div class="metric-name">
-Number of Shares
-</div>
-
-<div class="metric-value">
-${company.shares}
-</div>
-
-</div>
-
-
-<div class="metric-card">
-
-<div class="metric-name">
 ROE
-</div>
 
-<div class="metric-value">
-${company.roe}
-</div>
+</button>
 
 </div>
 
 
-<div class="metric-card">
+
+<div class="view-controls">
+
+
+<!-- PERIOD -->
+
+<div class="period-buttons">
+
+<button
+class="small-button"
+onclick="changePeriod(5)">
+
+5 Years
+
+</button>
+
+<button
+class="small-button active"
+onclick="changePeriod(10)">
+
+10 Years
+
+</button>
+
+</div>
+
+
+<!-- VIEW -->
+
+<div class="view-buttons">
+
+<button
+class="small-button active"
+onclick="changeView('chart')">
+
+📊 Chart
+
+</button>
+
+<button
+class="small-button"
+onclick="changeView('table')">
+
+📋 Table
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<div id="historyContent">
+
+<h3>
+
+${metricTitle}
+
+</h3>
+
+${currentView === "chart"
+? `<div class="chart-area">
+${chartHTML}
+</div>`
+: tableHTML}
+
+</div>
+
+
+</div>
+
+
+
+<!-- SCORE -->
+
+<div class="section">
+
+<div class="section-title">
+
+BLX Fundamental Score
+
+</div>
+
+
+<div class="score-grid">
+
+
+<div class="score-card">
 
 <div class="metric-name">
-Dividend Yield
+Profitability
 </div>
 
-<div class="metric-value">
-${company.dividendYield}
+<div class="score-number">
+18/20
+</div>
+
+<div class="score-description">
+Profitability strength
+</div>
+
+</div>
+
+
+<div class="score-card">
+
+<div class="metric-name">
+Growth
+</div>
+
+<div class="score-number">
+17/20
+</div>
+
+<div class="score-description">
+Long-term growth
+</div>
+
+</div>
+
+
+<div class="score-card">
+
+<div class="metric-name">
+Balance Sheet
+</div>
+
+<div class="score-number">
+18/20
+</div>
+
+<div class="score-description">
+Financial strength
+</div>
+
+</div>
+
+
+<div class="score-card">
+
+<div class="metric-name">
+Valuation
+</div>
+
+<div class="score-number">
+16/20
+</div>
+
+<div class="score-description">
+Valuation assessment
+</div>
+
+</div>
+
+
+<div class="score-card">
+
+<div class="metric-name">
+Shareholder Return
+</div>
+
+<div class="score-number">
+19/20
+</div>
+
+<div class="score-description">
+Dividend and returns
 </div>
 
 </div>
@@ -895,65 +2066,194 @@ ${company.dividendYield}
 </div>
 
 
-<!-- REVENUE CHART -->
+
+<!-- SIGNALS -->
 
 <div class="section">
 
 <div class="section-title">
 
-Revenue History
-
-</div>
-
-<div class="chart">
-
-${revenueHTML}
-
-</div>
+BLX Fundamental Signals
 
 </div>
 
 
-<!-- PROFIT CHART -->
+<div class="signal signal-green">
+
+🟢 Revenue has shown a long-term upward trend.
+
+</div>
+
+
+<div class="signal signal-green">
+
+🟢 Profit has generally increased over the historical period.
+
+</div>
+
+
+<div class="signal signal-green">
+
+🟢 ROE remains positive.
+
+</div>
+
+
+<div class="signal signal-yellow">
+
+🟡 Valuation should be compared with historical and industry averages.
+
+</div>
+
+
+</div>
+
+
+
+<!-- SHAREHOLDERS -->
 
 <div class="section">
 
 <div class="section-title">
 
-Profit After Tax History
-
-</div>
-
-<div class="chart">
-
-${profitHTML}
-
-</div>
+Major Shareholders
 
 </div>
 
 
-<!-- SOURCE -->
+<div class="holder">
+
+<span>
+Institutional Investor A
+</span>
+
+<span class="holder-percent">
+XX%
+</span>
+
+</div>
+
+
+<div class="holder">
+
+<span>
+Institutional Investor B
+</span>
+
+<span class="holder-percent">
+XX%
+</span>
+
+</div>
+
+
+<div class="holder">
+
+<span>
+Other Public Investors
+</span>
+
+<span class="holder-percent">
+XX%
+</span>
+
+</div>
+
+
+</div>
+
+
+
+<!-- NEWS -->
 
 <div class="section">
 
 <div class="section-title">
 
-Data Source
+Latest News
 
 </div>
 
-<div class="source">
 
-Prototype data for development only.
+<div class="news-card">
+
+<div class="news-title">
+
+Latest company announcement
+
+</div>
+
+<div class="news-meta">
+
+Source: Official company / Bursa Malaysia
+
+<br>
+
+Publication date:
+To be connected
+
+</div>
+
+</div>
+
+
+<div class="news-card">
+
+<div class="news-title">
+
+Latest financial results
+
+</div>
+
+<div class="news-meta">
+
+Source:
+Annual Report / Official filing
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- SOURCES -->
+
+<div class="section">
+
+<div class="section-title">
+
+Sources & Data
+
+</div>
+
+
+<div class="source-box">
+
+BLX is currently a prototype.
 
 <br><br>
 
-In the production version,
-BLX will display the original
-source, publication date and
-last updated timestamp for
-each financial figure.
+Historical figures shown in this
+version are demonstration data
+used for website development.
+
+<br><br>
+
+The production BLX system should
+connect financial information to
+verified sources such as company
+annual reports, Bursa Malaysia
+filings and appropriately licensed
+data providers.
+
+<br><br>
+
+Each data point should eventually
+display its source and last-updated
+date.
 
 </div>
 
@@ -962,19 +2262,136 @@ each financial figure.
 
 `;
 
+
+/* =====================================================
+   GLOBAL FUNCTIONS FOR CONTROLS
+===================================================== */
+
+
+window.changePeriod =
+function(period) {
+
+currentPeriod =
+period;
+
+render();
+
+};
+
+
+window.changeMetric =
+function(metric) {
+
+currentMetric =
+metric;
+
+render();
+
+};
+
+
+window.changeView =
+function(view) {
+
+currentView =
+view;
+
+render();
+
+};
+
+
 }
 
 
-function handleEnter(event) {
+/* =====================================================
+   HELPERS
+===================================================== */
 
-if (event.key === "Enter") {
+
+function metricCard(
+name,
+value
+) {
+
+return `
+
+<div class="metric-card">
+
+<div class="metric-name">
+
+${name}
+
+</div>
+
+<div class="metric-value">
+
+${value}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function getMetricTitle(
+metric
+) {
+
+const titles = {
+
+revenue:
+"Revenue History",
+
+profit:
+"Profit After Tax History",
+
+assets:
+"Total Assets History",
+
+roe:
+"ROE History"
+
+};
+
+return titles[metric];
+
+}
+
+
+function formatValue(
+value,
+metric
+) {
+
+if (metric === "roe") {
+
+return value + "%";
+
+}
+
+return "RM " + value + "B";
+
+}
+
+
+function handleEnter(
+event
+) {
+
+if (
+event.key ===
+"Enter"
+) {
 
 searchCompany();
 
 }
 
 }
-
 
 </script>
 
