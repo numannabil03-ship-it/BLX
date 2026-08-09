@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>BLX | Financial Research</title>
 
@@ -14,10 +18,13 @@
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", Arial, sans-serif;
     background: #f3f6fa;
     color: #111827;
 }
+
+/* HEADER */
 
 header {
     background: #07111f;
@@ -26,7 +33,7 @@ header {
 }
 
 .header-inner {
-    max-width: 900px;
+    max-width: 950px;
     margin: auto;
 }
 
@@ -38,15 +45,19 @@ header {
 
 .tagline {
     color: #9ca3af;
-    margin-top: 4px;
     font-size: 13px;
+    margin-top: 4px;
 }
 
+/* MAIN */
+
 .container {
-    max-width: 900px;
+    max-width: 950px;
     margin: auto;
     padding: 18px;
 }
+
+/* SEARCH */
 
 .search-card {
     background: white;
@@ -65,39 +76,28 @@ header {
     gap: 8px;
 }
 
-.search-row input {
-    flex: 1;
-}
-
 input {
-    width: 100%;
+    flex: 1;
     padding: 15px;
     border: 1px solid #d1d5db;
     border-radius: 11px;
     font-size: 16px;
-    outline: none;
-}
-
-input:focus {
-    border-color: #2563eb;
 }
 
 button {
-    padding: 15px 20px;
+    padding: 15px 22px;
     background: #2563eb;
+    color: white;
     border: none;
     border-radius: 11px;
-    color: white;
     font-size: 16px;
     font-weight: 700;
 }
 
-button:active {
-    background: #1d4ed8;
-}
+/* COMPANY */
 
 #result {
-    margin-top: 18px;
+    margin-top: 20px;
 }
 
 .company-header {
@@ -118,54 +118,109 @@ button:active {
 }
 
 .score {
-    margin-top: 18px;
     display: inline-block;
+    margin-top: 15px;
     background: #16a34a;
-    padding: 8px 13px;
+    padding: 8px 14px;
     border-radius: 20px;
     font-weight: bold;
 }
 
+/* SECTION */
+
 .section {
     background: white;
     padding: 20px;
+    margin-bottom: 14px;
     border-radius: 0 0 18px 18px;
 }
 
 .section-title {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
-.metric {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 14px 0;
-    border-bottom: 1px solid #edf0f3;
+/* METRICS */
+
+.metrics {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 12px;
 }
 
-.metric:last-child {
-    border-bottom: none;
+.metric-card {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 12px;
 }
 
 .metric-name {
     color: #6b7280;
+    font-size: 13px;
 }
 
 .metric-value {
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 800;
+    margin-top: 6px;
+}
+
+/* CHART */
+
+.chart {
+    margin-top: 15px;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.chart-year {
+    width: 50px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.bar-container {
+    flex: 1;
+    background: #e5e7eb;
+    height: 28px;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 7px;
+}
+
+.bar-profit {
+    background: #16a34a;
+}
+
+.chart-value {
+    width: 80px;
     text-align: right;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-.green {
-    color: #16a34a;
+/* SOURCE */
+
+.source {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #6b7280;
 }
 
-.red {
-    color: #dc2626;
-}
+/* ERROR */
 
 .error {
     background: white;
@@ -174,20 +229,18 @@ button:active {
     text-align: center;
 }
 
-.hint {
-    color: #6b7280;
-    font-size: 13px;
-    margin-top: 10px;
-}
+/* FOOTER */
 
 footer {
     text-align: center;
-    padding: 30px 15px;
+    padding: 30px;
     color: #6b7280;
     font-size: 12px;
 }
 
-@media (max-width: 500px) {
+/* MOBILE */
+
+@media (max-width: 600px) {
 
     .search-row {
         flex-direction: column;
@@ -197,16 +250,19 @@ footer {
         width: 100%;
     }
 
-    .metric {
-        font-size: 14px;
+    .metrics {
+        grid-template-columns: 1fr;
     }
 
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -227,16 +283,21 @@ Financial Research Platform
 
 <div class="container">
 
+
+<!-- SEARCH -->
+
 <div class="search-card">
 
-<h1>Search Malaysian Companies</h1>
+<h1>
+Search Company
+</h1>
 
 <div class="search-row">
 
 <input
 id="searchInput"
 type="text"
-placeholder="Try Maybank, CIMB, RHB..."
+placeholder="Maybank, CIMB, RHB..."
 onkeydown="handleEnter(event)"
 >
 
@@ -246,14 +307,11 @@ Search
 
 </div>
 
-<div class="hint">
-Search is not case-sensitive.
-</div>
-
 </div>
 
 
 <div id="result"></div>
+
 
 </div>
 
@@ -268,95 +326,240 @@ Prototype Version
 
 <script>
 
+
+/* COMPANY DATABASE */
+
 const companies = {
+
 
 maybank: {
 
 name: "Malayan Banking Berhad",
+
 ticker: "1155",
+
 score: 83,
 
-revenue: "RM 61.2 Billion",
-profitBeforeTax: "RM 13.5 Billion",
-profitAfterTax: "RM 10.1 Billion",
-assets: "RM 1.02 Trillion",
-liabilities: "RM 950 Billion",
-shares: "12.0 Billion",
+revenue: "RM 61.2B",
+
+profitBeforeTax: "RM 13.5B",
+
+profitAfterTax: "RM 10.1B",
+
+assets: "RM 1.02T",
+
+liabilities: "RM 950B",
+
+shares: "12.0B",
+
 roe: "11.8%",
-dividendYield: "5.4%"
+
+dividendYield: "5.4%",
+
+revenueHistory: [
+
+["2022", 52],
+["2023", 55],
+["2024", 58],
+["2025", 61]
+
+],
+
+profitHistory: [
+
+["2022", 8.2],
+["2023", 8.9],
+["2024", 9.5],
+["2025", 10.1]
+
+]
 
 },
+
 
 cimb: {
 
 name: "CIMB Group Holdings Berhad",
+
 ticker: "1023",
+
 score: 86,
 
-revenue: "RM 22.4 Billion",
-profitBeforeTax: "RM 10.2 Billion",
-profitAfterTax: "RM 7.8 Billion",
-assets: "RM 750 Billion",
-liabilities: "RM 690 Billion",
-shares: "10.6 Billion",
+revenue: "RM 22.4B",
+
+profitBeforeTax: "RM 10.2B",
+
+profitAfterTax: "RM 7.8B",
+
+assets: "RM 750B",
+
+liabilities: "RM 690B",
+
+shares: "10.6B",
+
 roe: "12.6%",
-dividendYield: "5.1%"
+
+dividendYield: "5.1%",
+
+revenueHistory: [
+
+["2022", 18],
+["2023", 19],
+["2024", 21],
+["2025", 22]
+
+],
+
+profitHistory: [
+
+["2022", 5.6],
+["2023", 6.1],
+["2024", 7.0],
+["2025", 7.8]
+
+]
 
 },
+
 
 rhb: {
 
 name: "RHB Bank Berhad",
+
 ticker: "1066",
+
 score: 78,
 
-revenue: "RM 16.8 Billion",
-profitBeforeTax: "RM 4.1 Billion",
-profitAfterTax: "RM 3.1 Billion",
-assets: "RM 320 Billion",
-liabilities: "RM 295 Billion",
-shares: "4.2 Billion",
+revenue: "RM 16.8B",
+
+profitBeforeTax: "RM 4.1B",
+
+profitAfterTax: "RM 3.1B",
+
+assets: "RM 320B",
+
+liabilities: "RM 295B",
+
+shares: "4.2B",
+
 roe: "10.7%",
-dividendYield: "5.8%"
+
+dividendYield: "5.8%",
+
+revenueHistory: [
+
+["2022", 13],
+["2023", 14],
+["2024", 15],
+["2025", 16.8]
+
+],
+
+profitHistory: [
+
+["2022", 2.5],
+["2023", 2.7],
+["2024", 2.9],
+["2025", 3.1]
+
+]
 
 },
+
 
 "public bank": {
 
 name: "Public Bank Berhad",
+
 ticker: "1295",
+
 score: 89,
 
-revenue: "RM 18.2 Billion",
-profitBeforeTax: "RM 8.1 Billion",
-profitAfterTax: "RM 6.4 Billion",
-assets: "RM 520 Billion",
-liabilities: "RM 480 Billion",
-shares: "19.4 Billion",
+revenue: "RM 18.2B",
+
+profitBeforeTax: "RM 8.1B",
+
+profitAfterTax: "RM 6.4B",
+
+assets: "RM 520B",
+
+liabilities: "RM 480B",
+
+shares: "19.4B",
+
 roe: "13.1%",
-dividendYield: "3.9%"
+
+dividendYield: "3.9%",
+
+revenueHistory: [
+
+["2022", 15],
+["2023", 16],
+["2024", 17],
+["2025", 18.2]
+
+],
+
+profitHistory: [
+
+["2022", 5.0],
+["2023", 5.4],
+["2024", 5.9],
+["2025", 6.4]
+
+]
 
 },
+
 
 "bank islam": {
 
 name: "Bank Islam Malaysia Berhad",
+
 ticker: "5258",
+
 score: 75,
 
-revenue: "RM 6.2 Billion",
-profitBeforeTax: "RM 1.1 Billion",
-profitAfterTax: "RM 0.8 Billion",
-assets: "RM 95 Billion",
-liabilities: "RM 88 Billion",
-shares: "2.2 Billion",
+revenue: "RM 6.2B",
+
+profitBeforeTax: "RM 1.1B",
+
+profitAfterTax: "RM 0.8B",
+
+assets: "RM 95B",
+
+liabilities: "RM 88B",
+
+shares: "2.2B",
+
 roe: "8.4%",
-dividendYield: "3.2%"
+
+dividendYield: "3.2%",
+
+revenueHistory: [
+
+["2022", 4.8],
+["2023", 5.2],
+["2024", 5.8],
+["2025", 6.2]
+
+],
+
+profitHistory: [
+
+["2022", 0.55],
+["2023", 0.62],
+["2024", 0.71],
+["2025", 0.80]
+
+]
 
 }
 
 };
 
+
+/* SEARCH */
 
 function cleanSearch(value) {
 
@@ -380,15 +583,15 @@ const result =
 document.getElementById("result");
 
 
-if (search === "") {
+if (!search) {
 
 result.innerHTML = `
 
 <div class="error">
 
-<strong>Please enter a company name.</strong>
-
-<p>Example: Maybank</p>
+<strong>
+Please enter a company name.
+</strong>
 
 </div>
 
@@ -404,15 +607,21 @@ let company = companies[search];
 
 if (!company) {
 
-const keys = Object.keys(companies);
+const key =
+Object.keys(companies).find(key =>
 
-const match = keys.find(key =>
 key.includes(search) ||
-companies[key].name.toLowerCase().includes(search)
+
+companies[key].name
+.toLowerCase()
+.includes(search)
+
 );
 
-if (match) {
-company = companies[match];
+if (key) {
+
+company = companies[key];
+
 }
 
 }
@@ -424,10 +633,13 @@ result.innerHTML = `
 
 <div class="error">
 
-<strong>Company not found.</strong>
+<strong>
+Company not found.
+</strong>
 
 <p>
-Try Maybank, CIMB, RHB, Public Bank or Bank Islam.
+Try Maybank, CIMB, RHB,
+Public Bank or Bank Islam.
 </p>
 
 </div>
@@ -439,7 +651,101 @@ return;
 }
 
 
-result.innerHTML = `
+displayCompany(company);
+
+}
+
+
+/* DISPLAY COMPANY */
+
+function displayCompany(company) {
+
+
+let revenueHTML = "";
+
+let profitHTML = "";
+
+
+/* REVENUE CHART */
+
+company.revenueHistory.forEach(item => {
+
+const year = item[0];
+
+const value = item[1];
+
+const width = value / 65 * 100;
+
+revenueHTML += `
+
+<div class="chart-row">
+
+<div class="chart-year">
+${year}
+</div>
+
+<div class="bar-container">
+
+<div
+class="bar"
+style="width:${width}%">
+</div>
+
+</div>
+
+<div class="chart-value">
+RM${value}B
+</div>
+
+</div>
+
+`;
+
+});
+
+
+/* PROFIT CHART */
+
+company.profitHistory.forEach(item => {
+
+const year = item[0];
+
+const value = item[1];
+
+const width = value / 11 * 100;
+
+profitHTML += `
+
+<div class="chart-row">
+
+<div class="chart-year">
+${year}
+</div>
+
+<div class="bar-container">
+
+<div
+class="bar bar-profit"
+style="width:${width}%">
+</div>
+
+</div>
+
+<div class="chart-value">
+RM${value}B
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("result").innerHTML = `
+
+
+<!-- COMPANY HEADER -->
 
 <div class="company-header">
 
@@ -451,18 +757,22 @@ ${company.name}
 
 <div class="ticker">
 
-Bursa Malaysia: ${company.ticker}
+Bursa Malaysia:
+${company.ticker}
 
 </div>
 
 <div class="score">
 
-BLX Score: ${company.score}/100
+BLX Score:
+${company.score}/100
 
 </div>
 
 </div>
 
+
+<!-- FINANCIAL METRICS -->
 
 <div class="section">
 
@@ -473,111 +783,182 @@ Financial Overview
 </div>
 
 
-<div class="metric">
+<div class="metrics">
 
-<span class="metric-name">
+
+<div class="metric-card">
+
+<div class="metric-name">
 Revenue
-</span>
+</div>
 
-<span class="metric-value">
+<div class="metric-value">
 ${company.revenue}
-</span>
+</div>
 
 </div>
 
 
-<div class="metric">
+<div class="metric-card">
 
-<span class="metric-name">
+<div class="metric-name">
 Profit Before Tax
-</span>
+</div>
 
-<span class="metric-value">
+<div class="metric-value">
 ${company.profitBeforeTax}
-</span>
+</div>
 
 </div>
 
 
-<div class="metric">
+<div class="metric-card">
 
-<span class="metric-name">
+<div class="metric-name">
 Profit After Tax
-</span>
+</div>
 
-<span class="metric-value green">
+<div class="metric-value">
 ${company.profitAfterTax}
-</span>
+</div>
 
 </div>
 
 
-<div class="metric">
+<div class="metric-card">
 
-<span class="metric-name">
+<div class="metric-name">
 Total Assets
-</span>
+</div>
 
-<span class="metric-value">
+<div class="metric-value">
 ${company.assets}
-</span>
+</div>
 
 </div>
 
 
-<div class="metric">
+<div class="metric-card">
 
-<span class="metric-name">
+<div class="metric-name">
 Total Liabilities
-</span>
+</div>
 
-<span class="metric-value">
+<div class="metric-value">
 ${company.liabilities}
-</span>
+</div>
 
 </div>
 
 
-<div class="metric">
+<div class="metric-card">
 
-<span class="metric-name">
+<div class="metric-name">
 Number of Shares
-</span>
+</div>
 
-<span class="metric-value">
+<div class="metric-value">
 ${company.shares}
-</span>
+</div>
 
 </div>
 
 
-<div class="metric">
+<div class="metric-card">
 
-<span class="metric-name">
+<div class="metric-name">
 ROE
-</span>
+</div>
 
-<span class="metric-value">
+<div class="metric-value">
 ${company.roe}
-</span>
+</div>
 
 </div>
 
 
-<div class="metric">
+<div class="metric-card">
 
-<span class="metric-name">
+<div class="metric-name">
 Dividend Yield
-</span>
+</div>
 
-<span class="metric-value">
+<div class="metric-value">
 ${company.dividendYield}
-</span>
+</div>
 
 </div>
 
 
 </div>
+
+</div>
+
+
+<!-- REVENUE CHART -->
+
+<div class="section">
+
+<div class="section-title">
+
+Revenue History
+
+</div>
+
+<div class="chart">
+
+${revenueHTML}
+
+</div>
+
+</div>
+
+
+<!-- PROFIT CHART -->
+
+<div class="section">
+
+<div class="section-title">
+
+Profit After Tax History
+
+</div>
+
+<div class="chart">
+
+${profitHTML}
+
+</div>
+
+</div>
+
+
+<!-- SOURCE -->
+
+<div class="section">
+
+<div class="section-title">
+
+Data Source
+
+</div>
+
+<div class="source">
+
+Prototype data for development only.
+
+<br><br>
+
+In the production version,
+BLX will display the original
+source, publication date and
+last updated timestamp for
+each financial figure.
+
+</div>
+
+</div>
+
 
 `;
 
@@ -594,7 +975,9 @@ searchCompany();
 
 }
 
+
 </script>
 
 </body>
+
 </html>
