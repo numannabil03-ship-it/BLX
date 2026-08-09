@@ -3,398 +3,552 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BLX</title>
+<title>BLX - Financial Intelligence</title>
 
 <style>
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-    background:#f3f6fa;
-    color:#111827;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    color: #101828;
 }
 
-.hidden{
-    display:none !important;
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-.page{
-    min-height:100vh;
+.hidden {
+    display: none !important;
 }
 
 /* =========================
-   AUTH
+   LOGIN / REGISTER
 ========================= */
 
-.auth-page{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:linear-gradient(135deg,#06101d,#12304f);
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #06101d, #12304f);
 }
 
-.auth-card{
-    width:100%;
-    max-width:430px;
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.30);
 }
 
-.logo{
-    text-align:center;
-    font-size:42px;
-    font-weight:900;
-    letter-spacing:5px;
-    color:#12304f;
+.logo {
+    text-align: center;
+    font-size: 46px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #12304f;
 }
 
-.logo-subtitle{
-    text-align:center;
-    color:#6b7280;
-    font-size:13px;
-    margin-bottom:25px;
+.logo-subtitle {
+    text-align: center;
+    color: #667085;
+    font-size: 13px;
+    margin-bottom: 25px;
 }
 
-.auth-title{
-    text-align:center;
-    font-size:24px;
-    margin-bottom:25px;
+.auth-title {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.input-group{
-    margin-bottom:15px;
+.input-group {
+    margin-bottom: 15px;
 }
 
-.input-group label{
-    display:block;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:6px;
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
 .input-group input,
-.input-group select{
-    width:100%;
-    padding:14px;
-    border:1px solid #d1d5db;
-    border-radius:10px;
-    font-size:16px;
-    background:white;
+.input-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d0d5dd;
+    border-radius: 11px;
+    background: white;
+    font-size: 16px;
 }
 
-.input-group input:focus,
-.input-group select:focus{
-    outline:none;
-    border-color:#2563eb;
-    box-shadow:0 0 0 3px rgba(37,99,235,.1);
+.primary-button {
+    width: 100%;
+    border: none;
+    border-radius: 11px;
+    padding: 14px;
+    background: #1769ff;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
 }
 
-.primary-button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    font-size:16px;
-    font-weight:800;
-    cursor:pointer;
+.primary-button:disabled {
+    background: #98a2b3;
 }
 
-.primary-button:disabled{
-    background:#9ca3af;
-    cursor:not-allowed;
+.auth-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #667085;
+    font-size: 14px;
 }
 
-.secondary-button{
-    width:100%;
-    padding:13px;
-    border:1px solid #d1d5db;
-    border-radius:10px;
-    background:white;
-    color:#111827;
-    font-weight:700;
+.auth-link button {
+    border: none;
+    background: none;
+    color: #1769ff;
+    font-weight: 800;
 }
 
-.auth-link{
-    text-align:center;
-    margin-top:20px;
-    color:#6b7280;
-    font-size:14px;
+.message {
+    display: none;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
 }
 
-.auth-link button{
-    border:0;
-    background:none;
-    color:#2563eb;
-    font-weight:800;
+.error {
+    background: #fef3f2;
+    color: #b42318;
 }
 
-.message{
-    padding:12px;
-    border-radius:9px;
-    margin-bottom:15px;
-    font-size:14px;
-    display:none;
+.password-box {
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 15px;
 }
 
-.error{
-    background:#fef2f2;
-    color:#b91c1c;
+.password-box div {
+    margin: 4px 0;
+    color: #d92d20;
 }
 
-.success{
-    background:#ecfdf5;
-    color:#166534;
-}
-
-/* PASSWORD */
-
-.password-requirements{
-    background:#f8fafc;
-    border-radius:10px;
-    padding:12px;
-    margin-top:-5px;
-    margin-bottom:15px;
-    font-size:12px;
-}
-
-.password-requirements div{
-    margin:5px 0;
-    color:#dc2626;
-}
-
-.password-requirements div.valid{
-    color:#16a34a;
-}
-
-.password-strength{
-    height:6px;
-    background:#e5e7eb;
-    border-radius:10px;
-    margin-top:8px;
-    overflow:hidden;
-}
-
-.password-strength-bar{
-    height:100%;
-    width:0%;
-    background:#dc2626;
-    transition:.3s;
+.password-box .valid {
+    color: #039855;
 }
 
 /* =========================
-   VERIFICATION
+   HEADER
 ========================= */
 
-.verify-icon{
-    text-align:center;
-    font-size:60px;
-    margin-bottom:15px;
+.header {
+    background: linear-gradient(135deg, #06101d, #12304f);
+    color: white;
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
-.verify-text{
-    text-align:center;
-    color:#6b7280;
-    line-height:1.6;
-    margin-bottom:25px;
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.blx-logo {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.language {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.3);
+    color: white;
+    padding: 8px;
+    border-radius: 9px;
+}
+
+.profile-button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,.15);
+    color: white;
+    font-size: 18px;
 }
 
 /* =========================
    HOME
 ========================= */
 
-.home-header{
-    background:linear-gradient(135deg,#06101d,#12304f);
-    color:white;
-    padding:20px;
+.home-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 18px;
 }
 
-.home-header-inner{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.greeting h1 {
+    margin: 0;
+    font-size: 25px;
 }
 
-.home-logo{
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:4px;
+.greeting p {
+    margin-top: 5px;
+    color: #667085;
 }
 
-.user-area{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.bursa-card {
+    margin-top: 18px;
+    background: linear-gradient(135deg, #0b1f36, #1769ff);
+    color: white;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 12px 30px rgba(23,105,255,.25);
 }
 
-.username-display{
-    font-size:14px;
-    color:#d1d5db;
+.bursa-label {
+    font-size: 13px;
+    opacity: .8;
 }
 
-.logout-button{
-    border:1px solid rgba(255,255,255,.3);
-    background:rgba(255,255,255,.1);
-    color:white;
-    padding:9px 13px;
-    border-radius:8px;
-    font-weight:700;
+.bursa-number {
+    font-size: 44px;
+    font-weight: 900;
+    margin: 4px 0;
 }
 
-.home-container{
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
+.bursa-subtitle {
+    font-size: 14px;
 }
 
-.welcome-card{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:18px;
-    box-shadow:0 5px 20px rgba(15,23,42,.06);
+.quote-card {
+    background: white;
+    margin-top: 18px;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(16,24,40,.06);
 }
 
-.welcome-card h1{
-    margin-top:0;
+.quote {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.4;
 }
 
-.welcome-card p{
-    color:#6b7280;
+.quote-author {
+    margin-top: 7px;
+    color: #667085;
+    font-size: 13px;
 }
 
-.search-box{
-    display:flex;
-    gap:8px;
+/* =========================
+   SEARCH
+========================= */
+
+.search-card {
+    background: white;
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(16,24,40,.06);
 }
 
-.search-box input{
-    flex:1;
-    padding:14px;
-    border:1px solid #d1d5db;
-    border-radius:10px;
-    font-size:16px;
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.search-box button{
-    padding:14px 20px;
-    border:0;
-    background:#2563eb;
-    color:white;
-    border-radius:10px;
-    font-weight:800;
+.search-row span {
+    font-size: 22px;
 }
 
-.feature-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+.search-row input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
 }
 
-.feature-card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 5px 20px rgba(15,23,42,.05);
+/* =========================
+   FEATURES
+========================= */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 18px;
 }
 
-.feature-icon{
-    font-size:28px;
+.feature {
+    border: none;
+    background: white;
+    border-radius: 18px;
+    padding: 16px 12px;
+    text-align: left;
+    min-height: 115px;
+    box-shadow: 0 5px 20px rgba(16,24,40,.05);
 }
 
-.feature-card h3{
-    margin-bottom:7px;
+.feature-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+    background: #eef4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
-.feature-card p{
-    color:#6b7280;
-    font-size:14px;
-    line-height:1.5;
+.feature-title {
+    font-size: 14px;
+    font-weight: 800;
 }
 
-.company-result{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:18px;
-    box-shadow:0 5px 20px rgba(15,23,42,.05);
+.feature-description {
+    color: #667085;
+    font-size: 11px;
+    margin-top: 4px;
 }
 
-.company-name{
-    font-size:24px;
-    font-weight:900;
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-top: 1px solid #eaecf0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 8px 4px;
+    z-index: 40;
 }
 
-.company-info{
-    color:#6b7280;
-    margin-top:5px;
+.nav-button {
+    border: none;
+    background: none;
+    color: #667085;
+    font-size: 11px;
+    font-weight: 700;
 }
 
-.metric-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:18px;
+.nav-button.active {
+    color: #1769ff;
 }
 
-.metric{
-    background:#f8fafc;
-    padding:13px;
-    border-radius:10px;
+.nav-icon {
+    display: block;
+    font-size: 21px;
+    margin-bottom: 3px;
 }
 
-.metric-title{
-    font-size:12px;
-    color:#6b7280;
+/* =========================
+   COMPANY PAGE
+========================= */
+
+.company-top {
+    background: linear-gradient(135deg, #06101d, #12304f);
+    color: white;
+    padding: 15px;
 }
 
-.metric-value{
-    font-size:17px;
-    font-weight:900;
-    margin-top:5px;
+.company-top-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-footer{
-    text-align:center;
-    color:#6b7280;
-    font-size:12px;
-    padding:30px;
+.back-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,.13);
+    color: white;
+    font-size: 25px;
 }
 
-@media(max-width:600px){
+.company-page-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 18px;
+}
 
-    .auth-card{
-        padding:25px 20px;
+.company-summary,
+.chart-card,
+.ceo-card,
+.source-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.company-name {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.company-ticker {
+    color: #667085;
+    margin-top: 5px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 900;
+    margin-top: 18px;
+}
+
+.price-change {
+    color: #039855;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
+.section-title {
+    font-size: 19px;
+    font-weight: 900;
+    margin: 20px 0 10px;
+}
+
+/* =========================
+   CHART
+========================= */
+
+.chart-buttons {
+    display: flex;
+    gap: 7px;
+    margin: 12px 0;
+}
+
+.chart-buttons button {
+    background: white;
+    border: 1px solid #d0d5dd;
+    padding: 7px 12px;
+    border-radius: 8px;
+}
+
+.chart-buttons button.active {
+    background: #1769ff;
+    color: white;
+}
+
+canvas {
+    width: 100%;
+    height: 230px;
+}
+
+/* =========================
+   FUNDAMENTALS
+========================= */
+
+.fundamental-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.fundamental {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.fundamental-label {
+    color: #667085;
+    font-size: 12px;
+}
+
+.fundamental-value {
+    font-size: 18px;
+    font-weight: 900;
+    margin-top: 4px;
+}
+
+/* =========================
+   CEO
+========================= */
+
+.ceo-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ceo-picture {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #eef2f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+}
+
+.ceo-name {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.ceo-position {
+    color: #667085;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.source-card {
+    font-size: 12px;
+    color: #667085;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .feature-grid{
-        grid-template-columns:1fr;
+    .bursa-number {
+        font-size: 38px;
     }
 
-    .metric-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .search-box{
-        flex-direction:column;
-    }
-
-    .search-box button{
-        width:100%;
-    }
-
-    .username-display{
-        display:none;
+    .company-name {
+        font-size: 21px;
     }
 }
 </style>
@@ -403,18 +557,18 @@ footer{
 <body>
 
 
-<!-- =====================================================
-LOGIN
-===================================================== -->
+<!-- ==================================================
+     LOGIN
+================================================== -->
 
-<section id="loginPage" class="page auth-page">
+<section id="loginPage" class="auth-page">
 
 <div class="auth-card">
 
 <div class="logo">BLX</div>
 
 <div class="logo-subtitle">
-Fundamental Research Platform
+Financial Intelligence Platform
 </div>
 
 <h2 class="auth-title">
@@ -424,44 +578,22 @@ Welcome Back
 <div id="loginError" class="message error"></div>
 
 <div class="input-group">
-
 <label>Username</label>
-
-<input
-id="loginUsername"
-type="text"
-placeholder="Enter username"
->
-
+<input id="loginUsername" type="text" placeholder="Enter username">
 </div>
 
 <div class="input-group">
-
 <label>Password</label>
-
-<input
-id="loginPassword"
-type="password"
-placeholder="Enter password"
->
-
+<input id="loginPassword" type="password" placeholder="Enter password">
 </div>
 
-<button
-class="primary-button"
-onclick="login()"
->
+<button class="primary-button" onclick="login()">
 LOGIN
 </button>
 
 <div class="auth-link">
-
 Don't have an account?
-
-<button onclick="showRegister()">
-Create Account
-</button>
-
+<button onclick="showRegister()">Create Account</button>
 </div>
 
 </div>
@@ -469,12 +601,11 @@ Create Account
 </section>
 
 
+<!-- ==================================================
+     REGISTER
+================================================== -->
 
-<!-- =====================================================
-CREATE ACCOUNT
-===================================================== -->
-
-<section id="registerPage" class="page auth-page hidden">
+<section id="registerPage" class="auth-page hidden">
 
 <div class="auth-card">
 
@@ -490,143 +621,57 @@ Create Account
 
 <div id="registerError" class="message error"></div>
 
-
-<!-- EMAIL -->
-
 <div class="input-group">
-
 <label>Email</label>
-
-<input
-id="registerEmail"
-type="email"
-placeholder="example@email.com"
->
-
+<input id="registerEmail" type="email" placeholder="Email">
 </div>
 
-
-<!-- USERNAME -->
-
 <div class="input-group">
-
 <label>Username</label>
-
-<input
-id="registerUsername"
-type="text"
-placeholder="Choose a username"
->
-
+<input id="registerUsername" type="text" placeholder="Username">
 </div>
-
-
-<!-- PASSWORD -->
 
 <div class="input-group">
-
 <label>Password</label>
-
-<input
-id="registerPassword"
-type="password"
-placeholder="Create a strong password"
-oninput="checkPassword()"
->
-
-<div class="password-strength">
-
-<div
-id="passwordStrengthBar"
-class="password-strength-bar">
+<input id="registerPassword"
+       type="password"
+       placeholder="Strong password"
+       oninput="checkPassword()">
 </div>
 
-</div>
-
-</div>
-
-
-<!-- PASSWORD REQUIREMENTS -->
-
-<div class="password-requirements">
+<div class="password-box">
 
 <strong>Password must contain:</strong>
 
-<div id="reqLength">
-✗ At least 8 characters
-</div>
-
-<div id="reqUpper">
-✗ At least 1 uppercase letter
-</div>
-
-<div id="reqLower">
-✗ At least 1 lowercase letter
-</div>
-
-<div id="reqNumber">
-✗ At least 1 number
-</div>
-
-<div id="reqSpecial">
-✗ At least 1 special character
-</div>
+<div id="reqLength">✗ At least 8 characters</div>
+<div id="reqUpper">✗ Uppercase letter</div>
+<div id="reqLower">✗ Lowercase letter</div>
+<div id="reqNumber">✗ Number</div>
+<div id="reqSpecial">✗ Special character</div>
 
 </div>
-
-
-<!-- COUNTRY -->
 
 <div class="input-group">
-
 <label>Country</label>
-
-<select id="registerCountry">
-
-<option value="">
-Select your country
-</option>
-
-</select>
-
+<select id="registerCountry"></select>
 </div>
-
-
-<!-- MALAYSIA STATE -->
 
 <div class="input-group">
-
 <label>State</label>
-
-<select id="registerState">
-
-<option value="">
-Select your state
-</option>
-
-</select>
-
+<select id="registerState"></select>
 </div>
-
 
 <button
 id="createAccountButton"
 class="primary-button"
 onclick="createAccount()"
-disabled
->
+disabled>
 CREATE ACCOUNT
 </button>
 
-
 <div class="auth-link">
-
 Already have an account?
-
-<button onclick="showLogin()">
-Login
-</button>
-
+<button onclick="showLogin()">Login</button>
 </div>
 
 </div>
@@ -634,18 +679,17 @@ Login
 </section>
 
 
+<!-- ==================================================
+     EMAIL VERIFICATION
+================================================== -->
 
-<!-- =====================================================
-VERIFICATION
-===================================================== -->
-
-<section id="verifyPage" class="page auth-page hidden">
+<section id="verifyPage" class="auth-page hidden">
 
 <div class="auth-card">
 
 <div class="logo">BLX</div>
 
-<div class="verify-icon">
+<div style="text-align:center;font-size:55px;margin:20px;">
 📧
 </div>
 
@@ -653,60 +697,53 @@ VERIFICATION
 Verify Your Email
 </h2>
 
-<div
-id="verifyEmailText"
-class="verify-text">
-</div>
+<p id="verifyText"
+style="text-align:center;color:#667085;line-height:1.6;">
+</p>
 
-<div id="verifyMessage" class="message success"></div>
-
-<button
-class="primary-button"
-onclick="verifyEmail()"
->
+<button class="primary-button" onclick="verifyEmail()">
 I HAVE VERIFIED MY EMAIL
 </button>
 
-<br><br>
-
-<button
-class="secondary-button"
-onclick="showLogin()"
->
-BACK TO LOGIN
-</button>
+<div class="auth-link">
+<button onclick="showLogin()">Back to Login</button>
+</div>
 
 </div>
 
 </section>
 
 
+<!-- ==================================================
+     HOME
+================================================== -->
 
-<!-- =====================================================
-HOME
-===================================================== -->
+<section id="homePage" class="hidden">
 
-<section id="homePage" class="page hidden">
+<header class="header">
 
-<header class="home-header">
+<div class="header-inner">
 
-<div class="home-header-inner">
-
-<div class="home-logo">
+<div class="blx-logo">
 BLX
 </div>
 
-<div class="user-area">
+<div class="header-right">
 
-<div
-id="usernameDisplay"
-class="username-display">
-</div>
+<select id="language"
+class="language"
+onchange="changeLanguage()">
 
-<button
-class="logout-button"
-onclick="logout()">
-Logout
+<option>English</option>
+<option>Malay</option>
+<option>Chinese</option>
+<option>Tamil</option>
+
+</select>
+
+<button class="profile-button"
+onclick="profile()">
+👤
 </button>
 
 </div>
@@ -718,26 +755,266 @@ Logout
 
 <div class="home-container">
 
-<div class="welcome-card">
+<div class="greeting">
 
 <h1>
-Welcome to BLX
+Good morning 👋
 </h1>
 
-<p>
-Fundamental research and financial analysis platform.
+<p id="welcomeText">
+Welcome to BLX
 </p>
 
-<div class="search-box">
+</div>
+
+
+<!-- BURSA -->
+
+<div class="bursa-card">
+
+<div class="bursa-label">
+BURSA MALAYSIA
+</div>
+
+<div class="bursa-number">
+1,089
+</div>
+
+<div class="bursa-subtitle">
+Total listed equities
+</div>
+
+</div>
+
+
+<!-- QUOTE -->
+
+<div class="quote-card">
+
+<div class="quote">
+"An investment in knowledge pays the best interest."
+</div>
+
+<div class="quote-author">
+— Benjamin Franklin
+</div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-card">
+
+<div class="search-row">
+
+<span>🔎</span>
 
 <input
 id="companySearch"
 type="text"
-placeholder="Search Maybank, CIMB, RHB..."
->
+placeholder="Search company name..."
+onkeydown="searchEnter(event)">
 
-<button onclick="searchCompany()">
-SEARCH
+</div>
+
+</div>
+
+
+<!-- FEATURES -->
+
+<div class="feature-grid">
+
+
+<button class="feature"
+onclick="focusSearch()">
+
+<div class="feature-icon">🏢</div>
+
+<div class="feature-title">
+Company Search
+</div>
+
+<div class="feature-description">
+Fundamentals & stock
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="showMessage('Wallet will contain portfolio and investment information.')">
+
+<div class="feature-icon">💰</div>
+
+<div class="feature-title">
+Wallet
+</div>
+
+<div class="feature-description">
+Investment wallet
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="focusSearch()">
+
+<div class="feature-icon">📈</div>
+
+<div class="feature-title">
+Chart
+</div>
+
+<div class="feature-description">
+Stock price chart
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="showMessage('Search a company to see its CEO.')">
+
+<div class="feature-icon">👔</div>
+
+<div class="feature-title">
+CEO
+</div>
+
+<div class="feature-description">
+Company leadership
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="showMessage('Grow Your Money will contain financial education.')">
+
+<div class="feature-icon">🌱</div>
+
+<div class="feature-title">
+Grow Your Money
+</div>
+
+<div class="feature-description">
+Investment education
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="showMessage('Daily Coin will contain financial learning activities.')">
+
+<div class="feature-icon">🪙</div>
+
+<div class="feature-title">
+Daily Coin
+</div>
+
+<div class="feature-description">
+Daily learning
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="showMessage('Weather information will be connected later.')">
+
+<div class="feature-icon">🌤️</div>
+
+<div class="feature-title">
+Weather
+</div>
+
+<div class="feature-description">
+Weather information
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="community()">
+
+<div class="feature-icon">👥</div>
+
+<div class="feature-title">
+Community
+</div>
+
+<div class="feature-description">
+WhatsApp & Telegram
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="showMessage('Recommendation feature will be developed later.')">
+
+<div class="feature-icon">⭐</div>
+
+<div class="feature-title">
+Recommendation
+</div>
+
+<div class="feature-description">
+Discover companies
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="showMessage('ASNB section will be developed later.')">
+
+<div class="feature-icon">🏦</div>
+
+<div class="feature-title">
+ASNB
+</div>
+
+<div class="feature-description">
+ASNB information
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="openBursa()">
+
+<div class="feature-icon">📊</div>
+
+<div class="feature-title">
+Bursa
+</div>
+
+<div class="feature-description">
+Official Bursa website
+</div>
+
+</button>
+
+
+<button class="feature"
+onclick="openBNM()">
+
+<div class="feature-icon">🏛️</div>
+
+<div class="feature-title">
+Bank Negara
+</div>
+
+<div class="feature-description">
+Official BNM website
+</div>
+
 </button>
 
 </div>
@@ -745,317 +1022,237 @@ SEARCH
 </div>
 
 
-<div id="companyResult"></div>
+<!-- BOTTOM -->
 
+<nav class="bottom-nav">
 
-<div class="feature-grid">
+<button class="nav-button"
+onclick="showMessage('Transfer feature will be developed later.')">
 
-<div class="feature-card">
+<span class="nav-icon">↔️</span>
+Transfer
 
-<div class="feature-icon">📊</div>
+</button>
 
-<h3>Fundamental Analysis</h3>
+<button class="nav-button"
+onclick="showMessage('QR feature will be developed later.')">
 
-<p>
-Revenue, profit, assets, liabilities, ROE, ROA and other financial information.
-</p>
+<span class="nav-icon">▣</span>
+QR
 
-</div>
+</button>
 
+<button class="nav-button active"
+onclick="showMessage('Performance dashboard will be developed later.')">
 
-<div class="feature-card">
+<span class="nav-icon">📈</span>
+Performance
 
-<div class="feature-icon">📈</div>
+</button>
 
-<h3>5–10 Year History</h3>
+<button class="nav-button"
+onclick="profile()">
 
-<p>
-Compare company financial performance over multiple years.
-</p>
+<span class="nav-icon">👤</span>
+Profile
 
-</div>
+</button>
 
-
-<div class="feature-card">
-
-<div class="feature-icon">🧮</div>
-
-<h3>Financial Calculators</h3>
-
-<p>
-DCF, WACC, liquidity and profitability calculations.
-</p>
-
-</div>
-
-
-<div class="feature-card">
-
-<div class="feature-icon">⭐</div>
-
-<h3>Watchlist</h3>
-
-<p>
-Save companies you want to monitor.
-</p>
-
-</div>
-
-
-<div class="feature-card">
-
-<div class="feature-icon">📰</div>
-
-<h3>Financial News</h3>
-
-<p>
-Company news and financial information with references.
-</p>
-
-</div>
-
-
-<div class="feature-card">
-
-<div class="feature-icon">📚</div>
-
-<h3>Financial Glossary</h3>
-
-<p>
-Learn important investment and financial terms.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-<footer>
-BLX Fundamental Research Platform<br>
-Prototype Version
-</footer>
+</nav>
 
 </section>
 
 
+<!-- ==================================================
+     COMPANY PAGE
+================================================== -->
+
+<section id="companyPage" class="hidden">
+
+<div class="company-top">
+
+<div class="company-top-inner">
+
+<button class="back-button"
+onclick="backHome()">
+‹
+</button>
+
+<div>
+<strong>BLX</strong><br>
+Company Research
+</div>
+
+</div>
+
+</div>
+
+
+<div class="company-page-container">
+
+
+<!-- COMPANY SUMMARY -->
+
+<div class="company-summary">
+
+<div id="companyName"
+class="company-name">
+</div>
+
+<div id="companyTicker"
+class="company-ticker">
+</div>
+
+<div id="companyPrice"
+class="price">
+</div>
+
+<div id="companyChange"
+class="price-change">
+</div>
+
+</div>
+
+
+<!-- CHART -->
+
+<div class="chart-card">
+
+<strong>
+Stock Price Chart
+</strong>
+
+<div class="chart-buttons">
+
+<button onclick="drawChart(1)">
+1Y
+</button>
+
+<button onclick="drawChart(5)">
+5Y
+</button>
+
+<button onclick="drawChart(10)">
+10Y
+</button>
+
+</div>
+
+<canvas id="stockChart"></canvas>
+
+</div>
+
+
+<!-- FUNDAMENTALS -->
+
+<div class="section-title">
+Fundamental Analysis
+</div>
+
+<div id="fundamentals"
+class="fundamental-grid">
+</div>
+
+
+<!-- CEO -->
+
+<div class="section-title">
+Chief Executive Officer
+</div>
+
+<div class="ceo-card">
+
+<div class="ceo-picture">
+👤
+</div>
+
+<div>
+
+<div id="ceoName"
+class="ceo-name">
+</div>
+
+<div class="ceo-position">
+Chief Executive Officer
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SOURCE -->
+
+<div class="source-card">
+
+<strong>BLX Data Reference</strong>
+
+<br><br>
+
+This prototype uses demonstration data.
+
+The future live BLX system should connect company financial statements, Bursa announcements, stock prices and news to verified sources.
+
+</div>
+
+</div>
+
+</section>
+
 
 <script>
 
-/* =====================================================
-   COUNTRY LIST
-===================================================== */
+/* ==================================================
+   COUNTRIES
+================================================== */
 
 const countries = [
-
-"Afghanistan",
-"Albania",
-"Algeria",
-"Andorra",
-"Angola",
-"Antigua and Barbuda",
-"Argentina",
-"Armenia",
-"Australia",
-"Austria",
-"Azerbaijan",
-"Bahamas",
-"Bahrain",
-"Bangladesh",
-"Barbados",
-"Belarus",
-"Belgium",
-"Belize",
-"Benin",
-"Bhutan",
-"Bolivia",
-"Bosnia and Herzegovina",
-"Botswana",
-"Brazil",
-"Brunei",
-"Bulgaria",
-"Burkina Faso",
-"Burundi",
-"Cabo Verde",
-"Cambodia",
-"Cameroon",
-"Canada",
-"Central African Republic",
-"Chad",
-"Chile",
-"China",
-"Colombia",
-"Comoros",
-"Costa Rica",
-"Croatia",
-"Cuba",
-"Cyprus",
-"Czech Republic",
-"Democratic Republic of the Congo",
-"Denmark",
-"Djibouti",
-"Dominica",
-"Dominican Republic",
-"Ecuador",
-"Egypt",
-"El Salvador",
-"Equatorial Guinea",
-"Eritrea",
-"Estonia",
-"Eswatini",
-"Ethiopia",
-"Fiji",
-"Finland",
-"France",
-"Gabon",
-"Gambia",
-"Georgia",
-"Germany",
-"Ghana",
-"Greece",
-"Grenada",
-"Guatemala",
-"Guinea",
-"Guinea-Bissau",
-"Guyana",
-"Haiti",
-"Honduras",
-"Hungary",
-"Iceland",
-"India",
-"Indonesia",
-"Iran",
-"Iraq",
-"Ireland",
-"Israel",
-"Italy",
-"Ivory Coast",
-"Jamaica",
-"Japan",
-"Jordan",
-"Kazakhstan",
-"Kenya",
-"Kiribati",
-"Kosovo",
-"Kuwait",
-"Kyrgyzstan",
-"Laos",
-"Latvia",
-"Lebanon",
-"Lesotho",
-"Liberia",
-"Libya",
-"Liechtenstein",
-"Lithuania",
-"Luxembourg",
-"Madagascar",
-"Malawi",
-"Malaysia",
-"Maldives",
-"Mali",
-"Malta",
-"Marshall Islands",
-"Mauritania",
-"Mauritius",
-"Mexico",
-"Micronesia",
-"Moldova",
-"Monaco",
-"Mongolia",
-"Montenegro",
-"Morocco",
-"Mozambique",
-"Myanmar",
-"Namibia",
-"Nauru",
-"Nepal",
-"Netherlands",
-"New Zealand",
-"Nicaragua",
-"Niger",
-"Nigeria",
-"North Korea",
-"North Macedonia",
-"Norway",
-"Oman",
-"Pakistan",
-"Palau",
-"Palestine",
-"Panama",
-"Papua New Guinea",
-"Paraguay",
-"Peru",
-"Philippines",
-"Poland",
-"Portugal",
-"Qatar",
-"Republic of the Congo",
-"Romania",
-"Russia",
-"Rwanda",
-"Saint Kitts and Nevis",
-"Saint Lucia",
-"Saint Vincent and the Grenadines",
-"Samoa",
-"San Marino",
-"Sao Tome and Principe",
-"Saudi Arabia",
-"Senegal",
-"Serbia",
-"Seychelles",
-"Sierra Leone",
-"Singapore",
-"Slovakia",
-"Slovenia",
-"Solomon Islands",
-"Somalia",
-"South Africa",
-"South Korea",
-"South Sudan",
-"Spain",
-"Sri Lanka",
-"Sudan",
-"Suriname",
-"Sweden",
-"Switzerland",
-"Syria",
-"Taiwan",
-"Tajikistan",
-"Tanzania",
-"Thailand",
-"Timor-Leste",
-"Togo",
-"Tonga",
-"Trinidad and Tobago",
-"Tunisia",
-"Turkey",
-"Turkmenistan",
-"Tuvalu",
-"Uganda",
-"Ukraine",
-"United Arab Emirates",
-"United Kingdom",
-"United States",
-"Uruguay",
-"Uzbekistan",
-"Vanuatu",
-"Vatican City",
-"Venezuela",
-"Vietnam",
-"Yemen",
-"Zambia",
+"Afghanistan","Albania","Algeria","Andorra","Angola",
+"Argentina","Armenia","Australia","Austria","Azerbaijan",
+"Bahamas","Bahrain","Bangladesh","Barbados","Belarus",
+"Belgium","Belize","Benin","Bhutan","Bolivia",
+"Bosnia and Herzegovina","Botswana","Brazil","Brunei",
+"Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon",
+"Canada","Cape Verde","Central African Republic","Chad",
+"Chile","China","Colombia","Comoros","Congo",
+"Costa Rica","Croatia","Cuba","Cyprus","Czech Republic",
+"Denmark","Djibouti","Dominica","Dominican Republic",
+"Ecuador","Egypt","El Salvador","Estonia","Eswatini",
+"Ethiopia","Fiji","Finland","France","Gabon","Gambia",
+"Georgia","Germany","Ghana","Greece","Grenada",
+"Guatemala","Guinea","Guyana","Haiti","Honduras",
+"Hungary","Iceland","India","Indonesia","Iran","Iraq",
+"Ireland","Israel","Italy","Jamaica","Japan","Jordan",
+"Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan",
+"Laos","Latvia","Lebanon","Lesotho","Liberia","Libya",
+"Liechtenstein","Lithuania","Luxembourg","Madagascar",
+"Malawi","Malaysia","Maldives","Mali","Malta",
+"Mauritania","Mauritius","Mexico","Micronesia","Moldova",
+"Monaco","Mongolia","Montenegro","Morocco","Mozambique",
+"Myanmar","Namibia","Nauru","Nepal","Netherlands",
+"New Zealand","Nicaragua","Niger","Nigeria","North Korea",
+"North Macedonia","Norway","Oman","Pakistan","Palau",
+"Panama","Papua New Guinea","Paraguay","Peru","Philippines",
+"Poland","Portugal","Qatar","Romania","Russia","Rwanda",
+"Samoa","San Marino","Saudi Arabia","Senegal","Serbia",
+"Seychelles","Singapore","Slovakia","Slovenia","Solomon Islands",
+"Somalia","South Africa","South Korea","South Sudan",
+"Spain","Sri Lanka","Sudan","Suriname","Sweden",
+"Switzerland","Syria","Taiwan","Tajikistan","Tanzania",
+"Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago",
+"Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda",
+"Ukraine","United Arab Emirates","United Kingdom",
+"United States","Uruguay","Uzbekistan","Vanuatu",
+"Vatican City","Venezuela","Vietnam","Yemen","Zambia",
 "Zimbabwe"
-
 ];
 
 
-/* =====================================================
-   MALAYSIA STATES + FEDERAL TERRITORIES
-===================================================== */
+/* ==================================================
+   MALAYSIA STATES
+================================================== */
 
 const malaysiaStates = [
-
 "Johor",
 "Kedah",
 "Kelantan",
@@ -1072,873 +1269,1240 @@ const malaysiaStates = [
 "Kuala Lumpur",
 "Labuan",
 "Putrajaya"
+];
+
+
+/* ==================================================
+   30 BURSA COMPANIES
+================================================== */
+
+const companies = [
+
+{
+name:"Malayan Banking Berhad",
+ticker:"MAYBANK",
+sector:"Financial Services",
+price:"RM 10.90",
+change:"+1.11%",
+revenue:"RM 61.2B",
+profit:"RM 10.1B",
+assets:"RM 1.02T",
+liabilities:"RM 950B",
+roe:"11.8%",
+roa:"1.0%",
+pe:"12.4x",
+dividend:"5.8%",
+ceo:"Khairussaleh Ramli"
+},
+
+{
+name:"Public Bank Berhad",
+ticker:"PBBANK",
+sector:"Financial Services",
+price:"RM 5.18",
+change:"+1.37%",
+revenue:"RM 18.2B",
+profit:"RM 6.4B",
+assets:"RM 520B",
+liabilities:"RM 480B",
+roe:"13.1%",
+roa:"1.23%",
+pe:"12.1x",
+dividend:"4.0%",
+ceo:"Tan Sri Dato' Sri Dr. Tay Ah Lek"
+},
+
+{
+name:"CIMB Group Holdings Berhad",
+ticker:"CIMB",
+sector:"Financial Services",
+price:"RM 7.80",
+change:"+1.56%",
+revenue:"RM 22.4B",
+profit:"RM 7.8B",
+assets:"RM 750B",
+liabilities:"RM 690B",
+roe:"11.3%",
+roa:"1.04%",
+pe:"11.0x",
+dividend:"5.4%",
+ceo:"Novan Amirudin"
+},
+
+{
+name:"RHB Bank Berhad",
+ticker:"RHB",
+sector:"Financial Services",
+price:"RM 6.30",
+change:"+0.32%",
+revenue:"RM 16.8B",
+profit:"RM 3.1B",
+assets:"RM 320B",
+liabilities:"RM 295B",
+roe:"10.7%",
+roa:"0.97%",
+pe:"10.5x",
+dividend:"4.8%",
+ceo:"Mohd Rashid Abdullah"
+},
+
+{
+name:"Hong Leong Bank Berhad",
+ticker:"HLBANK",
+sector:"Financial Services",
+price:"RM 21.50",
+change:"+0.37%",
+revenue:"RM 7.0B",
+profit:"RM 3.0B",
+assets:"RM 310B",
+liabilities:"RM 285B",
+roe:"10.5%",
+roa:"1.0%",
+pe:"11.0x",
+dividend:"3.8%",
+ceo:"Domenic Fuda"
+},
+
+{
+name:"Tenaga Nasional Berhad",
+ticker:"TENAGA",
+sector:"Utilities",
+price:"RM 14.46",
+change:"+0.70%",
+revenue:"RM 65.4B",
+profit:"RM 4.8B",
+assets:"RM 195B",
+liabilities:"RM 125B",
+roe:"7.2%",
+roa:"2.4%",
+pe:"18.1x",
+dividend:"3.1%",
+ceo:"Datuk Megat Jalaluddin Megat Hassan"
+},
+
+{
+name:"IHH Healthcare Berhad",
+ticker:"IHH",
+sector:"Healthcare",
+price:"RM 8.34",
+change:"+0.48%",
+revenue:"RM 26.0B",
+profit:"RM 3.0B",
+assets:"RM 58B",
+liabilities:"RM 28B",
+roe:"7.1%",
+roa:"4.1%",
+pe:"24.0x",
+dividend:"1.2%",
+ceo:"Kelvin Loh"
+},
+
+{
+name:"Press Metal Aluminium Holdings Berhad",
+ticker:"PMETAL",
+sector:"Industrial Products",
+price:"RM 7.82",
+change:"-0.51%",
+revenue:"RM 16.4B",
+profit:"RM 1.8B",
+assets:"RM 35B",
+liabilities:"RM 16B",
+roe:"9.6%",
+roa:"5.2%",
+pe:"27.0x",
+dividend:"1.8%",
+ceo:"Tan Sri Koon Poh Keong"
+},
+
+{
+name:"SD Guthrie Berhad",
+ticker:"SDG",
+sector:"Plantation",
+price:"RM 6.59",
+change:"-0.60%",
+revenue:"RM 20.8B",
+profit:"RM 2.0B",
+assets:"RM 75B",
+liabilities:"RM 28B",
+roe:"5.2%",
+roa:"2.7%",
+pe:"15.2x",
+dividend:"3.0%",
+ceo:"Mohd Haris Mohd Arif"
+},
+
+{
+name:"Telekom Malaysia Berhad",
+ticker:"TM",
+sector:"Telecommunications",
+price:"RM 7.10",
+change:"+0.28%",
+revenue:"RM 11.9B",
+profit:"RM 1.1B",
+assets:"RM 20B",
+liabilities:"RM 11B",
+roe:"11.4%",
+roa:"5.6%",
+pe:"13.8x",
+dividend:"3.9%",
+ceo:"Amar Huzaimi Md Deris"
+},
+
+{
+name:"CelcomDigi Berhad",
+ticker:"CELCOMDIGI",
+sector:"Telecommunications",
+price:"RM 4.20",
+change:"+0.24%",
+revenue:"RM 11.0B",
+profit:"RM 1.8B",
+assets:"RM 30B",
+liabilities:"RM 20B",
+roe:"18.0%",
+roa:"5.8%",
+pe:"25.0x",
+dividend:"3.5%",
+ceo:"Albern Murty"
+},
+
+{
+name:"Sime Darby Berhad",
+ticker:"SIME",
+sector:"Conglomerate",
+price:"RM 2.20",
+change:"+0.45%",
+revenue:"RM 65B",
+profit:"RM 1.2B",
+assets:"RM 40B",
+liabilities:"RM 24B",
+roe:"8.1%",
+roa:"3.1%",
+pe:"14.5x",
+dividend:"3.2%",
+ceo:"Jeffrey Gan"
+},
+
+{
+name:"Axiata Group Berhad",
+ticker:"AXIATA",
+sector:"Telecommunications",
+price:"RM 2.10",
+change:"+0.48%",
+revenue:"RM 24B",
+profit:"RM 1.2B",
+assets:"RM 70B",
+liabilities:"RM 45B",
+roe:"5.0%",
+roa:"1.7%",
+pe:"18.0x",
+dividend:"2.4%",
+ceo:"Nik Rizal Kamil"
+},
+
+{
+name:"Maxis Berhad",
+ticker:"MAXIS",
+sector:"Telecommunications",
+price:"RM 3.65",
+change:"+0.27%",
+revenue:"RM 10.0B",
+profit:"RM 1.3B",
+assets:"RM 23B",
+liabilities:"RM 20B",
+roe:"25.0%",
+roa:"5.7%",
+pe:"22.0x",
+dividend:"4.5%",
+ceo:"Goh Seow Eng"
+},
+
+{
+name:"Genting Berhad",
+ticker:"GENTING",
+sector:"Leisure",
+price:"RM 3.05",
+change:"-0.33%",
+revenue:"RM 26B",
+profit:"RM 1.2B",
+assets:"RM 90B",
+liabilities:"RM 55B",
+roe:"3.4%",
+roa:"1.2%",
+pe:"18.0x",
+dividend:"2.0%",
+ceo:"Lim Kok Thay"
+},
+
+{
+name:"Genting Malaysia Berhad",
+ticker:"GENTINGM",
+sector:"Leisure",
+price:"RM 2.45",
+change:"+0.41%",
+revenue:"RM 10B",
+profit:"RM 0.8B",
+assets:"RM 40B",
+liabilities:"RM 25B",
+roe:"5.2%",
+roa:"2.0%",
+pe:"20.0x",
+dividend:"2.8%",
+ceo:"Khairil Firdaus Abdullah"
+},
+
+{
+name:"Nestlé Malaysia Berhad",
+ticker:"NESTLE",
+sector:"Consumer Products",
+price:"RM 95.00",
+change:"+0.10%",
+revenue:"RM 7.1B",
+profit:"RM 0.7B",
+assets:"RM 3.5B",
+liabilities:"RM 2.7B",
+roe:"92%",
+roa:"20%",
+pe:"45.0x",
+dividend:"2.1%",
+ceo:"Juan Aranols"
+},
+
+{
+name:"Top Glove Corporation Berhad",
+ticker:"TOPGLOVE",
+sector:"Healthcare Equipment",
+price:"RM 0.82",
+change:"+1.23%",
+revenue:"RM 3.2B",
+profit:"RM 0.2B",
+assets:"RM 8B",
+liabilities:"RM 2B",
+roe:"3.5%",
+roa:"2.0%",
+pe:"30.0x",
+dividend:"1.0%",
+ceo:"Lee Kim Meow"
+},
+
+{
+name:"Hartalega Holdings Berhad",
+ticker:"HARTALEGA",
+sector:"Healthcare Equipment",
+price:"RM 1.80",
+change:"+0.56%",
+revenue:"RM 2.5B",
+profit:"RM 0.1B",
+assets:"RM 7B",
+liabilities:"RM 2B",
+roe:"2.1%",
+roa:"1.4%",
+pe:"35.0x",
+dividend:"1.0%",
+ceo:"Kuan Mun Leong"
+},
+
+{
+name:"KLCC Property Holdings Berhad",
+ticker:"KLCC",
+sector:"Property",
+price:"RM 7.50",
+change:"+0.13%",
+revenue:"RM 1.8B",
+profit:"RM 0.9B",
+assets:"RM 17B",
+liabilities:"RM 7B",
+roe:"9.0%",
+roa:"5.3%",
+pe:"18.0x",
+dividend:"4.7%",
+ceo:"Dato' Hashimi Farid"
+},
+
+{
+name:"MISC Berhad",
+ticker:"MISC",
+sector:"Transportation",
+price:"RM 7.10",
+change:"+0.28%",
+revenue:"RM 15B",
+profit:"RM 2.5B",
+assets:"RM 60B",
+liabilities:"RM 27B",
+roe:"7.5%",
+roa:"4.0%",
+pe:"12.0x",
+dividend:"4.0%",
+ceo:"Captain Rajalingam Subramaniam"
+},
+
+{
+name:"IOI Corporation Berhad",
+ticker:"IOI",
+sector:"Plantation",
+price:"RM 3.80",
+change:"+0.26%",
+revenue:"RM 3.2B",
+profit:"RM 1.0B",
+assets:"RM 32B",
+liabilities:"RM 10B",
+roe:"8.2%",
+roa:"4.0%",
+pe:"14.0x",
+dividend:"3.4%",
+ceo:"Dato' Lee Yeow Chor"
+},
+
+{
+name:"Kuala Lumpur Kepong Berhad",
+ticker:"KLK",
+sector:"Plantation",
+price:"RM 21.00",
+change:"+0.48%",
+revenue:"RM 22B",
+profit:"RM 1.5B",
+assets:"RM 38B",
+liabilities:"RM 16B",
+roe:"7.0%",
+roa:"3.5%",
+pe:"15.0x",
+dividend:"2.5%",
+ceo:"Tan Sri Lee Oi Hian"
+},
+
+{
+name:"Sunway Berhad",
+ticker:"SUNWAY",
+sector:"Conglomerate",
+price:"RM 4.10",
+change:"+0.74%",
+revenue:"RM 7.0B",
+profit:"RM 0.8B",
+assets:"RM 25B",
+liabilities:"RM 14B",
+roe:"7.5%",
+roa:"3.2%",
+pe:"25.0x",
+dividend:"1.4%",
+ceo:"Jeffrey Cheah"
+},
+
+{
+name:"YTL Corporation Berhad",
+ticker:"YTL",
+sector:"Utilities / Conglomerate",
+price:"RM 2.50",
+change:"+0.80%",
+revenue:"RM 32B",
+profit:"RM 3.0B",
+assets:"RM 75B",
+liabilities:"RM 50B",
+roe:"12%",
+roa:"4%",
+pe:"13.0x",
+dividend:"1.5%",
+ceo:"Francis Yeoh"
+},
+
+{
+name:"YTL Power International Berhad",
+ticker:"YTLPOWER",
+sector:"Utilities",
+price:"RM 3.30",
+change:"+0.61%",
+revenue:"RM 18B",
+profit:"RM 2.5B",
+assets:"RM 45B",
+liabilities:"RM 28B",
+roe:"14%",
+roa:"5.5%",
+pe:"15.0x",
+dividend:"1.3%",
+ceo:"Yeoh Seok Hong"
+},
+
+{
+name:"KPJ Healthcare Berhad",
+ticker:"KPJ",
+sector:"Healthcare",
+price:"RM 2.30",
+change:"+0.44%",
+revenue:"RM 4.0B",
+profit:"RM 0.3B",
+assets:"RM 12B",
+liabilities:"RM 7B",
+roe:"6%",
+roa:"2.5%",
+pe:"24.0x",
+dividend:"1.5%",
+ceo:"Nurul A'ishah Mohamed"
+},
+
+{
+name:"IJM Corporation Berhad",
+ticker:"IJM",
+sector:"Construction",
+price:"RM 3.00",
+change:"+0.67%",
+revenue:"RM 6.0B",
+profit:"RM 0.5B",
+assets:"RM 25B",
+liabilities:"RM 14B",
+roe:"5.0%",
+roa:"2.1%",
+pe:"18.0x",
+dividend:"2.0%",
+ceo:"Lee Chun Fai"
+},
+
+{
+name:"S P Setia Berhad",
+ticker:"SPSETIA",
+sector:"Property",
+price:"RM 1.30",
+change:"+0.77%",
+revenue:"RM 4.0B",
+profit:"RM 0.3B",
+assets:"RM 20B",
+liabilities:"RM 13B",
+roe:"4.0%",
+roa:"1.5%",
+pe:"12.0x",
+dividend:"2.2%",
+ceo:"Choong Kai Wai"
+},
+
+{
+name:"AMMB Holdings Berhad",
+ticker:"AMMB",
+sector:"Financial Services",
+price:"RM 5.00",
+change:"+0.60%",
+revenue:"RM 3.0B",
+profit:"RM 0.8B",
+assets:"RM 190B",
+liabilities:"RM 175B",
+roe:"8.0%",
+roa:"0.6%",
+pe:"9.0x",
+dividend:"4.0%",
+ceo:"Sally Herawati Rohat"
+}
 
 ];
 
 
-/* =====================================================
-   LOAD DROPDOWNS
-===================================================== */
+/* ==================================================
+   PAGE FUNCTIONS
+================================================== */
 
-function loadCountries(){
+function hideAll() {
 
-    const select =
-    document.getElementById("registerCountry");
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("registerPage").classList.add("hidden");
+    document.getElementById("verifyPage").classList.add("hidden");
+    document.getElementById("homePage").classList.add("hidden");
+    document.getElementById("companyPage").classList.add("hidden");
 
-    countries.forEach(function(country){
+}
 
-        const option =
-        document.createElement("option");
+function showLogin() {
 
-        option.value=country;
-        option.textContent=country;
+    hideAll();
 
-        select.appendChild(option);
+    document.getElementById("loginPage").classList.remove("hidden");
 
-    });
+}
+
+function showRegister() {
+
+    hideAll();
+
+    document.getElementById("registerPage").classList.remove("hidden");
 
 }
 
 
-function loadStates(){
+/* ==================================================
+   PASSWORD CHECK
+================================================== */
 
-    const select =
-    document.getElementById("registerState");
-
-    malaysiaStates.forEach(function(state){
-
-        const option =
-        document.createElement("option");
-
-        option.value=state;
-        option.textContent=state;
-
-        select.appendChild(option);
-
-    });
-
-}
-
-
-/* =====================================================
-   PAGE CONTROL
-===================================================== */
-
-function hideAllPages(){
-
-    document
-    .getElementById("loginPage")
-    .classList.add("hidden");
-
-    document
-    .getElementById("registerPage")
-    .classList.add("hidden");
-
-    document
-    .getElementById("verifyPage")
-    .classList.add("hidden");
-
-    document
-    .getElementById("homePage")
-    .classList.add("hidden");
-
-}
-
-
-function showLogin(){
-
-    hideAllPages();
-
-    document
-    .getElementById("loginPage")
-    .classList.remove("hidden");
-
-    clearMessages();
-
-}
-
-
-function showRegister(){
-
-    hideAllPages();
-
-    document
-    .getElementById("registerPage")
-    .classList.remove("hidden");
-
-    clearMessages();
-
-}
-
-
-function showVerification(email){
-
-    hideAllPages();
-
-    document
-    .getElementById("verifyPage")
-    .classList.remove("hidden");
-
-    document
-    .getElementById("verifyEmailText")
-    .innerHTML =
-
-    "Verification is required for:<br><br>" +
-
-    "<strong>" +
-    email +
-    "</strong><br><br>" +
-
-    "For this prototype, tap the button below to simulate email verification.";
-
-}
-
-
-function showHome(){
-
-    hideAllPages();
-
-    document
-    .getElementById("homePage")
-    .classList.remove("hidden");
-
-
-    const user =
-    JSON.parse(
-        localStorage.getItem("blxUser")
-    );
-
-
-    if(user){
-
-        document
-        .getElementById("usernameDisplay")
-        .textContent =
-        "Hi, " + user.username;
-
-    }
-
-}
-
-
-/* =====================================================
-   PASSWORD VALIDATION
-===================================================== */
-
-function checkPassword(){
+function checkPassword() {
 
     const password =
-    document
-    .getElementById("registerPassword")
-    .value;
+        document.getElementById("registerPassword").value;
 
+    const tests = {
 
-    const length =
-    password.length >= 8;
+        reqLength: password.length >= 8,
 
-    const upper =
-    /[A-Z]/.test(password);
+        reqUpper: /[A-Z]/.test(password),
 
-    const lower =
-    /[a-z]/.test(password);
+        reqLower: /[a-z]/.test(password),
 
-    const number =
-    /[0-9]/.test(password);
+        reqNumber: /[0-9]/.test(password),
 
-    const special =
-    /[^A-Za-z0-9]/.test(password);
-
-
-    updateRequirement(
-        "reqLength",
-        length,
-        "At least 8 characters"
-    );
-
-    updateRequirement(
-        "reqUpper",
-        upper,
-        "At least 1 uppercase letter"
-    );
-
-    updateRequirement(
-        "reqLower",
-        lower,
-        "At least 1 lowercase letter"
-    );
-
-    updateRequirement(
-        "reqNumber",
-        number,
-        "At least 1 number"
-    );
-
-    updateRequirement(
-        "reqSpecial",
-        special,
-        "At least 1 special character"
-    );
-
-
-    const strength =
-    [length,upper,lower,number,special]
-    .filter(Boolean)
-    .length;
-
-
-    const bar =
-    document.getElementById(
-        "passwordStrengthBar"
-    );
-
-
-    bar.style.width =
-    (strength * 20) + "%";
-
-
-    if(strength <= 2){
-
-        bar.style.background="#dc2626";
-
-    }
-    else if(strength <= 4){
-
-        bar.style.background="#f59e0b";
-
-    }
-    else{
-
-        bar.style.background="#16a34a";
-
-    }
-
-
-    document
-    .getElementById("createAccountButton")
-    .disabled =
-    strength !== 5;
-
-
-    return strength === 5;
-
-}
-
-
-function updateRequirement(
-    id,
-    valid,
-    text
-){
-
-    const element =
-    document.getElementById(id);
-
-
-    if(valid){
-
-        element.classList.add("valid");
-
-        element.textContent =
-        "✓ " + text;
-
-    }
-    else{
-
-        element.classList.remove("valid");
-
-        element.textContent =
-        "✗ " + text;
-
-    }
-
-}
-
-
-/* =====================================================
-   CREATE ACCOUNT
-===================================================== */
-
-function createAccount(){
-
-    const email =
-    document
-    .getElementById("registerEmail")
-    .value
-    .trim();
-
-
-    const username =
-    document
-    .getElementById("registerUsername")
-    .value
-    .trim();
-
-
-    const password =
-    document
-    .getElementById("registerPassword")
-    .value;
-
-
-    const country =
-    document
-    .getElementById("registerCountry")
-    .value;
-
-
-    const state =
-    document
-    .getElementById("registerState")
-    .value;
-
-
-    if(!email){
-
-        showRegisterError(
-            "Please enter your email."
-        );
-
-        return;
-
-    }
-
-
-    if(!email.includes("@")){
-
-        showRegisterError(
-            "Please enter a valid email."
-        );
-
-        return;
-
-    }
-
-
-    if(!username){
-
-        showRegisterError(
-            "Please enter a username."
-        );
-
-        return;
-
-    }
-
-
-    if(!checkPassword()){
-
-        showRegisterError(
-            "Please create a stronger password that meets all requirements."
-        );
-
-        return;
-
-    }
-
-
-    if(!country){
-
-        showRegisterError(
-            "Please select your country."
-        );
-
-        return;
-
-    }
-
-
-    if(!state){
-
-        showRegisterError(
-            "Please select your Malaysian state / federal territory."
-        );
-
-        return;
-
-    }
-
-
-    const user = {
-
-        email:email,
-
-        username:username,
-
-        password:password,
-
-        country:country,
-
-        state:state,
-
-        verified:false
+        reqSpecial: /[^A-Za-z0-9]/.test(password)
 
     };
 
+    for (const id in tests) {
 
-    /*
-       PROTOTYPE ONLY.
-       Do not use localStorage
-       for real passwords.
-    */
+        const element =
+            document.getElementById(id);
 
-    localStorage.setItem(
-        "blxUser",
-        JSON.stringify(user)
-    );
+        if (tests[id]) {
 
+            element.classList.add("valid");
 
-    showVerification(email);
+            element.textContent =
+                "✓ " +
+                element.textContent.substring(2);
 
-}
+        } else {
 
+            element.classList.remove("valid");
 
-/* =====================================================
-   VERIFY
-===================================================== */
+            element.textContent =
+                "✗ " +
+                element.textContent.substring(2);
 
-function verifyEmail(){
-
-    const savedUser =
-    localStorage.getItem("blxUser");
-
-
-    if(!savedUser){
-
-        showLogin();
-
-        return;
+        }
 
     }
 
-
-    const user =
-    JSON.parse(savedUser);
-
-
-    user.verified=true;
-
-
-    localStorage.setItem(
-        "blxUser",
-        JSON.stringify(user)
-    );
-
-
-    const message =
     document.getElementById(
-        "verifyMessage"
-    );
-
-
-    message.textContent =
-    "Email verified successfully. Returning to login...";
-
-
-    message.style.display="block";
-
-
-    setTimeout(function(){
-
-        showLogin();
-
-    },1500);
+        "createAccountButton"
+    ).disabled =
+        !Object.values(tests).every(Boolean);
 
 }
 
 
-/* =====================================================
-   LOGIN
-===================================================== */
+/* ==================================================
+   CREATE ACCOUNT
+================================================== */
 
-function login(){
+function createAccount() {
+
+    const email =
+        document.getElementById("registerEmail").value.trim();
 
     const username =
-    document
-    .getElementById("loginUsername")
-    .value
-    .trim();
-
+        document.getElementById("registerUsername").value.trim();
 
     const password =
-    document
-    .getElementById("loginPassword")
-    .value;
+        document.getElementById("registerPassword").value;
 
+    const country =
+        document.getElementById("registerCountry").value;
 
-    const savedUser =
-    localStorage.getItem("blxUser");
+    const state =
+        document.getElementById("registerState").value;
 
+    if (!email || !username || !password || !country || !state) {
 
-    if(!savedUser){
-
-        showLoginError(
-            "No account found. Please create an account first."
-        );
+        registerError("Please complete all fields.");
 
         return;
 
     }
 
+    if (!email.includes("@")) {
+
+        registerError("Please enter a valid email.");
+
+        return;
+
+    }
+
+    const user = {
+
+        email: email,
+        username: username,
+        password: password,
+        country: country,
+        state: state,
+        verified: false
+
+    };
+
+    localStorage.setItem(
+        "blxUser",
+        JSON.stringify(user)
+    );
+
+    hideAll();
+
+    document.getElementById("verifyPage")
+        .classList.remove("hidden");
+
+    document.getElementById("verifyText").innerHTML =
+        "A verification request has been prepared for:<br><br>" +
+        "<strong>" + email + "</strong><br><br>" +
+        "This prototype uses a simulated verification step.";
+
+}
+
+
+/* ==================================================
+   VERIFY
+================================================== */
+
+function verifyEmail() {
 
     const user =
-    JSON.parse(savedUser);
+        JSON.parse(
+            localStorage.getItem("blxUser")
+        );
+
+    user.verified = true;
+
+    localStorage.setItem(
+        "blxUser",
+        JSON.stringify(user)
+    );
+
+    showLogin();
+
+}
 
 
-    if(
+/* ==================================================
+   LOGIN
+================================================== */
+
+function login() {
+
+    const username =
+        document.getElementById("loginUsername").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    const saved =
+        localStorage.getItem("blxUser");
+
+    if (!saved) {
+
+        loginError("No BLX account found. Please create an account.");
+
+        return;
+
+    }
+
+    const user = JSON.parse(saved);
+
+    if (
         username !== user.username ||
         password !== user.password
-    ){
+    ) {
 
-        showLoginError(
-            "Incorrect username or password."
-        );
+        loginError("Incorrect username or password.");
 
         return;
 
     }
 
+    if (!user.verified) {
 
-    if(!user.verified){
-
-        showLoginError(
-            "Please verify your email first."
-        );
+        loginError("Please verify your email first.");
 
         return;
 
     }
-
 
     localStorage.setItem(
         "blxLoggedIn",
         "true"
     );
 
-
-    showHome();
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-function logout(){
-
-    localStorage.removeItem(
-        "blxLoggedIn"
-    );
-
-    document
-    .getElementById("loginUsername")
-    .value="";
-
-
-    document
-    .getElementById("loginPassword")
-    .value="";
-
-
-    showLogin();
+    openHome();
 
 }
 
 
-/* =====================================================
-   MESSAGES
-===================================================== */
+/* ==================================================
+   HOME
+================================================== */
 
-function clearMessages(){
+function openHome() {
 
-    document
-    .getElementById("loginError")
-    .style.display="none";
+    hideAll();
 
+    document.getElementById("homePage")
+        .classList.remove("hidden");
 
-    document
-    .getElementById("registerError")
-    .style.display="none";
+    const saved =
+        localStorage.getItem("blxUser");
 
+    if (saved) {
 
-    document
-    .getElementById("verifyMessage")
-    .style.display="none";
+        const user = JSON.parse(saved);
 
-}
-
-
-function showLoginError(message){
-
-    const box =
-    document.getElementById(
-        "loginError"
-    );
-
-    box.textContent=message;
-
-    box.style.display="block";
-
-}
-
-
-function showRegisterError(message){
-
-    const box =
-    document.getElementById(
-        "registerError"
-    );
-
-    box.textContent=message;
-
-    box.style.display="block";
-
-}
-
-
-/* =====================================================
-   COMPANY DATA
-===================================================== */
-
-const companies={
-
-maybank:{
-name:"Malayan Banking Berhad",
-ticker:"1155",
-industry:"Banking",
-revenue:"RM 61.2B",
-profit:"RM 10.1B",
-assets:"RM 1.02T",
-liabilities:"RM 950B",
-roe:"11.8%",
-roa:"1.0%"
-},
-
-cimb:{
-name:"CIMB Group Holdings Berhad",
-ticker:"1023",
-industry:"Banking",
-revenue:"RM 22.4B",
-profit:"RM 7.8B",
-assets:"RM 750B",
-liabilities:"RM 690B",
-roe:"12.6%",
-roa:"1.04%"
-},
-
-rhb:{
-name:"RHB Bank Berhad",
-ticker:"1066",
-industry:"Banking",
-revenue:"RM 16.8B",
-profit:"RM 3.1B",
-assets:"RM 320B",
-liabilities:"RM 295B",
-roe:"10.7%",
-roa:"0.97%"
-},
-
-"public bank":{
-name:"Public Bank Berhad",
-ticker:"1295",
-industry:"Banking",
-revenue:"RM 18.2B",
-profit:"RM 6.4B",
-assets:"RM 520B",
-liabilities:"RM 480B",
-roe:"13.1%",
-roa:"1.23%"
-},
-
-"bank islam":{
-name:"Bank Islam Malaysia Berhad",
-ticker:"5258",
-industry:"Islamic Banking",
-revenue:"RM 6.2B",
-profit:"RM 0.8B",
-assets:"RM 95B",
-liabilities:"RM 88B",
-roe:"8.4%",
-roa:"0.84%"
-}
-
-};
-
-
-/* =====================================================
-   COMPANY SEARCH
-===================================================== */
-
-function searchCompany(){
-
-    const search =
-    document
-    .getElementById("companySearch")
-    .value
-    .toLowerCase()
-    .trim();
-
-
-    let company=null;
-
-
-    const keys=
-    Object.keys(companies);
-
-
-    for(
-        let i=0;
-        i<keys.length;
-        i++
-    ){
-
-        const key=keys[i];
-
-
-        if(
-
-            key===search ||
-
-            companies[key]
-            .name
-            .toLowerCase()
-            .includes(search) ||
-
-            companies[key]
-            .ticker===search
-
-        ){
-
-            company=companies[key];
-
-            break;
-
-        }
+        document.getElementById(
+            "welcomeText"
+        ).textContent =
+            "Welcome back, " + user.username;
 
     }
 
+}
 
-    if(!company){
 
-        document
-        .getElementById("companyResult")
-        .innerHTML=
+/* ==================================================
+   SEARCH
+================================================== */
 
-        '<div class="company-result">' +
+function focusSearch() {
 
-        '<strong>Company not found.</strong>' +
+    document.getElementById(
+        "companySearch"
+    ).focus();
 
-        '<p>Try Maybank, CIMB, RHB, Public Bank or Bank Islam.</p>' +
+}
 
-        '</div>';
+function searchEnter(event) {
+
+    if (event.key === "Enter") {
+
+        searchCompany();
+
+    }
+
+}
+
+function searchCompany() {
+
+    const query =
+        document.getElementById(
+            "companySearch"
+        ).value
+        .trim()
+        .toLowerCase();
+
+    if (!query) {
+
+        alert("Please enter a company name.");
 
         return;
 
     }
 
+    const company =
+        companies.find(c =>
+            c.name.toLowerCase().includes(query) ||
+            c.ticker.toLowerCase() === query
+        );
 
-    document
-    .getElementById("companyResult")
-    .innerHTML=
+    if (!company) {
 
-    '<div class="company-result">' +
+        alert(
+            "Company not found.\n\n" +
+            "Try:\n" +
+            "Maybank\n" +
+            "CIMB\n" +
+            "RHB\n" +
+            "Tenaga\n" +
+            "IHH\n" +
+            "Nestle\n" +
+            "CelcomDigi"
+        );
 
-    '<div class="company-name">' +
-    company.name +
-    '</div>' +
-
-    '<div class="company-info">' +
-    company.ticker +
-    ' · ' +
-    company.industry +
-    '</div>' +
-
-    '<div class="metric-grid">' +
-
-    metric("Revenue",company.revenue) +
-
-    metric("Profit",company.profit) +
-
-    metric("Assets",company.assets) +
-
-    metric("Liabilities",company.liabilities) +
-
-    metric("ROE",company.roe) +
-
-    metric("ROA",company.roa) +
-
-    '</div>' +
-
-    '</div>';
-
-}
-
-
-function metric(title,value){
-
-    return (
-
-        '<div class="metric">' +
-
-        '<div class="metric-title">' +
-        title +
-        '</div>' +
-
-        '<div class="metric-value">' +
-        value +
-        '</div>' +
-
-        '</div>'
-
-    );
-
-}
-
-
-/* =====================================================
-   INITIALISE
-===================================================== */
-
-loadCountries();
-
-loadStates();
-
-
-window.onload=function(){
-
-    const loggedIn =
-    localStorage.getItem(
-        "blxLoggedIn"
-    );
-
-
-    const savedUser =
-    localStorage.getItem(
-        "blxUser"
-    );
-
-
-    if(
-        loggedIn==="true" &&
-        savedUser
-    ){
-
-        const user =
-        JSON.parse(savedUser);
-
-
-        if(user.verified){
-
-            showHome();
-
-            return;
-
-        }
+        return;
 
     }
 
+    openCompany(company);
 
-    showLogin();
+}
+
+
+/* ==================================================
+   COMPANY PAGE
+================================================== */
+
+function openCompany(company) {
+
+    hideAll();
+
+    document.getElementById(
+        "companyPage"
+    ).classList.remove("hidden");
+
+    document.getElementById(
+        "companyName"
+    ).textContent =
+        company.name;
+
+    document.getElementById(
+        "companyTicker"
+    ).textContent =
+        "Bursa Malaysia: " +
+        company.ticker +
+        " • " +
+        company.sector;
+
+    document.getElementById(
+        "companyPrice"
+    ).textContent =
+        company.price;
+
+    document.getElementById(
+        "companyChange"
+    ).textContent =
+        company.change +
+        " today";
+
+    document.getElementById(
+        "ceoName"
+    ).textContent =
+        company.ceo;
+
+    const data = [
+
+        ["Revenue", company.revenue],
+
+        ["Profit After Tax", company.profit],
+
+        ["Total Assets", company.assets],
+
+        ["Total Liabilities", company.liabilities],
+
+        ["ROE", company.roe],
+
+        ["ROA", company.roa],
+
+        ["P/E Ratio", company.pe],
+
+        ["Dividend Yield", company.dividend]
+
+    ];
+
+    document.getElementById(
+        "fundamentals"
+    ).innerHTML =
+        data.map(item => `
+
+            <div class="fundamental">
+
+                <div class="fundamental-label">
+                    ${item[0]}
+                </div>
+
+                <div class="fundamental-value">
+                    ${item[1]}
+                </div>
+
+            </div>
+
+        `).join("");
+
+    drawChart(1);
+
+}
+
+
+/* ==================================================
+   CHART
+================================================== */
+
+function drawChart(years) {
+
+    const canvas =
+        document.getElementById("stockChart");
+
+    const ctx =
+        canvas.getContext("2d");
+
+    const width =
+        canvas.clientWidth || 500;
+
+    const height =
+        230;
+
+    canvas.width = width * 2;
+
+    canvas.height = height * 2;
+
+    ctx.scale(2,2);
+
+    ctx.clearRect(0,0,width,height);
+
+    const points = [];
+
+    let value = .35;
+
+    for (let i=0; i<30; i++) {
+
+        value +=
+            (Math.random() - .43) * .08;
+
+        if (value < .1) value = .1;
+
+        if (value > .9) value = .9;
+
+        points.push(value);
+
+    }
+
+    ctx.beginPath();
+
+    points.forEach((point,index) => {
+
+        const x =
+            10 +
+            index *
+            ((width - 20) /
+            (points.length - 1));
+
+        const y =
+            height -
+            20 -
+            point *
+            (height - 45);
+
+        if (index === 0) {
+
+            ctx.moveTo(x,y);
+
+        } else {
+
+            ctx.lineTo(x,y);
+
+        }
+
+    });
+
+    ctx.strokeStyle = "#1769ff";
+
+    ctx.lineWidth = 3;
+
+    ctx.stroke();
+
+
+    ctx.lineTo(width-10,height-10);
+
+    ctx.lineTo(10,height-10);
+
+    ctx.closePath();
+
+    const gradient =
+        ctx.createLinearGradient(
+            0,0,0,height
+        );
+
+    gradient.addColorStop(
+        0,
+        "rgba(23,105,255,.25)"
+    );
+
+    gradient.addColorStop(
+        1,
+        "rgba(23,105,255,0)"
+    );
+
+    ctx.fillStyle = gradient;
+
+    ctx.fill();
+
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+function backHome() {
+
+    openHome();
+
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+function showMessage(message) {
+
+    alert(message);
+
+}
+
+function profile() {
+
+    const user =
+        JSON.parse(
+            localStorage.getItem("blxUser")
+        );
+
+    if (!user) return;
+
+    alert(
+        "BLX PROFILE\n\n" +
+        "Username: " + user.username +
+        "\nEmail: " + user.email +
+        "\nCountry: " + user.country +
+        "\nState: " + user.state
+    );
+
+}
+
+function community() {
+
+    alert(
+        "BLX COMMUNITY\n\n" +
+        "WhatsApp and Telegram community links will be added here."
+    );
+
+}
+
+
+/* ==================================================
+   OFFICIAL LINKS
+================================================== */
+
+function openBursa() {
+
+    window.open(
+        "https://www.bursamalaysia.com/",
+        "_blank"
+    );
+
+}
+
+function openBNM() {
+
+    window.open(
+        "https://www.bnm.gov.my/",
+        "_blank"
+    );
+
+}
+
+
+/* ==================================================
+   LANGUAGE
+================================================== */
+
+function changeLanguage() {
+
+    const language =
+        document.getElementById(
+            "language"
+        ).value;
+
+    alert(
+        "Language selected: " +
+        language +
+        "\n\nFull translation will be added later."
+    );
+
+}
+
+
+/* ==================================================
+   ERROR
+================================================== */
+
+function loginError(message) {
+
+    const box =
+        document.getElementById(
+            "loginError"
+        );
+
+    box.textContent = message;
+
+    box.style.display = "block";
+
+}
+
+function registerError(message) {
+
+    const box =
+        document.getElementById(
+            "registerError"
+        );
+
+    box.textContent = message;
+
+    box.style.display = "block";
+
+}
+
+
+/* ==================================================
+   LOAD DROPDOWNS
+================================================== */
+
+function loadDropdowns() {
+
+    const country =
+        document.getElementById(
+            "registerCountry"
+        );
+
+    country.innerHTML =
+        '<option value="">Select country</option>';
+
+    countries.forEach(item => {
+
+        country.innerHTML +=
+            `<option value="${item}">
+                ${item}
+            </option>`;
+
+    });
+
+
+    const state =
+        document.getElementById(
+            "registerState"
+        );
+
+    state.innerHTML =
+        '<option value="">Select Malaysian state</option>';
+
+    malaysiaStates.forEach(item => {
+
+        state.innerHTML +=
+            `<option value="${item}">
+                ${item}
+            </option>`;
+
+    });
+
+}
+
+
+/* ==================================================
+   START BLX
+================================================== */
+
+loadDropdowns();
+
+window.onload = function() {
+
+    const loggedIn =
+        localStorage.getItem(
+            "blxLoggedIn"
+        );
+
+    const user =
+        localStorage.getItem(
+            "blxUser"
+        );
+
+    if (loggedIn === "true" && user) {
+
+        openHome();
+
+    } else {
+
+        showLogin();
+
+    }
 
 };
 
