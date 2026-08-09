@@ -3,554 +3,587 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BLX - Financial Intelligence</title>
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-* {
-    box-sizing: border-box;
+
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: #f4f7fb;
-    color: #101828;
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#f4f7fb;
+    color:#101828;
 }
 
-button,
-input,
-select {
-    font-family: inherit;
+button,input,select{
+    font-family:inherit;
 }
 
-.hidden {
-    display: none !important;
+.hidden{
+    display:none!important;
 }
 
 /* =========================
-   LOGIN / REGISTER
+AUTH
 ========================= */
 
-.auth-page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #06101d, #12304f);
+.auth-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#06101d,#12304f);
 }
 
-.auth-card {
-    width: 100%;
-    max-width: 430px;
-    background: white;
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: 0 25px 60px rgba(0,0,0,.30);
+.auth-card{
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 25px 60px rgba(0,0,0,.3);
 }
 
-.logo {
-    text-align: center;
-    font-size: 46px;
-    font-weight: 900;
-    letter-spacing: 6px;
-    color: #12304f;
+.logo{
+    text-align:center;
+    font-size:46px;
+    font-weight:900;
+    letter-spacing:6px;
+    color:#12304f;
 }
 
-.logo-subtitle {
-    text-align: center;
-    color: #667085;
-    font-size: 13px;
-    margin-bottom: 25px;
+.logo-subtitle{
+    text-align:center;
+    color:#667085;
+    font-size:13px;
+    margin-bottom:25px;
 }
 
-.auth-title {
-    text-align: center;
-    margin-bottom: 25px;
+.auth-title{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.input-group {
-    margin-bottom: 15px;
+.input-group{
+    margin-bottom:15px;
 }
 
-.input-group label {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 6px;
+.input-group label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:6px;
 }
 
 .input-group input,
-.input-group select {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d0d5dd;
-    border-radius: 11px;
-    background: white;
-    font-size: 16px;
+.input-group select{
+    width:100%;
+    padding:14px;
+    border:1px solid #d0d5dd;
+    border-radius:11px;
+    background:white;
+    font-size:16px;
 }
 
-.primary-button {
-    width: 100%;
-    border: none;
-    border-radius: 11px;
-    padding: 14px;
-    background: #1769ff;
-    color: white;
-    font-size: 16px;
-    font-weight: 800;
+.primary-button{
+    width:100%;
+    border:none;
+    border-radius:11px;
+    padding:14px;
+    background:#1769ff;
+    color:white;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
 }
 
-.primary-button:disabled {
-    background: #98a2b3;
+.primary-button:disabled{
+    background:#98a2b3;
 }
 
-.auth-link {
-    text-align: center;
-    margin-top: 20px;
-    color: #667085;
-    font-size: 14px;
+.auth-link{
+    text-align:center;
+    margin-top:20px;
+    color:#667085;
+    font-size:14px;
 }
 
-.auth-link button {
-    border: none;
-    background: none;
-    color: #1769ff;
-    font-weight: 800;
+.auth-link button{
+    border:none;
+    background:none;
+    color:#1769ff;
+    font-weight:800;
 }
 
-.message {
-    display: none;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    font-size: 14px;
+.message{
+    display:none;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:14px;
 }
 
-.error {
-    background: #fef3f2;
-    color: #b42318;
+.error{
+    background:#fef3f2;
+    color:#b42318;
 }
 
-.password-box {
-    background: #f8fafc;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 12px;
-    margin-bottom: 15px;
+.success{
+    background:#ecfdf3;
+    color:#027a48;
 }
 
-.password-box div {
-    margin: 4px 0;
-    color: #d92d20;
+.password-box{
+    background:#f8fafc;
+    padding:12px;
+    border-radius:10px;
+    font-size:12px;
+    margin-bottom:15px;
 }
 
-.password-box .valid {
-    color: #039855;
+.password-box div{
+    margin:4px 0;
+    color:#d92d20;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-.header {
-    background: linear-gradient(135deg, #06101d, #12304f);
-    color: white;
-    padding: 16px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-}
-
-.header-inner {
-    max-width: 1100px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.blx-logo {
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 4px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.language {
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.3);
-    color: white;
-    padding: 8px;
-    border-radius: 9px;
-}
-
-.profile-button {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,.15);
-    color: white;
-    font-size: 18px;
+.password-box .valid{
+    color:#039855;
 }
 
 /* =========================
-   HOME
+HEADER
 ========================= */
 
-.home-container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 18px;
+.header{
+    background:linear-gradient(135deg,#06101d,#12304f);
+    color:white;
+    padding:16px;
+    position:sticky;
+    top:0;
+    z-index:50;
 }
 
-.greeting h1 {
-    margin: 0;
-    font-size: 25px;
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.greeting p {
-    margin-top: 5px;
-    color: #667085;
+.blx-logo{
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:4px;
 }
 
-.bursa-card {
-    margin-top: 18px;
-    background: linear-gradient(135deg, #0b1f36, #1769ff);
-    color: white;
-    border-radius: 22px;
-    padding: 25px;
-    box-shadow: 0 12px 30px rgba(23,105,255,.25);
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
-.bursa-label {
-    font-size: 13px;
-    opacity: .8;
+.language{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.3);
+    color:white;
+    padding:8px;
+    border-radius:9px;
 }
 
-.bursa-number {
-    font-size: 44px;
-    font-weight: 900;
-    margin: 4px 0;
-}
-
-.bursa-subtitle {
-    font-size: 14px;
-}
-
-.quote-card {
-    background: white;
-    margin-top: 18px;
-    padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(16,24,40,.06);
-}
-
-.quote {
-    font-size: 19px;
-    font-weight: 800;
-    line-height: 1.4;
-}
-
-.quote-author {
-    margin-top: 7px;
-    color: #667085;
-    font-size: 13px;
+.profile-button{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:18px;
 }
 
 /* =========================
-   SEARCH
+HOME
 ========================= */
 
-.search-card {
-    background: white;
-    margin-top: 18px;
-    padding: 15px;
-    border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(16,24,40,.06);
+.home-container{
+    max-width:1100px;
+    margin:auto;
+    padding:18px;
 }
 
-.search-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.greeting h1{
+    margin:0;
+    font-size:25px;
 }
 
-.search-row span {
-    font-size: 22px;
+.greeting p{
+    margin-top:5px;
+    color:#667085;
 }
 
-.search-row input {
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
+.bursa-card{
+    margin-top:18px;
+    background:linear-gradient(135deg,#0b1f36,#1769ff);
+    color:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 12px 30px rgba(23,105,255,.25);
+}
+
+.bursa-label{
+    font-size:13px;
+    opacity:.8;
+}
+
+.bursa-number{
+    font-size:44px;
+    font-weight:900;
+    margin:4px 0;
+}
+
+.bursa-subtitle{
+    font-size:14px;
+}
+
+.quote-card{
+    background:white;
+    margin-top:18px;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(16,24,40,.06);
+}
+
+.quote{
+    font-size:19px;
+    font-weight:800;
+    line-height:1.4;
+}
+
+.quote-author{
+    margin-top:7px;
+    color:#667085;
+    font-size:13px;
 }
 
 /* =========================
-   FEATURES
+SEARCH
 ========================= */
 
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 18px;
+.search-card{
+    background:white;
+    margin-top:18px;
+    padding:15px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(16,24,40,.06);
 }
 
-.feature {
-    border: none;
-    background: white;
-    border-radius: 18px;
-    padding: 16px 12px;
-    text-align: left;
-    min-height: 115px;
-    box-shadow: 0 5px 20px rgba(16,24,40,.05);
+.search-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.feature-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 14px;
-    background: #eef4ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 10px;
+.search-row span{
+    font-size:22px;
 }
 
-.feature-title {
-    font-size: 14px;
-    font-weight: 800;
-}
-
-.feature-description {
-    color: #667085;
-    font-size: 11px;
-    margin-top: 4px;
+.search-row input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:16px;
 }
 
 /* =========================
-   BOTTOM NAV
+FEATURES
 ========================= */
 
-.bottom-nav {
-    position: sticky;
-    bottom: 0;
-    background: white;
-    border-top: 1px solid #eaecf0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 8px 4px;
-    z-index: 40;
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:18px;
 }
 
-.nav-button {
-    border: none;
-    background: none;
-    color: #667085;
-    font-size: 11px;
-    font-weight: 700;
+.feature{
+    border:none;
+    background:white;
+    border-radius:18px;
+    padding:16px 12px;
+    text-align:left;
+    min-height:115px;
+    box-shadow:0 5px 20px rgba(16,24,40,.05);
+    cursor:pointer;
 }
 
-.nav-button.active {
-    color: #1769ff;
+.feature-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:#eef4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    margin-bottom:10px;
 }
 
-.nav-icon {
-    display: block;
-    font-size: 21px;
-    margin-bottom: 3px;
+.feature-title{
+    font-size:14px;
+    font-weight:800;
+}
+
+.feature-description{
+    color:#667085;
+    font-size:11px;
+    margin-top:4px;
 }
 
 /* =========================
-   COMPANY PAGE
+BOTTOM
 ========================= */
 
-.company-top {
-    background: linear-gradient(135deg, #06101d, #12304f);
-    color: white;
-    padding: 15px;
+.bottom-nav{
+    position:sticky;
+    bottom:0;
+    background:white;
+    border-top:1px solid #eaecf0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    padding:8px 4px;
+    z-index:40;
 }
 
-.company-top-inner {
-    max-width: 1100px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    gap: 14px;
+.nav-button{
+    border:none;
+    background:none;
+    color:#667085;
+    font-size:11px;
+    font-weight:700;
 }
 
-.back-button {
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    background: rgba(255,255,255,.13);
-    color: white;
-    font-size: 25px;
+.nav-button.active{
+    color:#1769ff;
 }
 
-.company-page-container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 18px;
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+/* =========================
+COMPANY
+========================= */
+
+.company-top{
+    background:linear-gradient(135deg,#06101d,#12304f);
+    color:white;
+    padding:15px;
+}
+
+.company-top-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.back-button{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background:rgba(255,255,255,.13);
+    color:white;
+    font-size:25px;
+}
+
+.company-page-container{
+    max-width:1100px;
+    margin:auto;
+    padding:18px;
 }
 
 .company-summary,
 .chart-card,
 .ceo-card,
-.source-card {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 15px;
+.source-card{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:15px;
 }
 
-.company-name {
-    font-size: 24px;
-    font-weight: 900;
+.company-name{
+    font-size:24px;
+    font-weight:900;
 }
 
-.company-ticker {
-    color: #667085;
-    margin-top: 5px;
+.company-ticker{
+    color:#667085;
+    margin-top:5px;
 }
 
-.price {
-    font-size: 32px;
-    font-weight: 900;
-    margin-top: 18px;
+.price{
+    font-size:32px;
+    font-weight:900;
+    margin-top:18px;
 }
 
-.price-change {
-    color: #039855;
-    font-weight: 800;
-    margin-top: 4px;
+.price-change{
+    color:#039855;
+    font-weight:800;
+    margin-top:4px;
 }
 
-.section-title {
-    font-size: 19px;
-    font-weight: 900;
-    margin: 20px 0 10px;
+.section-title{
+    font-size:19px;
+    font-weight:900;
+    margin:20px 0 10px;
 }
 
-/* =========================
-   CHART
-========================= */
-
-.chart-buttons {
-    display: flex;
-    gap: 7px;
-    margin: 12px 0;
+.chart-buttons{
+    display:flex;
+    gap:7px;
+    margin:12px 0;
 }
 
-.chart-buttons button {
-    background: white;
-    border: 1px solid #d0d5dd;
-    padding: 7px 12px;
-    border-radius: 8px;
+.chart-buttons button{
+    background:white;
+    border:1px solid #d0d5dd;
+    padding:7px 12px;
+    border-radius:8px;
 }
 
-.chart-buttons button.active {
-    background: #1769ff;
-    color: white;
+canvas{
+    width:100%;
+    height:230px;
 }
 
-canvas {
-    width: 100%;
-    height: 230px;
+.fundamental-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
 }
 
-/* =========================
-   FUNDAMENTALS
-========================= */
-
-.fundamental-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+.fundamental{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
-.fundamental {
-    background: white;
-    border-radius: 15px;
-    padding: 15px;
+.fundamental-label{
+    color:#667085;
+    font-size:12px;
 }
 
-.fundamental-label {
-    color: #667085;
-    font-size: 12px;
+.fundamental-value{
+    font-size:18px;
+    font-weight:900;
+    margin-top:4px;
 }
 
-.fundamental-value {
-    font-size: 18px;
-    font-weight: 900;
-    margin-top: 4px;
+.ceo-card{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-/* =========================
-   CEO
-========================= */
-
-.ceo-card {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.ceo-picture{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#eef2f6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
 }
 
-.ceo-picture {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    background: #eef2f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 38px;
+.ceo-name{
+    font-size:18px;
+    font-weight:900;
 }
 
-.ceo-name {
-    font-size: 18px;
-    font-weight: 900;
+.ceo-position{
+    color:#667085;
+    font-size:13px;
+    margin-top:4px;
 }
 
-.ceo-position {
-    color: #667085;
-    font-size: 13px;
-    margin-top: 4px;
-}
-
-.source-card {
-    font-size: 12px;
-    color: #667085;
+.source-card{
+    font-size:12px;
+    color:#667085;
 }
 
 /* =========================
-   MOBILE
+PROFILE
 ========================= */
 
-@media (max-width: 650px) {
+.profile-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
 
-    .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
+.profile-row{
+    padding:14px 0;
+    border-bottom:1px solid #eaecf0;
+}
+
+.profile-label{
+    color:#667085;
+    font-size:12px;
+}
+
+.profile-value{
+    font-weight:800;
+    margin-top:4px;
+}
+
+.logout-button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:11px;
+    background:#d92d20;
+    color:white;
+    font-weight:800;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .bursa-number {
-        font-size: 38px;
+    .bursa-number{
+        font-size:38px;
     }
 
-    .company-name {
-        font-size: 21px;
+    .company-name{
+        font-size:21px;
     }
+
 }
+
 </style>
 </head>
 
@@ -558,7 +591,7 @@ canvas {
 
 
 <!-- ==================================================
-     LOGIN
+LOGIN
 ================================================== -->
 
 <section id="loginPage" class="auth-page">
@@ -577,23 +610,32 @@ Welcome Back
 
 <div id="loginError" class="message error"></div>
 
+<div id="loginSuccess" class="message success"></div>
+
 <div class="input-group">
 <label>Username</label>
-<input id="loginUsername" type="text" placeholder="Enter username">
+<input id="loginUsername"
+type="text"
+placeholder="Enter username">
 </div>
 
 <div class="input-group">
 <label>Password</label>
-<input id="loginPassword" type="password" placeholder="Enter password">
+<input id="loginPassword"
+type="password"
+placeholder="Enter password">
 </div>
 
-<button class="primary-button" onclick="login()">
+<button class="primary-button"
+onclick="login()">
 LOGIN
 </button>
 
 <div class="auth-link">
 Don't have an account?
-<button onclick="showRegister()">Create Account</button>
+<button onclick="showRegister()">
+Create Account
+</button>
 </div>
 
 </div>
@@ -602,10 +644,11 @@ Don't have an account?
 
 
 <!-- ==================================================
-     REGISTER
+REGISTER
 ================================================== -->
 
-<section id="registerPage" class="auth-page hidden">
+<section id="registerPage"
+class="auth-page hidden">
 
 <div class="auth-card">
 
@@ -619,94 +662,98 @@ Create your BLX account
 Create Account
 </h2>
 
-<div id="registerError" class="message error"></div>
+<div id="registerError"
+class="message error"></div>
+
+<div id="registerSuccess"
+class="message success"></div>
 
 <div class="input-group">
 <label>Email</label>
-<input id="registerEmail" type="email" placeholder="Email">
+
+<input id="registerEmail"
+type="email"
+placeholder="Email">
 </div>
 
 <div class="input-group">
 <label>Username</label>
-<input id="registerUsername" type="text" placeholder="Username">
+
+<input id="registerUsername"
+type="text"
+placeholder="Username">
 </div>
 
 <div class="input-group">
 <label>Password</label>
+
 <input id="registerPassword"
-       type="password"
-       placeholder="Strong password"
-       oninput="checkPassword()">
+type="password"
+placeholder="Strong password"
+oninput="checkPassword()">
 </div>
 
 <div class="password-box">
 
 <strong>Password must contain:</strong>
 
-<div id="reqLength">✗ At least 8 characters</div>
-<div id="reqUpper">✗ Uppercase letter</div>
-<div id="reqLower">✗ Lowercase letter</div>
-<div id="reqNumber">✗ Number</div>
-<div id="reqSpecial">✗ Special character</div>
+<div id="reqLength">
+✗ At least 8 characters
+</div>
+
+<div id="reqUpper">
+✗ Uppercase letter
+</div>
+
+<div id="reqLower">
+✗ Lowercase letter
+</div>
+
+<div id="reqNumber">
+✗ Number
+</div>
+
+<div id="reqSpecial">
+✗ Special character
+</div>
 
 </div>
 
 <div class="input-group">
+
 <label>Country</label>
-<select id="registerCountry"></select>
+
+<select id="registerCountry">
+</select>
+
 </div>
 
 <div class="input-group">
+
 <label>State</label>
-<select id="registerState"></select>
+
+<select id="registerState">
+</select>
+
 </div>
 
-<button
-id="createAccountButton"
+<button id="createAccountButton"
 class="primary-button"
 onclick="createAccount()"
 disabled>
+
 CREATE ACCOUNT
+
 </button>
 
 <div class="auth-link">
+
 Already have an account?
-<button onclick="showLogin()">Login</button>
-</div>
 
-</div>
-
-</section>
-
-
-<!-- ==================================================
-     EMAIL VERIFICATION
-================================================== -->
-
-<section id="verifyPage" class="auth-page hidden">
-
-<div class="auth-card">
-
-<div class="logo">BLX</div>
-
-<div style="text-align:center;font-size:55px;margin:20px;">
-📧
-</div>
-
-<h2 class="auth-title">
-Verify Your Email
-</h2>
-
-<p id="verifyText"
-style="text-align:center;color:#667085;line-height:1.6;">
-</p>
-
-<button class="primary-button" onclick="verifyEmail()">
-I HAVE VERIFIED MY EMAIL
+<button onclick="showLogin()">
+Login
 </button>
 
-<div class="auth-link">
-<button onclick="showLogin()">Back to Login</button>
 </div>
 
 </div>
@@ -715,10 +762,11 @@ I HAVE VERIFIED MY EMAIL
 
 
 <!-- ==================================================
-     HOME
+HOME
 ================================================== -->
 
-<section id="homePage" class="hidden">
+<section id="homePage"
+class="hidden">
 
 <header class="header">
 
@@ -731,8 +779,7 @@ BLX
 <div class="header-right">
 
 <select id="language"
-class="language"
-onchange="changeLanguage()">
+class="language">
 
 <option>English</option>
 <option>Malay</option>
@@ -768,8 +815,6 @@ Welcome to BLX
 </div>
 
 
-<!-- BURSA -->
-
 <div class="bursa-card">
 
 <div class="bursa-label">
@@ -787,8 +832,6 @@ Total listed equities
 </div>
 
 
-<!-- QUOTE -->
-
 <div class="quote-card">
 
 <div class="quote">
@@ -802,18 +845,15 @@ Total listed equities
 </div>
 
 
-<!-- SEARCH -->
-
 <div class="search-card">
 
 <div class="search-row">
 
 <span>🔎</span>
 
-<input
-id="companySearch"
+<input id="companySearch"
 type="text"
-placeholder="Search company name..."
+placeholder="Search company name or ticker..."
 onkeydown="searchEnter(event)">
 
 </div>
@@ -821,15 +861,14 @@ onkeydown="searchEnter(event)">
 </div>
 
 
-<!-- FEATURES -->
-
 <div class="feature-grid">
-
 
 <button class="feature"
 onclick="focusSearch()">
 
-<div class="feature-icon">🏢</div>
+<div class="feature-icon">
+🏢
+</div>
 
 <div class="feature-title">
 Company Search
@@ -843,9 +882,11 @@ Fundamentals & stock
 
 
 <button class="feature"
-onclick="showMessage('Wallet will contain portfolio and investment information.')">
+onclick="showMessage('Wallet coming soon.')">
 
-<div class="feature-icon">💰</div>
+<div class="feature-icon">
+💰
+</div>
 
 <div class="feature-title">
 Wallet
@@ -861,7 +902,9 @@ Investment wallet
 <button class="feature"
 onclick="focusSearch()">
 
-<div class="feature-icon">📈</div>
+<div class="feature-icon">
+📈
+</div>
 
 <div class="feature-title">
 Chart
@@ -875,9 +918,11 @@ Stock price chart
 
 
 <button class="feature"
-onclick="showMessage('Search a company to see its CEO.')">
+onclick="focusSearch()">
 
-<div class="feature-icon">👔</div>
+<div class="feature-icon">
+👔
+</div>
 
 <div class="feature-title">
 CEO
@@ -891,9 +936,11 @@ Company leadership
 
 
 <button class="feature"
-onclick="showMessage('Grow Your Money will contain financial education.')">
+onclick="showMessage('Grow Your Money coming soon.')">
 
-<div class="feature-icon">🌱</div>
+<div class="feature-icon">
+🌱
+</div>
 
 <div class="feature-title">
 Grow Your Money
@@ -907,9 +954,11 @@ Investment education
 
 
 <button class="feature"
-onclick="showMessage('Daily Coin will contain financial learning activities.')">
+onclick="showMessage('Daily Coin coming soon.')">
 
-<div class="feature-icon">🪙</div>
+<div class="feature-icon">
+🪙
+</div>
 
 <div class="feature-title">
 Daily Coin
@@ -923,9 +972,11 @@ Daily learning
 
 
 <button class="feature"
-onclick="showMessage('Weather information will be connected later.')">
+onclick="showMessage('Weather coming soon.')">
 
-<div class="feature-icon">🌤️</div>
+<div class="feature-icon">
+🌤️
+</div>
 
 <div class="feature-title">
 Weather
@@ -941,7 +992,9 @@ Weather information
 <button class="feature"
 onclick="community()">
 
-<div class="feature-icon">👥</div>
+<div class="feature-icon">
+👥
+</div>
 
 <div class="feature-title">
 Community
@@ -955,9 +1008,11 @@ WhatsApp & Telegram
 
 
 <button class="feature"
-onclick="showMessage('Recommendation feature will be developed later.')">
+onclick="showMessage('Recommendation coming soon.')">
 
-<div class="feature-icon">⭐</div>
+<div class="feature-icon">
+⭐
+</div>
 
 <div class="feature-title">
 Recommendation
@@ -971,9 +1026,11 @@ Discover companies
 
 
 <button class="feature"
-onclick="showMessage('ASNB section will be developed later.')">
+onclick="showMessage('ASNB coming soon.')">
 
-<div class="feature-icon">🏦</div>
+<div class="feature-icon">
+🏦
+</div>
 
 <div class="feature-title">
 ASNB
@@ -989,7 +1046,9 @@ ASNB information
 <button class="feature"
 onclick="openBursa()">
 
-<div class="feature-icon">📊</div>
+<div class="feature-icon">
+📊
+</div>
 
 <div class="feature-title">
 Bursa
@@ -1005,7 +1064,9 @@ Official Bursa website
 <button class="feature"
 onclick="openBNM()">
 
-<div class="feature-icon">🏛️</div>
+<div class="feature-icon">
+🏛️
+</div>
 
 <div class="feature-title">
 Bank Negara
@@ -1022,30 +1083,37 @@ Official BNM website
 </div>
 
 
-<!-- BOTTOM -->
-
 <nav class="bottom-nav">
 
 <button class="nav-button"
-onclick="showMessage('Transfer feature will be developed later.')">
+onclick="showMessage('Transfer coming soon.')">
 
-<span class="nav-icon">↔️</span>
+<span class="nav-icon">
+↔️
+</span>
+
 Transfer
 
 </button>
 
 <button class="nav-button"
-onclick="showMessage('QR feature will be developed later.')">
+onclick="showMessage('QR coming soon.')">
 
-<span class="nav-icon">▣</span>
+<span class="nav-icon">
+▣
+</span>
+
 QR
 
 </button>
 
 <button class="nav-button active"
-onclick="showMessage('Performance dashboard will be developed later.')">
+onclick="showMessage('Performance coming soon.')">
 
-<span class="nav-icon">📈</span>
+<span class="nav-icon">
+📈
+</span>
+
 Performance
 
 </button>
@@ -1053,7 +1121,10 @@ Performance
 <button class="nav-button"
 onclick="profile()">
 
-<span class="nav-icon">👤</span>
+<span class="nav-icon">
+👤
+</span>
+
 Profile
 
 </button>
@@ -1064,10 +1135,11 @@ Profile
 
 
 <!-- ==================================================
-     COMPANY PAGE
+COMPANY
 ================================================== -->
 
-<section id="companyPage" class="hidden">
+<section id="companyPage"
+class="hidden">
 
 <div class="company-top">
 
@@ -1079,7 +1151,8 @@ onclick="backHome()">
 </button>
 
 <div>
-<strong>BLX</strong><br>
+<strong>BLX</strong>
+<br>
 Company Research
 </div>
 
@@ -1089,9 +1162,6 @@ Company Research
 
 
 <div class="company-page-container">
-
-
-<!-- COMPANY SUMMARY -->
 
 <div class="company-summary">
 
@@ -1113,8 +1183,6 @@ class="price-change">
 
 </div>
 
-
-<!-- CHART -->
 
 <div class="chart-card">
 
@@ -1138,12 +1206,11 @@ Stock Price Chart
 
 </div>
 
-<canvas id="stockChart"></canvas>
+<canvas id="stockChart">
+</canvas>
 
 </div>
 
-
-<!-- FUNDAMENTALS -->
 
 <div class="section-title">
 Fundamental Analysis
@@ -1153,8 +1220,6 @@ Fundamental Analysis
 class="fundamental-grid">
 </div>
 
-
-<!-- CEO -->
 
 <div class="section-title">
 Chief Executive Officer
@@ -1181,17 +1246,17 @@ Chief Executive Officer
 </div>
 
 
-<!-- SOURCE -->
-
 <div class="source-card">
 
-<strong>BLX Data Reference</strong>
+<strong>
+BLX Data Reference
+</strong>
 
 <br><br>
 
-This prototype uses demonstration data.
+Current company information in this prototype is demonstration data.
 
-The future live BLX system should connect company financial statements, Bursa announcements, stock prices and news to verified sources.
+The next stage can connect BLX to live Bursa/company financial data and news APIs.
 
 </div>
 
@@ -1203,56 +1268,57 @@ The future live BLX system should connect company financial statements, Bursa an
 <script>
 
 /* ==================================================
-   COUNTRIES
+SUPABASE CONNECTION
+================================================== */
+
+const SUPABASE_URL =
+"https://btawseldhlziykekbidu.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_15x4bfgkb2amSuJLNJwQVw_Q8LwoHSF";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ==================================================
+COUNTRIES
 ================================================== */
 
 const countries = [
+
 "Afghanistan","Albania","Algeria","Andorra","Angola",
 "Argentina","Armenia","Australia","Austria","Azerbaijan",
 "Bahamas","Bahrain","Bangladesh","Barbados","Belarus",
 "Belgium","Belize","Benin","Bhutan","Bolivia",
 "Bosnia and Herzegovina","Botswana","Brazil","Brunei",
 "Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon",
-"Canada","Cape Verde","Central African Republic","Chad",
-"Chile","China","Colombia","Comoros","Congo",
-"Costa Rica","Croatia","Cuba","Cyprus","Czech Republic",
-"Denmark","Djibouti","Dominica","Dominican Republic",
-"Ecuador","Egypt","El Salvador","Estonia","Eswatini",
-"Ethiopia","Fiji","Finland","France","Gabon","Gambia",
-"Georgia","Germany","Ghana","Greece","Grenada",
-"Guatemala","Guinea","Guyana","Haiti","Honduras",
-"Hungary","Iceland","India","Indonesia","Iran","Iraq",
-"Ireland","Israel","Italy","Jamaica","Japan","Jordan",
-"Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan",
-"Laos","Latvia","Lebanon","Lesotho","Liberia","Libya",
-"Liechtenstein","Lithuania","Luxembourg","Madagascar",
-"Malawi","Malaysia","Maldives","Mali","Malta",
-"Mauritania","Mauritius","Mexico","Micronesia","Moldova",
-"Monaco","Mongolia","Montenegro","Morocco","Mozambique",
-"Myanmar","Namibia","Nauru","Nepal","Netherlands",
-"New Zealand","Nicaragua","Niger","Nigeria","North Korea",
-"North Macedonia","Norway","Oman","Pakistan","Palau",
-"Panama","Papua New Guinea","Paraguay","Peru","Philippines",
-"Poland","Portugal","Qatar","Romania","Russia","Rwanda",
-"Samoa","San Marino","Saudi Arabia","Senegal","Serbia",
-"Seychelles","Singapore","Slovakia","Slovenia","Solomon Islands",
-"Somalia","South Africa","South Korea","South Sudan",
-"Spain","Sri Lanka","Sudan","Suriname","Sweden",
-"Switzerland","Syria","Taiwan","Tajikistan","Tanzania",
-"Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago",
-"Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda",
-"Ukraine","United Arab Emirates","United Kingdom",
-"United States","Uruguay","Uzbekistan","Vanuatu",
-"Vatican City","Venezuela","Vietnam","Yemen","Zambia",
-"Zimbabwe"
+"Canada","Chile","China","Colombia","Croatia",
+"Denmark","Egypt","Finland","France","Germany",
+"Ghana","Greece","Hungary","Iceland","India",
+"Indonesia","Ireland","Israel","Italy","Japan",
+"Jordan","Kenya","Kuwait","Laos","Lebanon",
+"Luxembourg","Malaysia","Maldives","Malta","Mexico",
+"Myanmar","Nepal","Netherlands","New Zealand","Nigeria",
+"Norway","Oman","Pakistan","Philippines","Poland",
+"Portugal","Qatar","Romania","Russia","Saudi Arabia",
+"Singapore","South Africa","South Korea","Spain",
+"Sri Lanka","Sweden","Switzerland","Taiwan","Thailand",
+"Turkey","Ukraine","United Arab Emirates","United Kingdom",
+"United States","Vietnam","Zambia","Zimbabwe"
+
 ];
 
 
 /* ==================================================
-   MALAYSIA STATES
+MALAYSIA STATES
 ================================================== */
 
 const malaysiaStates = [
+
 "Johor",
 "Kedah",
 "Kelantan",
@@ -1269,11 +1335,12 @@ const malaysiaStates = [
 "Kuala Lumpur",
 "Labuan",
 "Putrajaya"
+
 ];
 
 
 /* ==================================================
-   30 BURSA COMPANIES
+COMPANIES
 ================================================== */
 
 const companies = [
@@ -1288,6 +1355,7 @@ revenue:"RM 61.2B",
 profit:"RM 10.1B",
 assets:"RM 1.02T",
 liabilities:"RM 950B",
+shares:"12.1B",
 roe:"11.8%",
 roa:"1.0%",
 pe:"12.4x",
@@ -1305,6 +1373,7 @@ revenue:"RM 18.2B",
 profit:"RM 6.4B",
 assets:"RM 520B",
 liabilities:"RM 480B",
+shares:"19.4B",
 roe:"13.1%",
 roa:"1.23%",
 pe:"12.1x",
@@ -1322,6 +1391,7 @@ revenue:"RM 22.4B",
 profit:"RM 7.8B",
 assets:"RM 750B",
 liabilities:"RM 690B",
+shares:"10.8B",
 roe:"11.3%",
 roa:"1.04%",
 pe:"11.0x",
@@ -1339,6 +1409,7 @@ revenue:"RM 16.8B",
 profit:"RM 3.1B",
 assets:"RM 320B",
 liabilities:"RM 295B",
+shares:"4.2B",
 roe:"10.7%",
 roa:"0.97%",
 pe:"10.5x",
@@ -1356,6 +1427,7 @@ revenue:"RM 7.0B",
 profit:"RM 3.0B",
 assets:"RM 310B",
 liabilities:"RM 285B",
+shares:"4.3B",
 roe:"10.5%",
 roa:"1.0%",
 pe:"11.0x",
@@ -1373,6 +1445,7 @@ revenue:"RM 65.4B",
 profit:"RM 4.8B",
 assets:"RM 195B",
 liabilities:"RM 125B",
+shares:"5.8B",
 roe:"7.2%",
 roa:"2.4%",
 pe:"18.1x",
@@ -1390,6 +1463,7 @@ revenue:"RM 26.0B",
 profit:"RM 3.0B",
 assets:"RM 58B",
 liabilities:"RM 28B",
+shares:"8.8B",
 roe:"7.1%",
 roa:"4.1%",
 pe:"24.0x",
@@ -1407,6 +1481,7 @@ revenue:"RM 16.4B",
 profit:"RM 1.8B",
 assets:"RM 35B",
 liabilities:"RM 16B",
+shares:"8.3B",
 roe:"9.6%",
 roa:"5.2%",
 pe:"27.0x",
@@ -1424,6 +1499,7 @@ revenue:"RM 20.8B",
 profit:"RM 2.0B",
 assets:"RM 75B",
 liabilities:"RM 28B",
+shares:"7.0B",
 roe:"5.2%",
 roa:"2.7%",
 pe:"15.2x",
@@ -1441,6 +1517,7 @@ revenue:"RM 11.9B",
 profit:"RM 1.1B",
 assets:"RM 20B",
 liabilities:"RM 11B",
+shares:"3.8B",
 roe:"11.4%",
 roa:"5.6%",
 pe:"13.8x",
@@ -1458,6 +1535,7 @@ revenue:"RM 11.0B",
 profit:"RM 1.8B",
 assets:"RM 30B",
 liabilities:"RM 20B",
+shares:"11.8B",
 roe:"18.0%",
 roa:"5.8%",
 pe:"25.0x",
@@ -1475,6 +1553,7 @@ revenue:"RM 65B",
 profit:"RM 1.2B",
 assets:"RM 40B",
 liabilities:"RM 24B",
+shares:"6.8B",
 roe:"8.1%",
 roa:"3.1%",
 pe:"14.5x",
@@ -1492,6 +1571,7 @@ revenue:"RM 24B",
 profit:"RM 1.2B",
 assets:"RM 70B",
 liabilities:"RM 45B",
+shares:"9.2B",
 roe:"5.0%",
 roa:"1.7%",
 pe:"18.0x",
@@ -1509,6 +1589,7 @@ revenue:"RM 10.0B",
 profit:"RM 1.3B",
 assets:"RM 23B",
 liabilities:"RM 20B",
+shares:"7.8B",
 roe:"25.0%",
 roa:"5.7%",
 pe:"22.0x",
@@ -1526,6 +1607,7 @@ revenue:"RM 26B",
 profit:"RM 1.2B",
 assets:"RM 90B",
 liabilities:"RM 55B",
+shares:"3.8B",
 roe:"3.4%",
 roa:"1.2%",
 pe:"18.0x",
@@ -1543,6 +1625,7 @@ revenue:"RM 10B",
 profit:"RM 0.8B",
 assets:"RM 40B",
 liabilities:"RM 25B",
+shares:"5.8B",
 roe:"5.2%",
 roa:"2.0%",
 pe:"20.0x",
@@ -1560,6 +1643,7 @@ revenue:"RM 7.1B",
 profit:"RM 0.7B",
 assets:"RM 3.5B",
 liabilities:"RM 2.7B",
+shares:"0.23B",
 roe:"92%",
 roa:"20%",
 pe:"45.0x",
@@ -1577,6 +1661,7 @@ revenue:"RM 3.2B",
 profit:"RM 0.2B",
 assets:"RM 8B",
 liabilities:"RM 2B",
+shares:"8.0B",
 roe:"3.5%",
 roa:"2.0%",
 pe:"30.0x",
@@ -1594,6 +1679,7 @@ revenue:"RM 2.5B",
 profit:"RM 0.1B",
 assets:"RM 7B",
 liabilities:"RM 2B",
+shares:"3.4B",
 roe:"2.1%",
 roa:"1.4%",
 pe:"35.0x",
@@ -1611,6 +1697,7 @@ revenue:"RM 1.8B",
 profit:"RM 0.9B",
 assets:"RM 17B",
 liabilities:"RM 7B",
+shares:"1.8B",
 roe:"9.0%",
 roa:"5.3%",
 pe:"18.0x",
@@ -1628,6 +1715,7 @@ revenue:"RM 15B",
 profit:"RM 2.5B",
 assets:"RM 60B",
 liabilities:"RM 27B",
+shares:"4.5B",
 roe:"7.5%",
 roa:"4.0%",
 pe:"12.0x",
@@ -1645,6 +1733,7 @@ revenue:"RM 3.2B",
 profit:"RM 1.0B",
 assets:"RM 32B",
 liabilities:"RM 10B",
+shares:"6.3B",
 roe:"8.2%",
 roa:"4.0%",
 pe:"14.0x",
@@ -1662,6 +1751,7 @@ revenue:"RM 22B",
 profit:"RM 1.5B",
 assets:"RM 38B",
 liabilities:"RM 16B",
+shares:"1.1B",
 roe:"7.0%",
 roa:"3.5%",
 pe:"15.0x",
@@ -1679,6 +1769,7 @@ revenue:"RM 7.0B",
 profit:"RM 0.8B",
 assets:"RM 25B",
 liabilities:"RM 14B",
+shares:"5.7B",
 roe:"7.5%",
 roa:"3.2%",
 pe:"25.0x",
@@ -1696,6 +1787,7 @@ revenue:"RM 32B",
 profit:"RM 3.0B",
 assets:"RM 75B",
 liabilities:"RM 50B",
+shares:"11.0B",
 roe:"12%",
 roa:"4%",
 pe:"13.0x",
@@ -1713,6 +1805,7 @@ revenue:"RM 18B",
 profit:"RM 2.5B",
 assets:"RM 45B",
 liabilities:"RM 28B",
+shares:"8.2B",
 roe:"14%",
 roa:"5.5%",
 pe:"15.0x",
@@ -1730,6 +1823,7 @@ revenue:"RM 4.0B",
 profit:"RM 0.3B",
 assets:"RM 12B",
 liabilities:"RM 7B",
+shares:"4.3B",
 roe:"6%",
 roa:"2.5%",
 pe:"24.0x",
@@ -1747,6 +1841,7 @@ revenue:"RM 6.0B",
 profit:"RM 0.5B",
 assets:"RM 25B",
 liabilities:"RM 14B",
+shares:"3.5B",
 roe:"5.0%",
 roa:"2.1%",
 pe:"18.0x",
@@ -1764,6 +1859,7 @@ revenue:"RM 4.0B",
 profit:"RM 0.3B",
 assets:"RM 20B",
 liabilities:"RM 13B",
+shares:"5.6B",
 roe:"4.0%",
 roa:"1.5%",
 pe:"12.0x",
@@ -1781,6 +1877,7 @@ revenue:"RM 3.0B",
 profit:"RM 0.8B",
 assets:"RM 190B",
 liabilities:"RM 175B",
+shares:"3.3B",
 roe:"8.0%",
 roa:"0.6%",
 pe:"9.0x",
@@ -1792,257 +1889,468 @@ ceo:"Sally Herawati Rohat"
 
 
 /* ==================================================
-   PAGE FUNCTIONS
+PAGE CONTROL
 ================================================== */
 
-function hideAll() {
+function hideAll(){
 
-    document.getElementById("loginPage").classList.add("hidden");
-    document.getElementById("registerPage").classList.add("hidden");
-    document.getElementById("verifyPage").classList.add("hidden");
-    document.getElementById("homePage").classList.add("hidden");
-    document.getElementById("companyPage").classList.add("hidden");
+    document
+    .getElementById("loginPage")
+    .classList.add("hidden");
+
+    document
+    .getElementById("registerPage")
+    .classList.add("hidden");
+
+    document
+    .getElementById("homePage")
+    .classList.add("hidden");
+
+    document
+    .getElementById("companyPage")
+    .classList.add("hidden");
 
 }
 
-function showLogin() {
+
+function showLogin(){
 
     hideAll();
 
-    document.getElementById("loginPage").classList.remove("hidden");
+    document
+    .getElementById("loginPage")
+    .classList.remove("hidden");
 
 }
 
-function showRegister() {
+
+function showRegister(){
 
     hideAll();
 
-    document.getElementById("registerPage").classList.remove("hidden");
+    document
+    .getElementById("registerPage")
+    .classList.remove("hidden");
 
 }
 
 
 /* ==================================================
-   PASSWORD CHECK
+PASSWORD
 ================================================== */
 
-function checkPassword() {
+function checkPassword(){
 
     const password =
-        document.getElementById("registerPassword").value;
+    document.getElementById(
+        "registerPassword"
+    ).value;
 
-    const tests = {
+    const tests={
 
-        reqLength: password.length >= 8,
+        reqLength:
+        password.length>=8,
 
-        reqUpper: /[A-Z]/.test(password),
+        reqUpper:
+        /[A-Z]/.test(password),
 
-        reqLower: /[a-z]/.test(password),
+        reqLower:
+        /[a-z]/.test(password),
 
-        reqNumber: /[0-9]/.test(password),
+        reqNumber:
+        /[0-9]/.test(password),
 
-        reqSpecial: /[^A-Za-z0-9]/.test(password)
+        reqSpecial:
+        /[^A-Za-z0-9]/.test(password)
 
     };
 
-    for (const id in tests) {
+    for(const id in tests){
 
         const element =
-            document.getElementById(id);
+        document.getElementById(id);
 
-        if (tests[id]) {
+        const text =
+        element.textContent.substring(2);
+
+        if(tests[id]){
 
             element.classList.add("valid");
 
             element.textContent =
-                "✓ " +
-                element.textContent.substring(2);
+            "✓ "+text;
 
-        } else {
+        }else{
 
             element.classList.remove("valid");
 
             element.textContent =
-                "✗ " +
-                element.textContent.substring(2);
+            "✗ "+text;
 
         }
 
     }
 
-    document.getElementById(
+    document
+    .getElementById(
         "createAccountButton"
-    ).disabled =
-        !Object.values(tests).every(Boolean);
+    )
+    .disabled =
+    !Object.values(tests).every(Boolean);
 
 }
 
 
 /* ==================================================
-   CREATE ACCOUNT
+CREATE ACCOUNT
 ================================================== */
 
-function createAccount() {
+async function createAccount(){
+
+    clearMessages();
 
     const email =
-        document.getElementById("registerEmail").value.trim();
+    document.getElementById(
+        "registerEmail"
+    ).value.trim();
 
     const username =
-        document.getElementById("registerUsername").value.trim();
+    document.getElementById(
+        "registerUsername"
+    ).value.trim();
 
     const password =
-        document.getElementById("registerPassword").value;
+    document.getElementById(
+        "registerPassword"
+    ).value;
 
     const country =
-        document.getElementById("registerCountry").value;
+    document.getElementById(
+        "registerCountry"
+    ).value;
 
     const state =
-        document.getElementById("registerState").value;
-
-    if (!email || !username || !password || !country || !state) {
-
-        registerError("Please complete all fields.");
-
-        return;
-
-    }
-
-    if (!email.includes("@")) {
-
-        registerError("Please enter a valid email.");
-
-        return;
-
-    }
-
-    const user = {
-
-        email: email,
-        username: username,
-        password: password,
-        country: country,
-        state: state,
-        verified: false
-
-    };
-
-    localStorage.setItem(
-        "blxUser",
-        JSON.stringify(user)
-    );
-
-    hideAll();
-
-    document.getElementById("verifyPage")
-        .classList.remove("hidden");
-
-    document.getElementById("verifyText").innerHTML =
-        "A verification request has been prepared for:<br><br>" +
-        "<strong>" + email + "</strong><br><br>" +
-        "This prototype uses a simulated verification step.";
-
-}
+    document.getElementById(
+        "registerState"
+    ).value;
 
 
-/* ==================================================
-   VERIFY
-================================================== */
+    if(
+        !email ||
+        !username ||
+        !password ||
+        !country ||
+        !state
+    ){
 
-function verifyEmail() {
-
-    const user =
-        JSON.parse(
-            localStorage.getItem("blxUser")
+        registerError(
+            "Please complete all fields."
         );
 
-    user.verified = true;
+        return;
 
-    localStorage.setItem(
-        "blxUser",
-        JSON.stringify(user)
+    }
+
+
+    if(!email.includes("@")){
+
+        registerError(
+            "Please enter a valid email."
+        );
+
+        return;
+
+    }
+
+
+    const button =
+    document.getElementById(
+        "createAccountButton"
     );
 
-    showLogin();
+    button.disabled=true;
+
+    button.textContent=
+    "CREATING ACCOUNT...";
+
+
+    try{
+
+        /*
+        Create Supabase authentication user
+        */
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.signUp({
+
+            email:email,
+
+            password:password
+
+        });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        /*
+        Save profile
+        */
+
+        if(data.user){
+
+            const {
+                error:profileError
+            } =
+            await supabaseClient
+            .from("profiles")
+            .insert({
+
+                id:data.user.id,
+
+                username:username,
+
+                country:country,
+
+                state:state
+
+            });
+
+
+            if(profileError){
+
+                throw profileError;
+
+            }
+
+        }
+
+
+        registerSuccess(
+            "Account created successfully. Check your email to verify your BLX account."
+        );
+
+
+        setTimeout(()=>{
+
+            showLogin();
+
+        },2500);
+
+
+    }catch(error){
+
+        registerError(
+            error.message ||
+            "Unable to create account."
+        );
+
+    }
+
+
+    button.disabled=false;
+
+    button.textContent=
+    "CREATE ACCOUNT";
 
 }
 
 
 /* ==================================================
-   LOGIN
+LOGIN
 ================================================== */
 
-function login() {
+async function login(){
+
+    clearMessages();
 
     const username =
-        document.getElementById("loginUsername").value.trim();
+    document.getElementById(
+        "loginUsername"
+    ).value.trim();
 
     const password =
-        document.getElementById("loginPassword").value;
+    document.getElementById(
+        "loginPassword"
+    ).value;
 
-    const saved =
-        localStorage.getItem("blxUser");
 
-    if (!saved) {
+    if(!username || !password){
 
-        loginError("No BLX account found. Please create an account.");
-
-        return;
-
-    }
-
-    const user = JSON.parse(saved);
-
-    if (
-        username !== user.username ||
-        password !== user.password
-    ) {
-
-        loginError("Incorrect username or password.");
+        loginError(
+            "Please enter username and password."
+        );
 
         return;
 
     }
 
-    if (!user.verified) {
 
-        loginError("Please verify your email first.");
+    try{
 
-        return;
+        /*
+        Find profile by username
+        */
+
+        const {
+            data:profile,
+            error:profileError
+        } =
+        await supabaseClient
+        .from("profiles")
+        .select("id,username,country,state")
+        .eq("username",username)
+        .maybeSingle();
+
+
+        if(profileError){
+
+            throw profileError;
+
+        }
+
+
+        if(!profile){
+
+            loginError(
+                "Username not found."
+            );
+
+            return;
+
+        }
+
+
+        /*
+        Get email from authentication
+        */
+
+        const {
+            data:userData,
+            error:userError
+        } =
+        await supabaseClient.auth
+        .getUser();
+
+
+        /*
+        Since username login needs the email,
+        get email using the profile ID through
+        a secure RPC in a later version.
+
+        For this prototype we ask for email
+        if username lookup cannot authenticate.
+        */
+
+        const emailPrompt =
+        prompt(
+            "Enter the email address used when creating your BLX account:"
+        );
+
+
+        if(!emailPrompt){
+
+            return;
+
+        }
+
+
+        const {
+            error
+        } =
+        await supabaseClient.auth
+        .signInWithPassword({
+
+            email:emailPrompt.trim(),
+
+            password:password
+
+        });
+
+
+        if(error){
+
+            loginError(
+                "Incorrect email, username or password."
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "blxLoggedIn",
+            "true"
+        );
+
+        localStorage.setItem(
+            "blxProfile",
+            JSON.stringify(profile)
+        );
+
+
+        openHome(profile);
+
+
+    }catch(error){
+
+        loginError(
+            error.message ||
+            "Login failed."
+        );
 
     }
-
-    localStorage.setItem(
-        "blxLoggedIn",
-        "true"
-    );
-
-    openHome();
 
 }
 
 
 /* ==================================================
-   HOME
+HOME
 ================================================== */
 
-function openHome() {
+function openHome(profile=null){
 
     hideAll();
 
-    document.getElementById("homePage")
-        .classList.remove("hidden");
+    document
+    .getElementById("homePage")
+    .classList.remove("hidden");
 
-    const saved =
-        localStorage.getItem("blxUser");
 
-    if (saved) {
+    if(!profile){
 
-        const user = JSON.parse(saved);
+        const saved =
+        localStorage.getItem(
+            "blxProfile"
+        );
 
-        document.getElementById(
+        if(saved){
+
+            profile =
+            JSON.parse(saved);
+
+        }
+
+    }
+
+
+    if(profile){
+
+        document
+        .getElementById(
             "welcomeText"
-        ).textContent =
-            "Welcome back, " + user.username;
+        )
+        .textContent =
+        "Welcome back, "+
+        profile.username;
 
     }
 
@@ -2050,20 +2358,23 @@ function openHome() {
 
 
 /* ==================================================
-   SEARCH
+SEARCH
 ================================================== */
 
-function focusSearch() {
+function focusSearch(){
 
-    document.getElementById(
+    document
+    .getElementById(
         "companySearch"
-    ).focus();
+    )
+    .focus();
 
 }
 
-function searchEnter(event) {
 
-    if (event.key === "Enter") {
+function searchEnter(event){
+
+    if(event.key==="Enter"){
 
         searchCompany();
 
@@ -2071,46 +2382,56 @@ function searchEnter(event) {
 
 }
 
-function searchCompany() {
+
+function searchCompany(){
 
     const query =
-        document.getElementById(
-            "companySearch"
-        ).value
-        .trim()
-        .toLowerCase();
+    document
+    .getElementById(
+        "companySearch"
+    )
+    .value
+    .trim()
+    .toLowerCase();
 
-    if (!query) {
 
-        alert("Please enter a company name.");
-
-        return;
-
-    }
-
-    const company =
-        companies.find(c =>
-            c.name.toLowerCase().includes(query) ||
-            c.ticker.toLowerCase() === query
-        );
-
-    if (!company) {
+    if(!query){
 
         alert(
-            "Company not found.\n\n" +
-            "Try:\n" +
-            "Maybank\n" +
-            "CIMB\n" +
-            "RHB\n" +
-            "Tenaga\n" +
-            "IHH\n" +
-            "Nestle\n" +
-            "CelcomDigi"
+            "Please enter a company name."
         );
 
         return;
 
     }
+
+
+    const company =
+    companies.find(c =>
+
+        c.name
+        .toLowerCase()
+        .includes(query)
+
+        ||
+
+        c.ticker
+        .toLowerCase()
+        .includes(query)
+
+    );
+
+
+    if(!company){
+
+        alert(
+            "Company not found."
+        );
+
+        return;
+
+    }
+
 
     openCompany(company);
 
@@ -2118,84 +2439,109 @@ function searchCompany() {
 
 
 /* ==================================================
-   COMPANY PAGE
+COMPANY PAGE
 ================================================== */
 
-function openCompany(company) {
+function openCompany(company){
 
     hideAll();
 
-    document.getElementById(
+    document
+    .getElementById(
         "companyPage"
-    ).classList.remove("hidden");
+    )
+    .classList.remove("hidden");
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "companyName"
-    ).textContent =
-        company.name;
+    )
+    .textContent =
+    company.name;
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "companyTicker"
-    ).textContent =
-        "Bursa Malaysia: " +
-        company.ticker +
-        " • " +
-        company.sector;
+    )
+    .textContent =
+    "Bursa Malaysia: "+
+    company.ticker+
+    " • "+
+    company.sector;
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "companyPrice"
-    ).textContent =
-        company.price;
+    )
+    .textContent =
+    company.price;
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "companyChange"
-    ).textContent =
-        company.change +
-        " today";
+    )
+    .textContent =
+    company.change+
+    " today";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "ceoName"
-    ).textContent =
-        company.ceo;
+    )
+    .textContent =
+    company.ceo;
 
-    const data = [
 
-        ["Revenue", company.revenue],
+    const data=[
 
-        ["Profit After Tax", company.profit],
+        ["Revenue",company.revenue],
 
-        ["Total Assets", company.assets],
+        ["Profit After Tax",company.profit],
 
-        ["Total Liabilities", company.liabilities],
+        ["Total Assets",company.assets],
 
-        ["ROE", company.roe],
+        ["Total Liabilities",company.liabilities],
 
-        ["ROA", company.roa],
+        ["Number of Shares",company.shares],
 
-        ["P/E Ratio", company.pe],
+        ["ROE",company.roe],
 
-        ["Dividend Yield", company.dividend]
+        ["ROA",company.roa],
+
+        ["P/E Ratio",company.pe],
+
+        ["Dividend Yield",company.dividend]
 
     ];
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "fundamentals"
-    ).innerHTML =
-        data.map(item => `
+    )
+    .innerHTML =
 
-            <div class="fundamental">
+    data.map(item=>`
 
-                <div class="fundamental-label">
-                    ${item[0]}
-                </div>
+        <div class="fundamental">
 
-                <div class="fundamental-value">
-                    ${item[1]}
-                </div>
-
+            <div class="fundamental-label">
+                ${item[0]}
             </div>
 
-        `).join("");
+            <div class="fundamental-value">
+                ${item[1]}
+            </div>
+
+        </div>
+
+    `).join("");
+
 
     drawChart(1);
 
@@ -2203,69 +2549,88 @@ function openCompany(company) {
 
 
 /* ==================================================
-   CHART
+CHART
 ================================================== */
 
-function drawChart(years) {
+function drawChart(years){
 
     const canvas =
-        document.getElementById("stockChart");
+    document.getElementById(
+        "stockChart"
+    );
 
     const ctx =
-        canvas.getContext("2d");
+    canvas.getContext("2d");
+
 
     const width =
-        canvas.clientWidth || 500;
+    canvas.clientWidth || 500;
 
-    const height =
-        230;
+    const height=230;
 
-    canvas.width = width * 2;
 
-    canvas.height = height * 2;
+    canvas.width=width*2;
+
+    canvas.height=height*2;
 
     ctx.scale(2,2);
 
-    ctx.clearRect(0,0,width,height);
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
 
-    const points = [];
 
-    let value = .35;
+    const points=[];
 
-    for (let i=0; i<30; i++) {
+    let value=.35;
+
+
+    for(let i=0;i<50;i++){
 
         value +=
-            (Math.random() - .43) * .08;
+        (Math.random()-.45)*.07;
 
-        if (value < .1) value = .1;
 
-        if (value > .9) value = .9;
+        if(value<.08)
+        value=.08;
+
+        if(value>.92)
+        value=.92;
+
 
         points.push(value);
 
     }
 
+
     ctx.beginPath();
 
-    points.forEach((point,index) => {
 
-        const x =
-            10 +
-            index *
-            ((width - 20) /
-            (points.length - 1));
+    points.forEach(
+        (point,index)=>{
 
-        const y =
-            height -
-            20 -
-            point *
-            (height - 45);
+        const x=
+        10+
+        index*
+        ((width-20)/
+        (points.length-1));
 
-        if (index === 0) {
+
+        const y=
+        height-
+        20-
+        point*
+        (height-45);
+
+
+        if(index===0){
 
             ctx.moveTo(x,y);
 
-        } else {
+        }else{
 
             ctx.lineTo(x,y);
 
@@ -2273,23 +2638,36 @@ function drawChart(years) {
 
     });
 
-    ctx.strokeStyle = "#1769ff";
 
-    ctx.lineWidth = 3;
+    ctx.strokeStyle=
+    "#1769ff";
+
+    ctx.lineWidth=3;
 
     ctx.stroke();
 
 
-    ctx.lineTo(width-10,height-10);
+    ctx.lineTo(
+        width-10,
+        height-10
+    );
 
-    ctx.lineTo(10,height-10);
+    ctx.lineTo(
+        10,
+        height-10
+    );
 
     ctx.closePath();
 
-    const gradient =
-        ctx.createLinearGradient(
-            0,0,0,height
-        );
+
+    const gradient=
+    ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        height
+    );
+
 
     gradient.addColorStop(
         0,
@@ -2301,7 +2679,8 @@ function drawChart(years) {
         "rgba(23,105,255,0)"
     );
 
-    ctx.fillStyle = gradient;
+
+    ctx.fillStyle=gradient;
 
     ctx.fill();
 
@@ -2309,10 +2688,143 @@ function drawChart(years) {
 
 
 /* ==================================================
-   BACK
+PROFILE
 ================================================== */
 
-function backHome() {
+function profile(){
+
+    const saved =
+    localStorage.getItem(
+        "blxProfile"
+    );
+
+
+    if(!saved){
+
+        alert(
+            "Profile not available."
+        );
+
+        return;
+
+    }
+
+
+    const user =
+    JSON.parse(saved);
+
+
+    hideAll();
+
+
+    document
+    .getElementById(
+        "companyPage"
+    )
+    .classList.remove("hidden");
+
+
+    document
+    .getElementById(
+        "companyName"
+    )
+    .textContent =
+    "BLX Profile";
+
+
+    document
+    .getElementById(
+        "companyTicker"
+    )
+    .textContent =
+    "Account Information";
+
+
+    document
+    .getElementById(
+        "companyPrice"
+    )
+    .textContent =
+    user.username;
+
+
+    document
+    .getElementById(
+        "companyChange"
+    )
+    .textContent =
+    user.country;
+
+
+    document
+    .getElementById(
+        "ceoName"
+    )
+    .textContent =
+    user.state;
+
+
+    document
+    .getElementById(
+        "fundamentals"
+    )
+    .innerHTML=`
+
+        <div class="fundamental">
+
+            <div class="fundamental-label">
+                Username
+            </div>
+
+            <div class="fundamental-value">
+                ${user.username}
+            </div>
+
+        </div>
+
+        <div class="fundamental">
+
+            <div class="fundamental-label">
+                Country
+            </div>
+
+            <div class="fundamental-value">
+                ${user.country}
+            </div>
+
+        </div>
+
+        <div class="fundamental">
+
+            <div class="fundamental-label">
+                State
+            </div>
+
+            <div class="fundamental-value">
+                ${user.state}
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+    .getElementById(
+        "stockChart"
+    )
+    .style.display="none";
+
+}
+
+
+function backHome(){
+
+    document
+    .getElementById(
+        "stockChart"
+    )
+    .style.display="block";
 
     openHome();
 
@@ -2320,49 +2832,51 @@ function backHome() {
 
 
 /* ==================================================
-   BUTTONS
+LOGOUT
 ================================================== */
 
-function showMessage(message) {
+async function logout(){
 
-    alert(message);
+    await supabaseClient
+    .auth
+    .signOut();
 
-}
 
-function profile() {
-
-    const user =
-        JSON.parse(
-            localStorage.getItem("blxUser")
-        );
-
-    if (!user) return;
-
-    alert(
-        "BLX PROFILE\n\n" +
-        "Username: " + user.username +
-        "\nEmail: " + user.email +
-        "\nCountry: " + user.country +
-        "\nState: " + user.state
+    localStorage.removeItem(
+        "blxLoggedIn"
     );
 
-}
-
-function community() {
-
-    alert(
-        "BLX COMMUNITY\n\n" +
-        "WhatsApp and Telegram community links will be added here."
+    localStorage.removeItem(
+        "blxProfile"
     );
+
+
+    showLogin();
 
 }
 
 
 /* ==================================================
-   OFFICIAL LINKS
+BUTTONS
 ================================================== */
 
-function openBursa() {
+function showMessage(message){
+
+    alert(message);
+
+}
+
+
+function community(){
+
+    alert(
+        "BLX Community\n\nWhatsApp and Telegram links will be added later."
+    );
+
+}
+
+
+function openBursa(){
 
     window.open(
         "https://www.bursamalaysia.com/",
@@ -2371,7 +2885,8 @@ function openBursa() {
 
 }
 
-function openBNM() {
+
+function openBNM(){
 
     window.open(
         "https://www.bnm.gov.my/",
@@ -2382,94 +2897,106 @@ function openBNM() {
 
 
 /* ==================================================
-   LANGUAGE
+ERRORS
 ================================================== */
 
-function changeLanguage() {
+function clearMessages(){
 
-    const language =
-        document.getElementById(
-            "language"
-        ).value;
-
-    alert(
-        "Language selected: " +
-        language +
-        "\n\nFull translation will be added later."
+    document
+    .querySelectorAll(".message")
+    .forEach(
+        element=>{
+            element.style.display="none";
+        }
     );
 
 }
 
 
-/* ==================================================
-   ERROR
-================================================== */
-
-function loginError(message) {
+function loginError(message){
 
     const box =
-        document.getElementById(
-            "loginError"
-        );
+    document.getElementById(
+        "loginError"
+    );
 
-    box.textContent = message;
+    box.textContent=message;
 
-    box.style.display = "block";
-
-}
-
-function registerError(message) {
-
-    const box =
-        document.getElementById(
-            "registerError"
-        );
-
-    box.textContent = message;
-
-    box.style.display = "block";
+    box.style.display="block";
 
 }
 
 
+function registerError(message){
+
+    const box =
+    document.getElementById(
+        "registerError"
+    );
+
+    box.textContent=message;
+
+    box.style.display="block";
+
+}
+
+
+function registerSuccess(message){
+
+    const box =
+    document.getElementById(
+        "registerSuccess"
+    );
+
+    box.textContent=message;
+
+    box.style.display="block";
+
+}
+
+
 /* ==================================================
-   LOAD DROPDOWNS
+DROPDOWNS
 ================================================== */
 
-function loadDropdowns() {
+function loadDropdowns(){
 
     const country =
-        document.getElementById(
-            "registerCountry"
-        );
+    document.getElementById(
+        "registerCountry"
+    );
 
-    country.innerHTML =
-        '<option value="">Select country</option>';
 
-    countries.forEach(item => {
+    country.innerHTML=
+    '<option value="">Select country</option>';
 
-        country.innerHTML +=
-            `<option value="${item}">
-                ${item}
-            </option>`;
+
+    countries.forEach(item=>{
+
+        country.innerHTML+=
+        `<option value="${item}">
+            ${item}
+        </option>`;
 
     });
 
 
     const state =
-        document.getElementById(
-            "registerState"
-        );
+    document.getElementById(
+        "registerState"
+    );
 
-    state.innerHTML =
-        '<option value="">Select Malaysian state</option>';
 
-    malaysiaStates.forEach(item => {
+    state.innerHTML=
+    '<option value="">Select Malaysian state</option>';
 
-        state.innerHTML +=
-            `<option value="${item}">
-                ${item}
-            </option>`;
+
+    malaysiaStates.forEach(item=>{
+
+        state.innerHTML+=
+        `<option value="${item}">
+            ${item}
+        </option>`;
 
     });
 
@@ -2477,34 +3004,65 @@ function loadDropdowns() {
 
 
 /* ==================================================
-   START BLX
+START
 ================================================== */
 
 loadDropdowns();
 
-window.onload = function() {
 
-    const loggedIn =
-        localStorage.getItem(
-            "blxLoggedIn"
-        );
+window.addEventListener(
+    "load",
+    async function(){
 
-    const user =
-        localStorage.getItem(
-            "blxUser"
-        );
+        try{
 
-    if (loggedIn === "true" && user) {
+            const {
+                data
+            } =
+            await supabaseClient
+            .auth
+            .getSession();
 
-        openHome();
 
-    } else {
+            if(
+                data &&
+                data.session
+            ){
 
-        showLogin();
+                const saved =
+                localStorage.getItem(
+                    "blxProfile"
+                );
+
+
+                if(saved){
+
+                    openHome(
+                        JSON.parse(saved)
+                    );
+
+                }else{
+
+                    showLogin();
+
+                }
+
+            }else{
+
+                showLogin();
+
+            }
+
+        }catch(error){
+
+            console.error(error);
+
+            showLogin();
+
+        }
 
     }
-
-};
+);
 
 </script>
 
