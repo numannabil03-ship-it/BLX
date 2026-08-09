@@ -6,14 +6,10 @@
 
 <title>BLX - Financial Intelligence</title>
 
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
@@ -22,17 +18,9 @@ body{
     color:#101828;
 }
 
-button,input,select{
-    font-family:inherit;
-}
+.hidden{display:none!important}
 
-.hidden{
-    display:none!important;
-}
-
-/* =========================
-AUTH
-========================= */
+button,input,select{font-family:inherit}
 
 .auth-page{
     min-height:100vh;
@@ -121,6 +109,7 @@ AUTH
     background:none;
     color:#1769ff;
     font-weight:800;
+    cursor:pointer;
 }
 
 .message{
@@ -158,9 +147,7 @@ AUTH
     color:#039855;
 }
 
-/* =========================
-HEADER
-========================= */
+/* HEADER */
 
 .header{
     background:linear-gradient(135deg,#06101d,#12304f);
@@ -209,9 +196,7 @@ HEADER
     font-size:18px;
 }
 
-/* =========================
-HOME
-========================= */
+/* HOME */
 
 .home-container{
     max-width:1100px;
@@ -273,9 +258,7 @@ HOME
     font-size:13px;
 }
 
-/* =========================
-SEARCH
-========================= */
+/* SEARCH */
 
 .search-card{
     background:white;
@@ -302,9 +285,7 @@ SEARCH
     font-size:16px;
 }
 
-/* =========================
-FEATURES
-========================= */
+/* FEATURES */
 
 .feature-grid{
     display:grid;
@@ -347,9 +328,7 @@ FEATURES
     margin-top:4px;
 }
 
-/* =========================
-BOTTOM
-========================= */
+/* BOTTOM */
 
 .bottom-nav{
     position:sticky;
@@ -380,9 +359,7 @@ BOTTOM
     margin-bottom:3px;
 }
 
-/* =========================
-COMPANY
-========================= */
+/* COMPANY */
 
 .company-top{
     background:linear-gradient(135deg,#06101d,#12304f);
@@ -417,7 +394,8 @@ COMPANY
 .company-summary,
 .chart-card,
 .ceo-card,
-.source-card{
+.source-card,
+.profile-card{
     background:white;
     border-radius:20px;
     padding:20px;
@@ -527,17 +505,6 @@ canvas{
     color:#667085;
 }
 
-/* =========================
-PROFILE
-========================= */
-
-.profile-card{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
-}
-
 .profile-row{
     padding:14px 0;
     border-bottom:1px solid #eaecf0;
@@ -564,9 +531,7 @@ PROFILE
     font-weight:800;
 }
 
-/* =========================
-MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:650px){
 
@@ -581,18 +546,13 @@ MOBILE
     .company-name{
         font-size:21px;
     }
-
 }
-
 </style>
 </head>
 
 <body>
 
-
-<!-- ==================================================
-LOGIN
-================================================== -->
+<!-- LOGIN -->
 
 <section id="loginPage" class="auth-page">
 
@@ -604,19 +564,17 @@ LOGIN
 Financial Intelligence Platform
 </div>
 
-<h2 class="auth-title">
-Welcome Back
-</h2>
+<h2 class="auth-title">Welcome Back</h2>
 
 <div id="loginError" class="message error"></div>
 
 <div id="loginSuccess" class="message success"></div>
 
 <div class="input-group">
-<label>Username</label>
-<input id="loginUsername"
-type="text"
-placeholder="Enter username">
+<label>Email</label>
+<input id="loginEmail"
+type="email"
+placeholder="Enter your email">
 </div>
 
 <div class="input-group">
@@ -626,29 +584,24 @@ type="password"
 placeholder="Enter password">
 </div>
 
-<button class="primary-button"
+<button id="loginButton"
+class="primary-button"
 onclick="login()">
 LOGIN
 </button>
 
 <div class="auth-link">
 Don't have an account?
-<button onclick="showRegister()">
-Create Account
-</button>
+<button onclick="showRegister()">Create Account</button>
 </div>
 
 </div>
-
 </section>
 
 
-<!-- ==================================================
-REGISTER
-================================================== -->
+<!-- REGISTER -->
 
-<section id="registerPage"
-class="auth-page hidden">
+<section id="registerPage" class="auth-page hidden">
 
 <div class="auth-card">
 
@@ -658,19 +611,14 @@ class="auth-page hidden">
 Create your BLX account
 </div>
 
-<h2 class="auth-title">
-Create Account
-</h2>
+<h2 class="auth-title">Create Account</h2>
 
-<div id="registerError"
-class="message error"></div>
+<div id="registerError" class="message error"></div>
 
-<div id="registerSuccess"
-class="message success"></div>
+<div id="registerSuccess" class="message success"></div>
 
 <div class="input-group">
 <label>Email</label>
-
 <input id="registerEmail"
 type="email"
 placeholder="Email">
@@ -678,7 +626,6 @@ placeholder="Email">
 
 <div class="input-group">
 <label>Username</label>
-
 <input id="registerUsername"
 type="text"
 placeholder="Username">
@@ -686,7 +633,6 @@ placeholder="Username">
 
 <div class="input-group">
 <label>Password</label>
-
 <input id="registerPassword"
 type="password"
 placeholder="Strong password"
@@ -697,140 +643,86 @@ oninput="checkPassword()">
 
 <strong>Password must contain:</strong>
 
-<div id="reqLength">
-✗ At least 8 characters
-</div>
-
-<div id="reqUpper">
-✗ Uppercase letter
-</div>
-
-<div id="reqLower">
-✗ Lowercase letter
-</div>
-
-<div id="reqNumber">
-✗ Number
-</div>
-
-<div id="reqSpecial">
-✗ Special character
-</div>
+<div id="reqLength">✗ At least 8 characters</div>
+<div id="reqUpper">✗ Uppercase letter</div>
+<div id="reqLower">✗ Lowercase letter</div>
+<div id="reqNumber">✗ Number</div>
+<div id="reqSpecial">✗ Special character</div>
 
 </div>
 
 <div class="input-group">
-
 <label>Country</label>
-
-<select id="registerCountry">
-</select>
-
+<select id="registerCountry"></select>
 </div>
 
 <div class="input-group">
-
 <label>State</label>
-
-<select id="registerState">
-</select>
-
+<select id="registerState"></select>
 </div>
 
 <button id="createAccountButton"
 class="primary-button"
 onclick="createAccount()"
 disabled>
-
 CREATE ACCOUNT
-
 </button>
 
 <div class="auth-link">
-
 Already have an account?
-
-<button onclick="showLogin()">
-Login
-</button>
-
+<button onclick="showLogin()">Login</button>
 </div>
 
 </div>
-
 </section>
 
 
-<!-- ==================================================
-HOME
-================================================== -->
+<!-- HOME -->
 
-<section id="homePage"
-class="hidden">
+<section id="homePage" class="hidden">
 
 <header class="header">
 
 <div class="header-inner">
 
-<div class="blx-logo">
-BLX
-</div>
+<div class="blx-logo">BLX</div>
 
 <div class="header-right">
 
-<select id="language"
-class="language">
-
+<select class="language">
 <option>English</option>
 <option>Malay</option>
 <option>Chinese</option>
 <option>Tamil</option>
-
 </select>
 
-<button class="profile-button"
-onclick="profile()">
-👤
-</button>
+<button class="profile-button" onclick="profile()">👤</button>
 
 </div>
-
 </div>
-
 </header>
-
 
 <div class="home-container">
 
 <div class="greeting">
 
-<h1>
-Good morning 👋
-</h1>
+<h1>Good evening 👋</h1>
 
-<p id="welcomeText">
-Welcome to BLX
-</p>
+<p id="welcomeText">Welcome to BLX</p>
 
 </div>
-
 
 <div class="bursa-card">
 
-<div class="bursa-label">
-BURSA MALAYSIA
-</div>
+<div class="bursa-label">BURSA MALAYSIA</div>
 
-<div class="bursa-number">
-1,089
-</div>
+<div class="bursa-number">1,089</div>
 
 <div class="bursa-subtitle">
 Total listed equities
 </div>
 
 </div>
-
 
 <div class="quote-card">
 
@@ -843,7 +735,6 @@ Total listed equities
 </div>
 
 </div>
-
 
 <div class="search-card">
 
@@ -860,273 +751,91 @@ onkeydown="searchEnter(event)">
 
 </div>
 
-
 <div class="feature-grid">
 
-<button class="feature"
-onclick="focusSearch()">
-
-<div class="feature-icon">
-🏢
-</div>
-
-<div class="feature-title">
-Company Search
-</div>
-
-<div class="feature-description">
-Fundamentals & stock
-</div>
-
+<button class="feature" onclick="focusSearch()">
+<div class="feature-icon">🏢</div>
+<div class="feature-title">Company Search</div>
+<div class="feature-description">Fundamentals & stock</div>
 </button>
 
-
-<button class="feature"
-onclick="showMessage('Wallet coming soon.')">
-
-<div class="feature-icon">
-💰
-</div>
-
-<div class="feature-title">
-Wallet
-</div>
-
-<div class="feature-description">
-Investment wallet
-</div>
-
+<button class="feature" onclick="focusSearch()">
+<div class="feature-icon">📈</div>
+<div class="feature-title">Chart</div>
+<div class="feature-description">Stock price chart</div>
 </button>
 
-
-<button class="feature"
-onclick="focusSearch()">
-
-<div class="feature-icon">
-📈
-</div>
-
-<div class="feature-title">
-Chart
-</div>
-
-<div class="feature-description">
-Stock price chart
-</div>
-
+<button class="feature" onclick="focusSearch()">
+<div class="feature-icon">👔</div>
+<div class="feature-title">CEO</div>
+<div class="feature-description">Company leadership</div>
 </button>
 
-
-<button class="feature"
-onclick="focusSearch()">
-
-<div class="feature-icon">
-👔
-</div>
-
-<div class="feature-title">
-CEO
-</div>
-
-<div class="feature-description">
-Company leadership
-</div>
-
+<button class="feature" onclick="showMessage('Wallet coming soon.')">
+<div class="feature-icon">💰</div>
+<div class="feature-title">Wallet</div>
+<div class="feature-description">Investment wallet</div>
 </button>
 
-
-<button class="feature"
-onclick="showMessage('Grow Your Money coming soon.')">
-
-<div class="feature-icon">
-🌱
-</div>
-
-<div class="feature-title">
-Grow Your Money
-</div>
-
-<div class="feature-description">
-Investment education
-</div>
-
+<button class="feature" onclick="showMessage('Grow Your Money coming soon.')">
+<div class="feature-icon">🌱</div>
+<div class="feature-title">Grow Your Money</div>
+<div class="feature-description">Investment education</div>
 </button>
 
-
-<button class="feature"
-onclick="showMessage('Daily Coin coming soon.')">
-
-<div class="feature-icon">
-🪙
-</div>
-
-<div class="feature-title">
-Daily Coin
-</div>
-
-<div class="feature-description">
-Daily learning
-</div>
-
+<button class="feature" onclick="showMessage('Daily Coin coming soon.')">
+<div class="feature-icon">🪙</div>
+<div class="feature-title">Daily Coin</div>
+<div class="feature-description">Daily learning</div>
 </button>
 
-
-<button class="feature"
-onclick="showMessage('Weather coming soon.')">
-
-<div class="feature-icon">
-🌤️
-</div>
-
-<div class="feature-title">
-Weather
-</div>
-
-<div class="feature-description">
-Weather information
-</div>
-
+<button class="feature" onclick="showMessage('Recommendation coming soon.')">
+<div class="feature-icon">⭐</div>
+<div class="feature-title">Recommendation</div>
+<div class="feature-description">Discover companies</div>
 </button>
 
-
-<button class="feature"
-onclick="community()">
-
-<div class="feature-icon">
-👥
-</div>
-
-<div class="feature-title">
-Community
-</div>
-
-<div class="feature-description">
-WhatsApp & Telegram
-</div>
-
+<button class="feature" onclick="community()">
+<div class="feature-icon">👥</div>
+<div class="feature-title">Community</div>
+<div class="feature-description">WhatsApp & Telegram</div>
 </button>
 
-
-<button class="feature"
-onclick="showMessage('Recommendation coming soon.')">
-
-<div class="feature-icon">
-⭐
-</div>
-
-<div class="feature-title">
-Recommendation
-</div>
-
-<div class="feature-description">
-Discover companies
-</div>
-
+<button class="feature" onclick="openBursa()">
+<div class="feature-icon">📊</div>
+<div class="feature-title">Bursa</div>
+<div class="feature-description">Official Bursa website</div>
 </button>
 
-
-<button class="feature"
-onclick="showMessage('ASNB coming soon.')">
-
-<div class="feature-icon">
-🏦
-</div>
-
-<div class="feature-title">
-ASNB
-</div>
-
-<div class="feature-description">
-ASNB information
-</div>
-
-</button>
-
-
-<button class="feature"
-onclick="openBursa()">
-
-<div class="feature-icon">
-📊
-</div>
-
-<div class="feature-title">
-Bursa
-</div>
-
-<div class="feature-description">
-Official Bursa website
-</div>
-
-</button>
-
-
-<button class="feature"
-onclick="openBNM()">
-
-<div class="feature-icon">
-🏛️
-</div>
-
-<div class="feature-title">
-Bank Negara
-</div>
-
-<div class="feature-description">
-Official BNM website
-</div>
-
+<button class="feature" onclick="openBNM()">
+<div class="feature-icon">🏛️</div>
+<div class="feature-title">Bank Negara</div>
+<div class="feature-description">Official BNM website</div>
 </button>
 
 </div>
-
 </div>
-
 
 <nav class="bottom-nav">
 
-<button class="nav-button"
-onclick="showMessage('Transfer coming soon.')">
-
-<span class="nav-icon">
-↔️
-</span>
-
+<button class="nav-button">
+<span class="nav-icon">↔️</span>
 Transfer
-
 </button>
 
-<button class="nav-button"
-onclick="showMessage('QR coming soon.')">
-
-<span class="nav-icon">
-▣
-</span>
-
+<button class="nav-button">
+<span class="nav-icon">▣</span>
 QR
-
 </button>
 
-<button class="nav-button active"
-onclick="showMessage('Performance coming soon.')">
-
-<span class="nav-icon">
-📈
-</span>
-
+<button class="nav-button active">
+<span class="nav-icon">📈</span>
 Performance
-
 </button>
 
-<button class="nav-button"
-onclick="profile()">
-
-<span class="nav-icon">
-👤
-</span>
-
+<button class="nav-button" onclick="profile()">
+<span class="nav-icon">👤</span>
 Profile
-
 </button>
 
 </nav>
@@ -1134,21 +843,15 @@ Profile
 </section>
 
 
-<!-- ==================================================
-COMPANY
-================================================== -->
+<!-- COMPANY -->
 
-<section id="companyPage"
-class="hidden">
+<section id="companyPage" class="hidden">
 
 <div class="company-top">
 
 <div class="company-top-inner">
 
-<button class="back-button"
-onclick="backHome()">
-‹
-</button>
+<button class="back-button" onclick="backHome()">‹</button>
 
 <div>
 <strong>BLX</strong>
@@ -1157,69 +860,43 @@ Company Research
 </div>
 
 </div>
-
 </div>
-
 
 <div class="company-page-container">
 
 <div class="company-summary">
 
-<div id="companyName"
-class="company-name">
-</div>
+<div id="companyName" class="company-name"></div>
 
-<div id="companyTicker"
-class="company-ticker">
-</div>
+<div id="companyTicker" class="company-ticker"></div>
 
-<div id="companyPrice"
-class="price">
-</div>
+<div id="companyPrice" class="price"></div>
 
-<div id="companyChange"
-class="price-change">
-</div>
+<div id="companyChange" class="price-change"></div>
 
 </div>
-
 
 <div class="chart-card">
 
-<strong>
-Stock Price Chart
-</strong>
+<strong>Stock Price Chart</strong>
 
 <div class="chart-buttons">
 
-<button onclick="drawChart(1)">
-1Y
-</button>
-
-<button onclick="drawChart(5)">
-5Y
-</button>
-
-<button onclick="drawChart(10)">
-10Y
-</button>
+<button onclick="drawChart(1)">1Y</button>
+<button onclick="drawChart(5)">5Y</button>
+<button onclick="drawChart(10)">10Y</button>
 
 </div>
 
-<canvas id="stockChart">
-</canvas>
+<canvas id="stockChart"></canvas>
 
 </div>
-
 
 <div class="section-title">
 Fundamental Analysis
 </div>
 
-<div id="fundamentals"
-class="fundamental-grid">
-</div>
-
+<div id="fundamentals" class="fundamental-grid"></div>
 
 <div class="section-title">
 Chief Executive Officer
@@ -1227,15 +904,11 @@ Chief Executive Officer
 
 <div class="ceo-card">
 
-<div class="ceo-picture">
-👤
-</div>
+<div class="ceo-picture">👤</div>
 
 <div>
 
-<div id="ceoName"
-class="ceo-name">
-</div>
+<div id="ceoName" class="ceo-name"></div>
 
 <div class="ceo-position">
 Chief Executive Officer
@@ -1245,31 +918,22 @@ Chief Executive Officer
 
 </div>
 
-
 <div class="source-card">
-
-<strong>
-BLX Data Reference
-</strong>
-
+<strong>BLX Data Reference</strong>
 <br><br>
-
-Current company information in this prototype is demonstration data.
-
-The next stage can connect BLX to live Bursa/company financial data and news APIs.
-
+The financial information currently displayed is prototype data.
+Live Bursa financial data will be connected in the next development stage.
 </div>
 
 </div>
-
 </section>
 
 
 <script>
 
-/* ==================================================
-SUPABASE CONNECTION
-================================================== */
+/* =========================================
+SUPABASE
+========================================= */
 
 const SUPABASE_URL =
 "https://btawseldhlziykekbidu.supabase.co";
@@ -1284,41 +948,38 @@ window.supabase.createClient(
 );
 
 
-/* ==================================================
+/* =========================================
 COUNTRIES
-================================================== */
+========================================= */
 
 const countries = [
-
-"Afghanistan","Albania","Algeria","Andorra","Angola",
-"Argentina","Armenia","Australia","Austria","Azerbaijan",
-"Bahamas","Bahrain","Bangladesh","Barbados","Belarus",
-"Belgium","Belize","Benin","Bhutan","Bolivia",
-"Bosnia and Herzegovina","Botswana","Brazil","Brunei",
-"Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon",
-"Canada","Chile","China","Colombia","Croatia",
-"Denmark","Egypt","Finland","France","Germany",
-"Ghana","Greece","Hungary","Iceland","India",
-"Indonesia","Ireland","Israel","Italy","Japan",
-"Jordan","Kenya","Kuwait","Laos","Lebanon",
-"Luxembourg","Malaysia","Maldives","Malta","Mexico",
-"Myanmar","Nepal","Netherlands","New Zealand","Nigeria",
-"Norway","Oman","Pakistan","Philippines","Poland",
-"Portugal","Qatar","Romania","Russia","Saudi Arabia",
-"Singapore","South Africa","South Korea","Spain",
-"Sri Lanka","Sweden","Switzerland","Taiwan","Thailand",
-"Turkey","Ukraine","United Arab Emirates","United Kingdom",
-"United States","Vietnam","Zambia","Zimbabwe"
-
+"Malaysia",
+"Singapore",
+"Indonesia",
+"Thailand",
+"Brunei",
+"Philippines",
+"Vietnam",
+"China",
+"India",
+"Japan",
+"South Korea",
+"Australia",
+"New Zealand",
+"United Kingdom",
+"United States",
+"Canada",
+"France",
+"Germany",
+"Other"
 ];
 
 
-/* ==================================================
+/* =========================================
 MALAYSIA STATES
-================================================== */
+========================================= */
 
 const malaysiaStates = [
-
 "Johor",
 "Kedah",
 "Kelantan",
@@ -1335,13 +996,12 @@ const malaysiaStates = [
 "Kuala Lumpur",
 "Labuan",
 "Putrajaya"
-
 ];
 
 
-/* ==================================================
+/* =========================================
 COMPANIES
-================================================== */
+========================================= */
 
 const companies = [
 
@@ -1352,6 +1012,7 @@ sector:"Financial Services",
 price:"RM 10.90",
 change:"+1.11%",
 revenue:"RM 61.2B",
+profitBefore:"RM 14.1B",
 profit:"RM 10.1B",
 assets:"RM 1.02T",
 liabilities:"RM 950B",
@@ -1364,30 +1025,13 @@ ceo:"Khairussaleh Ramli"
 },
 
 {
-name:"Public Bank Berhad",
-ticker:"PBBANK",
-sector:"Financial Services",
-price:"RM 5.18",
-change:"+1.37%",
-revenue:"RM 18.2B",
-profit:"RM 6.4B",
-assets:"RM 520B",
-liabilities:"RM 480B",
-shares:"19.4B",
-roe:"13.1%",
-roa:"1.23%",
-pe:"12.1x",
-dividend:"4.0%",
-ceo:"Tan Sri Dato' Sri Dr. Tay Ah Lek"
-},
-
-{
 name:"CIMB Group Holdings Berhad",
 ticker:"CIMB",
 sector:"Financial Services",
 price:"RM 7.80",
 change:"+1.56%",
 revenue:"RM 22.4B",
+profitBefore:"RM 10.5B",
 profit:"RM 7.8B",
 assets:"RM 750B",
 liabilities:"RM 690B",
@@ -1406,6 +1050,7 @@ sector:"Financial Services",
 price:"RM 6.30",
 change:"+0.32%",
 revenue:"RM 16.8B",
+profitBefore:"RM 4.1B",
 profit:"RM 3.1B",
 assets:"RM 320B",
 liabilities:"RM 295B",
@@ -1418,12 +1063,32 @@ ceo:"Mohd Rashid Abdullah"
 },
 
 {
+name:"Public Bank Berhad",
+ticker:"PBBANK",
+sector:"Financial Services",
+price:"RM 5.18",
+change:"+1.37%",
+revenue:"RM 18.2B",
+profitBefore:"RM 8.2B",
+profit:"RM 6.4B",
+assets:"RM 520B",
+liabilities:"RM 480B",
+shares:"19.4B",
+roe:"13.1%",
+roa:"1.23%",
+pe:"12.1x",
+dividend:"4.0%",
+ceo:"Tan Sri Dato' Sri Dr. Tay Ah Lek"
+},
+
+{
 name:"Hong Leong Bank Berhad",
 ticker:"HLBANK",
 sector:"Financial Services",
 price:"RM 21.50",
 change:"+0.37%",
 revenue:"RM 7.0B",
+profitBefore:"RM 3.9B",
 profit:"RM 3.0B",
 assets:"RM 310B",
 liabilities:"RM 285B",
@@ -1442,6 +1107,7 @@ sector:"Utilities",
 price:"RM 14.46",
 change:"+0.70%",
 revenue:"RM 65.4B",
+profitBefore:"RM 6.5B",
 profit:"RM 4.8B",
 assets:"RM 195B",
 liabilities:"RM 125B",
@@ -1460,6 +1126,7 @@ sector:"Healthcare",
 price:"RM 8.34",
 change:"+0.48%",
 revenue:"RM 26.0B",
+profitBefore:"RM 4.0B",
 profit:"RM 3.0B",
 assets:"RM 58B",
 liabilities:"RM 28B",
@@ -1478,6 +1145,7 @@ sector:"Industrial Products",
 price:"RM 7.82",
 change:"-0.51%",
 revenue:"RM 16.4B",
+profitBefore:"RM 2.4B",
 profit:"RM 1.8B",
 assets:"RM 35B",
 liabilities:"RM 16B",
@@ -1496,6 +1164,7 @@ sector:"Plantation",
 price:"RM 6.59",
 change:"-0.60%",
 revenue:"RM 20.8B",
+profitBefore:"RM 2.8B",
 profit:"RM 2.0B",
 assets:"RM 75B",
 liabilities:"RM 28B",
@@ -1514,6 +1183,7 @@ sector:"Telecommunications",
 price:"RM 7.10",
 change:"+0.28%",
 revenue:"RM 11.9B",
+profitBefore:"RM 1.5B",
 profit:"RM 1.1B",
 assets:"RM 20B",
 liabilities:"RM 11B",
@@ -1532,6 +1202,7 @@ sector:"Telecommunications",
 price:"RM 4.20",
 change:"+0.24%",
 revenue:"RM 11.0B",
+profitBefore:"RM 2.4B",
 profit:"RM 1.8B",
 assets:"RM 30B",
 liabilities:"RM 20B",
@@ -1544,12 +1215,51 @@ ceo:"Albern Murty"
 },
 
 {
+name:"Nestlé Malaysia Berhad",
+ticker:"NESTLE",
+sector:"Consumer Products",
+price:"RM 95.00",
+change:"+0.10%",
+revenue:"RM 7.1B",
+profitBefore:"RM 0.9B",
+profit:"RM 0.7B",
+assets:"RM 3.5B",
+liabilities:"RM 2.7B",
+shares:"0.23B",
+roe:"92%",
+roa:"20%",
+pe:"45.0x",
+dividend:"2.1%",
+ceo:"Juan Aranols"
+},
+
+{
+name:"IOI Corporation Berhad",
+ticker:"IOI",
+sector:"Plantation",
+price:"RM 3.80",
+change:"+0.26%",
+revenue:"RM 3.2B",
+profitBefore:"RM 1.3B",
+profit:"RM 1.0B",
+assets:"RM 32B",
+liabilities:"RM 10B",
+shares:"6.3B",
+roe:"8.2%",
+roa:"4.0%",
+pe:"14.0x",
+dividend:"3.4%",
+ceo:"Dato' Lee Yeow Chor"
+},
+
+{
 name:"Sime Darby Berhad",
 ticker:"SIME",
 sector:"Conglomerate",
 price:"RM 2.20",
 change:"+0.45%",
 revenue:"RM 65B",
+profitBefore:"RM 1.6B",
 profit:"RM 1.2B",
 assets:"RM 40B",
 liabilities:"RM 24B",
@@ -1562,30 +1272,13 @@ ceo:"Jeffrey Gan"
 },
 
 {
-name:"Axiata Group Berhad",
-ticker:"AXIATA",
-sector:"Telecommunications",
-price:"RM 2.10",
-change:"+0.48%",
-revenue:"RM 24B",
-profit:"RM 1.2B",
-assets:"RM 70B",
-liabilities:"RM 45B",
-shares:"9.2B",
-roe:"5.0%",
-roa:"1.7%",
-pe:"18.0x",
-dividend:"2.4%",
-ceo:"Nik Rizal Kamil"
-},
-
-{
 name:"Maxis Berhad",
 ticker:"MAXIS",
 sector:"Telecommunications",
 price:"RM 3.65",
 change:"+0.27%",
 revenue:"RM 10.0B",
+profitBefore:"RM 1.7B",
 profit:"RM 1.3B",
 assets:"RM 23B",
 liabilities:"RM 20B",
@@ -1604,6 +1297,7 @@ sector:"Leisure",
 price:"RM 3.05",
 change:"-0.33%",
 revenue:"RM 26B",
+profitBefore:"RM 1.8B",
 profit:"RM 1.2B",
 assets:"RM 90B",
 liabilities:"RM 55B",
@@ -1613,1456 +1307,837 @@ roa:"1.2%",
 pe:"18.0x",
 dividend:"2.0%",
 ceo:"Lim Kok Thay"
-},
-
-{
-name:"Genting Malaysia Berhad",
-ticker:"GENTINGM",
-sector:"Leisure",
-price:"RM 2.45",
-change:"+0.41%",
-revenue:"RM 10B",
-profit:"RM 0.8B",
-assets:"RM 40B",
-liabilities:"RM 25B",
-shares:"5.8B",
-roe:"5.2%",
-roa:"2.0%",
-pe:"20.0x",
-dividend:"2.8%",
-ceo:"Khairil Firdaus Abdullah"
-},
-
-{
-name:"Nestlé Malaysia Berhad",
-ticker:"NESTLE",
-sector:"Consumer Products",
-price:"RM 95.00",
-change:"+0.10%",
-revenue:"RM 7.1B",
-profit:"RM 0.7B",
-assets:"RM 3.5B",
-liabilities:"RM 2.7B",
-shares:"0.23B",
-roe:"92%",
-roa:"20%",
-pe:"45.0x",
-dividend:"2.1%",
-ceo:"Juan Aranols"
-},
-
-{
-name:"Top Glove Corporation Berhad",
-ticker:"TOPGLOVE",
-sector:"Healthcare Equipment",
-price:"RM 0.82",
-change:"+1.23%",
-revenue:"RM 3.2B",
-profit:"RM 0.2B",
-assets:"RM 8B",
-liabilities:"RM 2B",
-shares:"8.0B",
-roe:"3.5%",
-roa:"2.0%",
-pe:"30.0x",
-dividend:"1.0%",
-ceo:"Lee Kim Meow"
-},
-
-{
-name:"Hartalega Holdings Berhad",
-ticker:"HARTALEGA",
-sector:"Healthcare Equipment",
-price:"RM 1.80",
-change:"+0.56%",
-revenue:"RM 2.5B",
-profit:"RM 0.1B",
-assets:"RM 7B",
-liabilities:"RM 2B",
-shares:"3.4B",
-roe:"2.1%",
-roa:"1.4%",
-pe:"35.0x",
-dividend:"1.0%",
-ceo:"Kuan Mun Leong"
-},
-
-{
-name:"KLCC Property Holdings Berhad",
-ticker:"KLCC",
-sector:"Property",
-price:"RM 7.50",
-change:"+0.13%",
-revenue:"RM 1.8B",
-profit:"RM 0.9B",
-assets:"RM 17B",
-liabilities:"RM 7B",
-shares:"1.8B",
-roe:"9.0%",
-roa:"5.3%",
-pe:"18.0x",
-dividend:"4.7%",
-ceo:"Dato' Hashimi Farid"
-},
-
-{
-name:"MISC Berhad",
-ticker:"MISC",
-sector:"Transportation",
-price:"RM 7.10",
-change:"+0.28%",
-revenue:"RM 15B",
-profit:"RM 2.5B",
-assets:"RM 60B",
-liabilities:"RM 27B",
-shares:"4.5B",
-roe:"7.5%",
-roa:"4.0%",
-pe:"12.0x",
-dividend:"4.0%",
-ceo:"Captain Rajalingam Subramaniam"
-},
-
-{
-name:"IOI Corporation Berhad",
-ticker:"IOI",
-sector:"Plantation",
-price:"RM 3.80",
-change:"+0.26%",
-revenue:"RM 3.2B",
-profit:"RM 1.0B",
-assets:"RM 32B",
-liabilities:"RM 10B",
-shares:"6.3B",
-roe:"8.2%",
-roa:"4.0%",
-pe:"14.0x",
-dividend:"3.4%",
-ceo:"Dato' Lee Yeow Chor"
-},
-
-{
-name:"Kuala Lumpur Kepong Berhad",
-ticker:"KLK",
-sector:"Plantation",
-price:"RM 21.00",
-change:"+0.48%",
-revenue:"RM 22B",
-profit:"RM 1.5B",
-assets:"RM 38B",
-liabilities:"RM 16B",
-shares:"1.1B",
-roe:"7.0%",
-roa:"3.5%",
-pe:"15.0x",
-dividend:"2.5%",
-ceo:"Tan Sri Lee Oi Hian"
-},
-
-{
-name:"Sunway Berhad",
-ticker:"SUNWAY",
-sector:"Conglomerate",
-price:"RM 4.10",
-change:"+0.74%",
-revenue:"RM 7.0B",
-profit:"RM 0.8B",
-assets:"RM 25B",
-liabilities:"RM 14B",
-shares:"5.7B",
-roe:"7.5%",
-roa:"3.2%",
-pe:"25.0x",
-dividend:"1.4%",
-ceo:"Jeffrey Cheah"
-},
-
-{
-name:"YTL Corporation Berhad",
-ticker:"YTL",
-sector:"Utilities / Conglomerate",
-price:"RM 2.50",
-change:"+0.80%",
-revenue:"RM 32B",
-profit:"RM 3.0B",
-assets:"RM 75B",
-liabilities:"RM 50B",
-shares:"11.0B",
-roe:"12%",
-roa:"4%",
-pe:"13.0x",
-dividend:"1.5%",
-ceo:"Francis Yeoh"
-},
-
-{
-name:"YTL Power International Berhad",
-ticker:"YTLPOWER",
-sector:"Utilities",
-price:"RM 3.30",
-change:"+0.61%",
-revenue:"RM 18B",
-profit:"RM 2.5B",
-assets:"RM 45B",
-liabilities:"RM 28B",
-shares:"8.2B",
-roe:"14%",
-roa:"5.5%",
-pe:"15.0x",
-dividend:"1.3%",
-ceo:"Yeoh Seok Hong"
-},
-
-{
-name:"KPJ Healthcare Berhad",
-ticker:"KPJ",
-sector:"Healthcare",
-price:"RM 2.30",
-change:"+0.44%",
-revenue:"RM 4.0B",
-profit:"RM 0.3B",
-assets:"RM 12B",
-liabilities:"RM 7B",
-shares:"4.3B",
-roe:"6%",
-roa:"2.5%",
-pe:"24.0x",
-dividend:"1.5%",
-ceo:"Nurul A'ishah Mohamed"
-},
-
-{
-name:"IJM Corporation Berhad",
-ticker:"IJM",
-sector:"Construction",
-price:"RM 3.00",
-change:"+0.67%",
-revenue:"RM 6.0B",
-profit:"RM 0.5B",
-assets:"RM 25B",
-liabilities:"RM 14B",
-shares:"3.5B",
-roe:"5.0%",
-roa:"2.1%",
-pe:"18.0x",
-dividend:"2.0%",
-ceo:"Lee Chun Fai"
-},
-
-{
-name:"S P Setia Berhad",
-ticker:"SPSETIA",
-sector:"Property",
-price:"RM 1.30",
-change:"+0.77%",
-revenue:"RM 4.0B",
-profit:"RM 0.3B",
-assets:"RM 20B",
-liabilities:"RM 13B",
-shares:"5.6B",
-roe:"4.0%",
-roa:"1.5%",
-pe:"12.0x",
-dividend:"2.2%",
-ceo:"Choong Kai Wai"
-},
-
-{
-name:"AMMB Holdings Berhad",
-ticker:"AMMB",
-sector:"Financial Services",
-price:"RM 5.00",
-change:"+0.60%",
-revenue:"RM 3.0B",
-profit:"RM 0.8B",
-assets:"RM 190B",
-liabilities:"RM 175B",
-shares:"3.3B",
-roe:"8.0%",
-roa:"0.6%",
-pe:"9.0x",
-dividend:"4.0%",
-ceo:"Sally Herawati Rohat"
 }
 
 ];
 
 
-/* ==================================================
+/* =========================================
 PAGE CONTROL
-================================================== */
+========================================= */
 
 function hideAll(){
 
-    document
-    .getElementById("loginPage")
-    .classList.add("hidden");
-
-    document
-    .getElementById("registerPage")
-    .classList.add("hidden");
-
-    document
-    .getElementById("homePage")
-    .classList.add("hidden");
-
-    document
-    .getElementById("companyPage")
-    .classList.add("hidden");
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("registerPage").classList.add("hidden");
+document.getElementById("homePage").classList.add("hidden");
+document.getElementById("companyPage").classList.add("hidden");
 
 }
-
 
 function showLogin(){
 
-    hideAll();
+hideAll();
 
-    document
-    .getElementById("loginPage")
-    .classList.remove("hidden");
+document.getElementById("loginPage").classList.remove("hidden");
+
+clearMessages();
 
 }
-
 
 function showRegister(){
 
-    hideAll();
+hideAll();
 
-    document
-    .getElementById("registerPage")
-    .classList.remove("hidden");
+document.getElementById("registerPage").classList.remove("hidden");
+
+clearMessages();
 
 }
 
 
-/* ==================================================
+/* =========================================
 PASSWORD
-================================================== */
+========================================= */
 
 function checkPassword(){
 
-    const password =
-    document.getElementById(
-        "registerPassword"
-    ).value;
+const password =
+document.getElementById("registerPassword").value;
 
-    const tests={
+const tests={
 
-        reqLength:
-        password.length>=8,
+reqLength:password.length>=8,
+reqUpper:/[A-Z]/.test(password),
+reqLower:/[a-z]/.test(password),
+reqNumber:/[0-9]/.test(password),
+reqSpecial:/[^A-Za-z0-9]/.test(password)
 
-        reqUpper:
-        /[A-Z]/.test(password),
+};
 
-        reqLower:
-        /[a-z]/.test(password),
+for(const id in tests){
 
-        reqNumber:
-        /[0-9]/.test(password),
+const element=document.getElementById(id);
 
-        reqSpecial:
-        /[^A-Za-z0-9]/.test(password)
+const text=element.textContent.substring(2);
 
-    };
+if(tests[id]){
 
-    for(const id in tests){
+element.classList.add("valid");
+element.textContent="✓ "+text;
 
-        const element =
-        document.getElementById(id);
+}else{
 
-        const text =
-        element.textContent.substring(2);
+element.classList.remove("valid");
+element.textContent="✗ "+text;
 
-        if(tests[id]){
+}
 
-            element.classList.add("valid");
+}
 
-            element.textContent =
-            "✓ "+text;
-
-        }else{
-
-            element.classList.remove("valid");
-
-            element.textContent =
-            "✗ "+text;
-
-        }
-
-    }
-
-    document
-    .getElementById(
-        "createAccountButton"
-    )
-    .disabled =
-    !Object.values(tests).every(Boolean);
+document.getElementById("createAccountButton").disabled =
+!Object.values(tests).every(Boolean);
 
 }
 
 
-/* ==================================================
+/* =========================================
 CREATE ACCOUNT
-================================================== */
+========================================= */
 
 async function createAccount(){
 
-    clearMessages();
+clearMessages();
 
-    const email =
-    document.getElementById(
-        "registerEmail"
-    ).value.trim();
+const email=document.getElementById("registerEmail").value.trim();
+const username=document.getElementById("registerUsername").value.trim();
+const password=document.getElementById("registerPassword").value;
+const country=document.getElementById("registerCountry").value;
+const state=document.getElementById("registerState").value;
 
-    const username =
-    document.getElementById(
-        "registerUsername"
-    ).value.trim();
+if(!email || !username || !password || !country || !state){
 
-    const password =
-    document.getElementById(
-        "registerPassword"
-    ).value;
+registerError("Please complete all fields.");
+return;
 
-    const country =
-    document.getElementById(
-        "registerCountry"
-    ).value;
+}
 
-    const state =
-    document.getElementById(
-        "registerState"
-    ).value;
+const button=document.getElementById("createAccountButton");
 
+button.disabled=true;
+button.textContent="CREATING ACCOUNT...";
 
-    if(
-        !email ||
-        !username ||
-        !password ||
-        !country ||
-        !state
-    ){
+try{
 
-        registerError(
-            "Please complete all fields."
-        );
+/*
+Create Auth user
+*/
 
-        return;
+const {data,error}=await supabaseClient.auth.signUp({
 
-    }
+email:email,
+password:password,
 
+options:{
+data:{
+username:username,
+country:country,
+state:state
+}
+}
 
-    if(!email.includes("@")){
+});
 
-        registerError(
-            "Please enter a valid email."
-        );
+if(error) throw error;
 
-        return;
+if(!data.user){
 
-    }
-
-
-    const button =
-    document.getElementById(
-        "createAccountButton"
-    );
-
-    button.disabled=true;
-
-    button.textContent=
-    "CREATING ACCOUNT...";
-
-
-    try{
-
-        /*
-        Create Supabase authentication user
-        */
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.auth.signUp({
-
-            email:email,
-
-            password:password
-
-        });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        /*
-        Save profile
-        */
-
-        if(data.user){
-
-            const {
-                error:profileError
-            } =
-            await supabaseClient
-            .from("profiles")
-            .insert({
-
-                id:data.user.id,
-
-                username:username,
-
-                country:country,
-
-                state:state
-
-            });
-
-
-            if(profileError){
-
-                throw profileError;
-
-            }
-
-        }
-
-
-        registerSuccess(
-            "Account created successfully. Check your email to verify your BLX account."
-        );
-
-
-        setTimeout(()=>{
-
-            showLogin();
-
-        },2500);
-
-
-    }catch(error){
-
-        registerError(
-            error.message ||
-            "Unable to create account."
-        );
-
-    }
-
-
-    button.disabled=false;
-
-    button.textContent=
-    "CREATE ACCOUNT";
+throw new Error("Unable to create user.");
 
 }
 
 
-/* ==================================================
+/*
+Important:
+If email confirmation is enabled,
+the session is null.
+
+Therefore we do NOT insert the profile
+until the user has verified the email.
+
+The profile will be created automatically
+after successful login.
+*/
+
+
+registerSuccess(
+"Account created! Please check your email and verify your BLX account before logging in."
+);
+
+document.getElementById("registerEmail").value="";
+document.getElementById("registerUsername").value="";
+document.getElementById("registerPassword").value="";
+
+}catch(error){
+
+registerError(
+error.message || "Unable to create account."
+);
+
+}
+
+button.disabled=false;
+button.textContent="CREATE ACCOUNT";
+
+}
+
+
+/* =========================================
 LOGIN
-================================================== */
+========================================= */
 
 async function login(){
 
-    clearMessages();
+clearMessages();
 
-    const username =
-    document.getElementById(
-        "loginUsername"
-    ).value.trim();
+const email=document.getElementById("loginEmail").value.trim();
+const password=document.getElementById("loginPassword").value;
 
-    const password =
-    document.getElementById(
-        "loginPassword"
-    ).value;
+if(!email || !password){
 
+loginError("Please enter your email and password.");
+return;
 
-    if(!username || !password){
+}
 
-        loginError(
-            "Please enter username and password."
-        );
+const button=document.getElementById("loginButton");
 
-        return;
+button.disabled=true;
+button.textContent="LOGGING IN...";
 
-    }
+try{
 
+const {data,error}=await supabaseClient.auth.signInWithPassword({
 
-    try{
+email:email,
+password:password
 
-        /*
-        Find profile by username
-        */
+});
 
-        const {
-            data:profile,
-            error:profileError
-        } =
-        await supabaseClient
-        .from("profiles")
-        .select("id,username,country,state")
-        .eq("username",username)
-        .maybeSingle();
+if(error) throw error;
 
+if(!data.user){
 
-        if(profileError){
-
-            throw profileError;
-
-        }
-
-
-        if(!profile){
-
-            loginError(
-                "Username not found."
-            );
-
-            return;
-
-        }
-
-
-        /*
-        Get email from authentication
-        */
-
-        const {
-            data:userData,
-            error:userError
-        } =
-        await supabaseClient.auth
-        .getUser();
-
-
-        /*
-        Since username login needs the email,
-        get email using the profile ID through
-        a secure RPC in a later version.
-
-        For this prototype we ask for email
-        if username lookup cannot authenticate.
-        */
-
-        const emailPrompt =
-        prompt(
-            "Enter the email address used when creating your BLX account:"
-        );
-
-
-        if(!emailPrompt){
-
-            return;
-
-        }
-
-
-        const {
-            error
-        } =
-        await supabaseClient.auth
-        .signInWithPassword({
-
-            email:emailPrompt.trim(),
-
-            password:password
-
-        });
-
-
-        if(error){
-
-            loginError(
-                "Incorrect email, username or password."
-            );
-
-            return;
-
-        }
-
-
-        localStorage.setItem(
-            "blxLoggedIn",
-            "true"
-        );
-
-        localStorage.setItem(
-            "blxProfile",
-            JSON.stringify(profile)
-        );
-
-
-        openHome(profile);
-
-
-    }catch(error){
-
-        loginError(
-            error.message ||
-            "Login failed."
-        );
-
-    }
+throw new Error("Login failed.");
 
 }
 
 
-/* ==================================================
+/*
+Get profile
+*/
+
+let {data:profile,error:profileError} =
+await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",data.user.id)
+.maybeSingle();
+
+
+/*
+If profile doesn't exist,
+create it from Auth metadata.
+*/
+
+if(!profile){
+
+const meta=data.user.user_metadata || {};
+
+const username=meta.username || email.split("@")[0];
+const country=meta.country || "Malaysia";
+const state=meta.state || "Selangor";
+
+const result=await supabaseClient
+.from("profiles")
+.insert({
+
+id:data.user.id,
+username:username,
+email:email,
+country:country,
+state:state
+
+})
+.select()
+.single();
+
+if(result.error) throw result.error;
+
+profile=result.data;
+
+}
+
+
+/*
+Save profile locally
+*/
+
+localStorage.setItem(
+"blxProfile",
+JSON.stringify(profile)
+);
+
+localStorage.setItem(
+"blxLoggedIn",
+"true"
+);
+
+openHome(profile);
+
+}catch(error){
+
+console.error(error);
+
+loginError(
+error.message || "Login failed."
+);
+
+}
+
+button.disabled=false;
+button.textContent="LOGIN";
+
+}
+
+
+/* =========================================
 HOME
-================================================== */
+========================================= */
 
 function openHome(profile=null){
 
-    hideAll();
+hideAll();
 
-    document
-    .getElementById("homePage")
-    .classList.remove("hidden");
+document.getElementById("homePage").classList.remove("hidden");
 
+if(!profile){
 
-    if(!profile){
+const saved=localStorage.getItem("blxProfile");
 
-        const saved =
-        localStorage.getItem(
-            "blxProfile"
-        );
+if(saved){
 
-        if(saved){
+profile=JSON.parse(saved);
 
-            profile =
-            JSON.parse(saved);
+}
 
-        }
+}
 
-    }
+if(profile){
 
+document.getElementById("welcomeText").textContent=
+"Welcome back, "+profile.username;
 
-    if(profile){
-
-        document
-        .getElementById(
-            "welcomeText"
-        )
-        .textContent =
-        "Welcome back, "+
-        profile.username;
-
-    }
+}
 
 }
 
 
-/* ==================================================
+/* =========================================
 SEARCH
-================================================== */
+========================================= */
 
 function focusSearch(){
 
-    document
-    .getElementById(
-        "companySearch"
-    )
-    .focus();
+const input=document.getElementById("companySearch");
+
+input.focus();
+
+input.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
 
 }
-
 
 function searchEnter(event){
 
-    if(event.key==="Enter"){
+if(event.key==="Enter"){
 
-        searchCompany();
-
-    }
+searchCompany();
 
 }
 
+}
 
 function searchCompany(){
 
-    const query =
-    document
-    .getElementById(
-        "companySearch"
-    )
-    .value
-    .trim()
-    .toLowerCase();
+const query=document
+.getElementById("companySearch")
+.value
+.trim()
+.toLowerCase();
 
+if(!query){
 
-    if(!query){
+alert("Please enter a company name or ticker.");
 
-        alert(
-            "Please enter a company name."
-        );
+return;
 
-        return;
+}
 
-    }
+const company=companies.find(c=>
 
+c.name.toLowerCase().includes(query) ||
+c.ticker.toLowerCase().includes(query)
 
-    const company =
-    companies.find(c =>
+);
 
-        c.name
-        .toLowerCase()
-        .includes(query)
+if(!company){
 
-        ||
+alert(
+"Company not found.\n\nTry MAYBANK, CIMB, RHB, PBBANK, TENAGA, IHH, NESTLE or another supported company."
+);
 
-        c.ticker
-        .toLowerCase()
-        .includes(query)
+return;
 
-    );
+}
 
-
-    if(!company){
-
-        alert(
-            "Company not found."
-        );
-
-        return;
-
-    }
-
-
-    openCompany(company);
+openCompany(company);
 
 }
 
 
-/* ==================================================
-COMPANY PAGE
-================================================== */
+/* =========================================
+COMPANY
+========================================= */
 
 function openCompany(company){
 
-    hideAll();
+hideAll();
 
-    document
-    .getElementById(
-        "companyPage"
-    )
-    .classList.remove("hidden");
+document.getElementById("companyPage").classList.remove("hidden");
 
+document.getElementById("companyName").textContent=company.name;
 
-    document
-    .getElementById(
-        "companyName"
-    )
-    .textContent =
-    company.name;
+document.getElementById("companyTicker").textContent=
+"Bursa Malaysia: "+company.ticker+" • "+company.sector;
 
+document.getElementById("companyPrice").textContent=company.price;
 
-    document
-    .getElementById(
-        "companyTicker"
-    )
-    .textContent =
-    "Bursa Malaysia: "+
-    company.ticker+
-    " • "+
-    company.sector;
+document.getElementById("companyChange").textContent=
+company.change+" today";
 
+document.getElementById("ceoName").textContent=company.ceo;
 
-    document
-    .getElementById(
-        "companyPrice"
-    )
-    .textContent =
-    company.price;
+const data=[
 
+["Revenue",company.revenue],
 
-    document
-    .getElementById(
-        "companyChange"
-    )
-    .textContent =
-    company.change+
-    " today";
+["Profit Before Tax",company.profitBefore],
 
+["Profit After Tax",company.profit],
 
-    document
-    .getElementById(
-        "ceoName"
-    )
-    .textContent =
-    company.ceo;
+["Total Assets",company.assets],
 
+["Total Liabilities",company.liabilities],
 
-    const data=[
+["Number of Shares",company.shares],
 
-        ["Revenue",company.revenue],
+["ROE",company.roe],
 
-        ["Profit After Tax",company.profit],
+["ROA",company.roa],
 
-        ["Total Assets",company.assets],
+["P/E Ratio",company.pe],
 
-        ["Total Liabilities",company.liabilities],
+["Dividend Yield",company.dividend]
 
-        ["Number of Shares",company.shares],
+];
 
-        ["ROE",company.roe],
+document.getElementById("fundamentals").innerHTML=
 
-        ["ROA",company.roa],
+data.map(item=>`
 
-        ["P/E Ratio",company.pe],
+<div class="fundamental">
 
-        ["Dividend Yield",company.dividend]
+<div class="fundamental-label">
+${item[0]}
+</div>
 
-    ];
+<div class="fundamental-value">
+${item[1]}
+</div>
 
+</div>
 
-    document
-    .getElementById(
-        "fundamentals"
-    )
-    .innerHTML =
+`).join("");
 
-    data.map(item=>`
+document.getElementById("stockChart").style.display="block";
 
-        <div class="fundamental">
-
-            <div class="fundamental-label">
-                ${item[0]}
-            </div>
-
-            <div class="fundamental-value">
-                ${item[1]}
-            </div>
-
-        </div>
-
-    `).join("");
-
-
-    drawChart(1);
+drawChart(1);
 
 }
 
 
-/* ==================================================
+/* =========================================
 CHART
-================================================== */
+========================================= */
 
 function drawChart(years){
 
-    const canvas =
-    document.getElementById(
-        "stockChart"
-    );
+const canvas=document.getElementById("stockChart");
 
-    const ctx =
-    canvas.getContext("2d");
+const ctx=canvas.getContext("2d");
 
+const width=canvas.clientWidth || 500;
+const height=230;
 
-    const width =
-    canvas.clientWidth || 500;
+canvas.width=width*2;
+canvas.height=height*2;
 
-    const height=230;
+ctx.setTransform(2,0,0,2,0,0);
 
+ctx.clearRect(0,0,width,height);
 
-    canvas.width=width*2;
+const points=[];
 
-    canvas.height=height*2;
+let value=.35;
 
-    ctx.scale(2,2);
+for(let i=0;i<50;i++){
 
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
+value+=(Math.random()-.45)*.07;
 
+if(value<.08)value=.08;
+if(value>.92)value=.92;
 
-    const points=[];
+points.push(value);
 
-    let value=.35;
+}
 
+ctx.beginPath();
 
-    for(let i=0;i<50;i++){
+points.forEach((point,index)=>{
 
-        value +=
-        (Math.random()-.45)*.07;
+const x=10+index*((width-20)/(points.length-1));
 
+const y=height-20-point*(height-45);
 
-        if(value<.08)
-        value=.08;
+if(index===0){
 
-        if(value>.92)
-        value=.92;
+ctx.moveTo(x,y);
 
+}else{
 
-        points.push(value);
+ctx.lineTo(x,y);
 
-    }
+}
 
+});
 
-    ctx.beginPath();
-
-
-    points.forEach(
-        (point,index)=>{
-
-        const x=
-        10+
-        index*
-        ((width-20)/
-        (points.length-1));
-
-
-        const y=
-        height-
-        20-
-        point*
-        (height-45);
-
-
-        if(index===0){
-
-            ctx.moveTo(x,y);
-
-        }else{
-
-            ctx.lineTo(x,y);
-
-        }
-
-    });
-
-
-    ctx.strokeStyle=
-    "#1769ff";
-
-    ctx.lineWidth=3;
-
-    ctx.stroke();
-
-
-    ctx.lineTo(
-        width-10,
-        height-10
-    );
-
-    ctx.lineTo(
-        10,
-        height-10
-    );
-
-    ctx.closePath();
-
-
-    const gradient=
-    ctx.createLinearGradient(
-        0,
-        0,
-        0,
-        height
-    );
-
-
-    gradient.addColorStop(
-        0,
-        "rgba(23,105,255,.25)"
-    );
-
-    gradient.addColorStop(
-        1,
-        "rgba(23,105,255,0)"
-    );
-
-
-    ctx.fillStyle=gradient;
-
-    ctx.fill();
+ctx.strokeStyle="#1769ff";
+ctx.lineWidth=3;
+ctx.stroke();
 
 }
 
 
-/* ==================================================
+/* =========================================
 PROFILE
-================================================== */
+========================================= */
 
 function profile(){
 
-    const saved =
-    localStorage.getItem(
-        "blxProfile"
-    );
+const saved=localStorage.getItem("blxProfile");
 
+if(!saved){
 
-    if(!saved){
-
-        alert(
-            "Profile not available."
-        );
-
-        return;
-
-    }
-
-
-    const user =
-    JSON.parse(saved);
-
-
-    hideAll();
-
-
-    document
-    .getElementById(
-        "companyPage"
-    )
-    .classList.remove("hidden");
-
-
-    document
-    .getElementById(
-        "companyName"
-    )
-    .textContent =
-    "BLX Profile";
-
-
-    document
-    .getElementById(
-        "companyTicker"
-    )
-    .textContent =
-    "Account Information";
-
-
-    document
-    .getElementById(
-        "companyPrice"
-    )
-    .textContent =
-    user.username;
-
-
-    document
-    .getElementById(
-        "companyChange"
-    )
-    .textContent =
-    user.country;
-
-
-    document
-    .getElementById(
-        "ceoName"
-    )
-    .textContent =
-    user.state;
-
-
-    document
-    .getElementById(
-        "fundamentals"
-    )
-    .innerHTML=`
-
-        <div class="fundamental">
-
-            <div class="fundamental-label">
-                Username
-            </div>
-
-            <div class="fundamental-value">
-                ${user.username}
-            </div>
-
-        </div>
-
-        <div class="fundamental">
-
-            <div class="fundamental-label">
-                Country
-            </div>
-
-            <div class="fundamental-value">
-                ${user.country}
-            </div>
-
-        </div>
-
-        <div class="fundamental">
-
-            <div class="fundamental-label">
-                State
-            </div>
-
-            <div class="fundamental-value">
-                ${user.state}
-            </div>
-
-        </div>
-
-    `;
-
-
-    document
-    .getElementById(
-        "stockChart"
-    )
-    .style.display="none";
+alert("Please login first.");
+return;
 
 }
 
+const user=JSON.parse(saved);
+
+hideAll();
+
+document.getElementById("companyPage").classList.remove("hidden");
+
+document.getElementById("companyName").textContent="BLX Profile";
+
+document.getElementById("companyTicker").textContent=
+"Account Information";
+
+document.getElementById("companyPrice").textContent=
+user.username;
+
+document.getElementById("companyChange").textContent=
+user.country;
+
+document.getElementById("ceoName").textContent=
+user.state;
+
+document.getElementById("fundamentals").innerHTML=`
+
+<div class="fundamental">
+
+<div class="fundamental-label">
+Username
+</div>
+
+<div class="fundamental-value">
+${user.username}
+</div>
+
+</div>
+
+<div class="fundamental">
+
+<div class="fundamental-label">
+Email
+</div>
+
+<div class="fundamental-value">
+${user.email || "Hidden"}
+</div>
+
+</div>
+
+<div class="fundamental">
+
+<div class="fundamental-label">
+Country
+</div>
+
+<div class="fundamental-value">
+${user.country}
+</div>
+
+</div>
+
+<div class="fundamental">
+
+<div class="fundamental-label">
+State
+</div>
+
+<div class="fundamental-value">
+${user.state}
+</div>
+
+</div>
+
+`;
+
+document.getElementById("stockChart").style.display="none";
+
+}
+
+
+/* =========================================
+BACK
+========================================= */
 
 function backHome(){
 
-    document
-    .getElementById(
-        "stockChart"
-    )
-    .style.display="block";
+document.getElementById("stockChart").style.display="block";
 
-    openHome();
+openHome();
 
 }
 
 
-/* ==================================================
+/* =========================================
 LOGOUT
-================================================== */
+========================================= */
 
 async function logout(){
 
-    await supabaseClient
-    .auth
-    .signOut();
+await supabaseClient.auth.signOut();
 
+localStorage.removeItem("blxLoggedIn");
+localStorage.removeItem("blxProfile");
 
-    localStorage.removeItem(
-        "blxLoggedIn"
-    );
-
-    localStorage.removeItem(
-        "blxProfile"
-    );
-
-
-    showLogin();
+showLogin();
 
 }
 
 
-/* ==================================================
-BUTTONS
-================================================== */
+/* =========================================
+OTHER BUTTONS
+========================================= */
 
 function showMessage(message){
 
-    alert(message);
+alert(message);
 
 }
-
 
 function community(){
 
-    alert(
-        "BLX Community\n\nWhatsApp and Telegram links will be added later."
-    );
+alert(
+"BLX Community\n\nWhatsApp and Telegram community will be added later."
+);
 
 }
-
 
 function openBursa(){
 
-    window.open(
-        "https://www.bursamalaysia.com/",
-        "_blank"
-    );
+window.open(
+"https://www.bursamalaysia.com/",
+"_blank"
+);
 
 }
-
 
 function openBNM(){
 
-    window.open(
-        "https://www.bnm.gov.my/",
-        "_blank"
-    );
+window.open(
+"https://www.bnm.gov.my/",
+"_blank"
+);
 
 }
 
 
-/* ==================================================
+/* =========================================
 ERRORS
-================================================== */
+========================================= */
 
 function clearMessages(){
 
-    document
-    .querySelectorAll(".message")
-    .forEach(
-        element=>{
-            element.style.display="none";
-        }
-    );
+document.querySelectorAll(".message").forEach(element=>{
+
+element.style.display="none";
+element.textContent="";
+
+});
 
 }
-
 
 function loginError(message){
 
-    const box =
-    document.getElementById(
-        "loginError"
-    );
+const box=document.getElementById("loginError");
 
-    box.textContent=message;
-
-    box.style.display="block";
+box.textContent=message;
+box.style.display="block";
 
 }
-
 
 function registerError(message){
 
-    const box =
-    document.getElementById(
-        "registerError"
-    );
+const box=document.getElementById("registerError");
 
-    box.textContent=message;
-
-    box.style.display="block";
+box.textContent=message;
+box.style.display="block";
 
 }
-
 
 function registerSuccess(message){
 
-    const box =
-    document.getElementById(
-        "registerSuccess"
-    );
+const box=document.getElementById("registerSuccess");
 
-    box.textContent=message;
-
-    box.style.display="block";
+box.textContent=message;
+box.style.display="block";
 
 }
 
 
-/* ==================================================
+/* =========================================
 DROPDOWNS
-================================================== */
+========================================= */
 
 function loadDropdowns(){
 
-    const country =
-    document.getElementById(
-        "registerCountry"
-    );
+const country=document.getElementById("registerCountry");
+
+country.innerHTML=
+'<option value="">Select country</option>';
+
+countries.forEach(item=>{
+
+country.innerHTML+=
+`<option value="${item}">${item}</option>`;
+
+});
 
 
-    country.innerHTML=
-    '<option value="">Select country</option>';
+const state=document.getElementById("registerState");
 
+state.innerHTML=
+'<option value="">Select Malaysian state</option>';
 
-    countries.forEach(item=>{
+malaysiaStates.forEach(item=>{
 
-        country.innerHTML+=
-        `<option value="${item}">
-            ${item}
-        </option>`;
+state.innerHTML+=
+`<option value="${item}">${item}</option>`;
 
-    });
-
-
-    const state =
-    document.getElementById(
-        "registerState"
-    );
-
-
-    state.innerHTML=
-    '<option value="">Select Malaysian state</option>';
-
-
-    malaysiaStates.forEach(item=>{
-
-        state.innerHTML+=
-        `<option value="${item}">
-            ${item}
-        </option>`;
-
-    });
+});
 
 }
 
 
-/* ==================================================
+/* =========================================
+AUTH SESSION
+========================================= */
+
+supabaseClient.auth.onAuthStateChange(
+async(event,session)=>{
+
+if(event==="SIGNED_OUT"){
+
+localStorage.removeItem("blxLoggedIn");
+localStorage.removeItem("blxProfile");
+
+showLogin();
+
+}
+
+}
+);
+
+
+/* =========================================
 START
-================================================== */
+========================================= */
 
 loadDropdowns();
 
+window.addEventListener("load",async()=>{
 
-window.addEventListener(
-    "load",
-    async function(){
+try{
 
-        try{
+const {data}=await supabaseClient.auth.getSession();
 
-            const {
-                data
-            } =
-            await supabaseClient
-            .auth
-            .getSession();
+if(data && data.session){
 
+const user=data.session.user;
 
-            if(
-                data &&
-                data.session
-            ){
+let {data:profile}=await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",user.id)
+.maybeSingle();
 
-                const saved =
-                localStorage.getItem(
-                    "blxProfile"
-                );
+if(profile){
 
-
-                if(saved){
-
-                    openHome(
-                        JSON.parse(saved)
-                    );
-
-                }else{
-
-                    showLogin();
-
-                }
-
-            }else{
-
-                showLogin();
-
-            }
-
-        }catch(error){
-
-            console.error(error);
-
-            showLogin();
-
-        }
-
-    }
+localStorage.setItem(
+"blxProfile",
+JSON.stringify(profile)
 );
+
+openHome(profile);
+
+}else{
+
+showLogin();
+
+}
+
+}else{
+
+showLogin();
+
+}
+
+}catch(error){
+
+console.error(error);
+
+showLogin();
+
+}
+
+});
 
 </script>
 
