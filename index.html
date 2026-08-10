@@ -2,25 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>BLX - Financial Intelligence</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
-body{
+html,body{
     margin:0;
+    padding:0;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
     background:#f4f7fb;
     color:#101828;
 }
 
-button,input,select{font-family:inherit}
+button,input,select{
+    font:inherit;
+}
 
-.hidden{display:none!important}
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* =========================
+AUTH
+========================= */
 
 .auth-page{
     min-height:100vh;
@@ -37,7 +52,7 @@ button,input,select{font-family:inherit}
     background:#fff;
     padding:30px;
     border-radius:25px;
-    box-shadow:0 25px 60px rgba(0,0,0,.3);
+    box-shadow:0 25px 60px rgba(0,0,0,.30);
 }
 
 .logo{
@@ -57,10 +72,12 @@ button,input,select{font-family:inherit}
 
 .auth-title{
     text-align:center;
-    margin-bottom:25px;
+    margin:0 0 25px;
 }
 
-.input-group{margin-bottom:15px}
+.input-group{
+    margin-bottom:15px;
+}
 
 .input-group label{
     display:block;
@@ -75,25 +92,41 @@ button,input,select{font-family:inherit}
     padding:14px;
     border:1px solid #d0d5dd;
     border-radius:11px;
+    outline:none;
     background:#fff;
-    font-size:16px;
+}
+
+.input-group input:focus,
+.input-group select:focus{
+    border-color:#1769ff;
+    box-shadow:0 0 0 3px rgba(23,105,255,.10);
 }
 
 .primary-button{
     width:100%;
-    border:none;
+    border:0;
     border-radius:11px;
     padding:14px;
     background:#1769ff;
     color:#fff;
     font-size:16px;
     font-weight:800;
-    cursor:pointer;
 }
 
 .primary-button:disabled{
     background:#98a2b3;
     cursor:not-allowed;
+}
+
+.secondary-button{
+    width:100%;
+    border:1px solid #d0d5dd;
+    border-radius:11px;
+    padding:13px;
+    background:#fff;
+    color:#344054;
+    font-weight:700;
+    margin-top:10px;
 }
 
 .auth-link{
@@ -104,11 +137,10 @@ button,input,select{font-family:inherit}
 }
 
 .auth-link button{
-    border:none;
+    border:0;
     background:none;
     color:#1769ff;
     font-weight:800;
-    cursor:pointer;
 }
 
 .message{
@@ -117,6 +149,7 @@ button,input,select{font-family:inherit}
     border-radius:10px;
     margin-bottom:15px;
     font-size:14px;
+    line-height:1.45;
 }
 
 .error{
@@ -127,6 +160,11 @@ button,input,select{font-family:inherit}
 .success{
     background:#ecfdf3;
     color:#027a48;
+}
+
+.info{
+    background:#eff8ff;
+    color:#175cd3;
 }
 
 .password-box{
@@ -142,7 +180,13 @@ button,input,select{font-family:inherit}
     color:#d92d20;
 }
 
-.password-box .valid{color:#039855}
+.password-box .valid{
+    color:#039855;
+}
+
+/* =========================
+HEADER
+========================= */
 
 .header{
     background:linear-gradient(135deg,#06101d,#12304f);
@@ -185,11 +229,15 @@ button,input,select{font-family:inherit}
     width:38px;
     height:38px;
     border-radius:50%;
-    border:none;
+    border:0;
     background:rgba(255,255,255,.15);
     color:#fff;
     font-size:18px;
 }
+
+/* =========================
+HOME
+========================= */
 
 .home-container{
     max-width:1100px;
@@ -227,7 +275,9 @@ button,input,select{font-family:inherit}
     margin:4px 0;
 }
 
-.bursa-subtitle{font-size:14px}
+.bursa-subtitle{
+    font-size:14px;
+}
 
 .quote-card{
     background:#fff;
@@ -249,6 +299,10 @@ button,input,select{font-family:inherit}
     font-size:13px;
 }
 
+/* =========================
+SEARCH
+========================= */
+
 .search-card{
     background:#fff;
     margin-top:18px;
@@ -263,14 +317,21 @@ button,input,select{font-family:inherit}
     gap:10px;
 }
 
-.search-row span{font-size:22px}
+.search-row span{
+    font-size:22px;
+}
 
 .search-row input{
     width:100%;
-    border:none;
-    outline:none;
+    border:0;
+    outline:0;
     font-size:16px;
+    background:transparent;
 }
+
+/* =========================
+FEATURES
+========================= */
 
 .feature-grid{
     display:grid;
@@ -280,14 +341,13 @@ button,input,select{font-family:inherit}
 }
 
 .feature{
-    border:none;
+    border:0;
     background:#fff;
     border-radius:18px;
     padding:16px 12px;
     text-align:left;
     min-height:115px;
     box-shadow:0 5px 20px rgba(16,24,40,.05);
-    cursor:pointer;
 }
 
 .feature-icon{
@@ -313,6 +373,10 @@ button,input,select{font-family:inherit}
     margin-top:4px;
 }
 
+/* =========================
+BOTTOM
+========================= */
+
 .bottom-nav{
     position:sticky;
     bottom:0;
@@ -325,21 +389,26 @@ button,input,select{font-family:inherit}
 }
 
 .nav-button{
-    border:none;
+    border:0;
     background:none;
     color:#667085;
     font-size:11px;
     font-weight:700;
-    cursor:pointer;
 }
 
-.nav-button.active{color:#1769ff}
+.nav-button.active{
+    color:#1769ff;
+}
 
 .nav-icon{
     display:block;
     font-size:21px;
     margin-bottom:3px;
 }
+
+/* =========================
+COMPANY
+========================= */
 
 .company-top{
     background:linear-gradient(135deg,#06101d,#12304f);
@@ -358,7 +427,7 @@ button,input,select{font-family:inherit}
 .back-button{
     width:40px;
     height:40px;
-    border:none;
+    border:0;
     border-radius:10px;
     background:rgba(255,255,255,.13);
     color:#fff;
@@ -374,8 +443,7 @@ button,input,select{font-family:inherit}
 .company-summary,
 .chart-card,
 .ceo-card,
-.source-card,
-.profile-card{
+.source-card{
     background:#fff;
     border-radius:20px;
     padding:20px;
@@ -421,12 +489,23 @@ button,input,select{font-family:inherit}
     border:1px solid #d0d5dd;
     padding:7px 12px;
     border-radius:8px;
-    cursor:pointer;
+}
+
+.chart-buttons button.active{
+    background:#1769ff;
+    color:#fff;
+    border-color:#1769ff;
+}
+
+.chart-wrap{
+    width:100%;
+    overflow:hidden;
 }
 
 canvas{
     width:100%;
     height:230px;
+    display:block;
 }
 
 .fundamental-grid{
@@ -440,6 +519,7 @@ canvas{
     border-radius:15px;
     padding:15px;
     box-shadow:0 3px 12px rgba(0,0,0,.04);
+    border:1px solid #f0f2f5;
 }
 
 .fundamental-label{
@@ -484,6 +564,24 @@ canvas{
 .source-card{
     font-size:12px;
     color:#667085;
+    line-height:1.5;
+}
+
+/* =========================
+PROFILE
+========================= */
+
+.profile-panel{
+    max-width:700px;
+    margin:auto;
+    padding:20px;
+}
+
+.profile-card{
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
 .profile-row{
@@ -505,25 +603,39 @@ canvas{
     width:100%;
     margin-top:20px;
     padding:14px;
-    border:none;
+    border:0;
     border-radius:11px;
     background:#d92d20;
     color:#fff;
     font-weight:800;
-    cursor:pointer;
 }
 
 @media(max-width:650px){
-    .feature-grid{grid-template-columns:repeat(2,1fr)}
-    .bursa-number{font-size:38px}
-    .company-name{font-size:21px}
+
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .bursa-number{
+        font-size:38px;
+    }
+
+    .company-name{
+        font-size:21px;
+    }
+
+    .fundamental-grid{
+        grid-template-columns:1fr 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- ==================================================
+LOGIN
+================================================== -->
 
 <section id="loginPage" class="auth-page">
 
@@ -535,30 +647,38 @@ canvas{
 Financial Intelligence Platform
 </div>
 
-<h2 class="auth-title">Welcome Back</h2>
+<h2 class="auth-title">
+Welcome Back
+</h2>
 
 <div id="loginError" class="message error"></div>
-
 <div id="loginSuccess" class="message success"></div>
 
 <div class="input-group">
 <label>Username</label>
 <input id="loginUsername"
-       type="text"
-       placeholder="Enter username"
-       autocomplete="username">
+type="text"
+autocomplete="username"
+placeholder="Enter username">
 </div>
 
 <div class="input-group">
 <label>Password</label>
 <input id="loginPassword"
-       type="password"
-       placeholder="Enter password"
-       autocomplete="current-password">
+type="password"
+autocomplete="current-password"
+placeholder="Enter password">
 </div>
 
-<button class="primary-button" onclick="login()">
+<button id="loginButton"
+class="primary-button"
+onclick="login()">
 LOGIN
+</button>
+
+<button class="secondary-button"
+onclick="forgotPassword()">
+Forgot Password?
 </button>
 
 <div class="auth-link">
@@ -570,9 +690,12 @@ Don't have an account?
 </section>
 
 
-<!-- REGISTER -->
+<!-- ==================================================
+REGISTER
+================================================== -->
 
-<section id="registerPage" class="auth-page hidden">
+<section id="registerPage"
+class="auth-page hidden">
 
 <div class="auth-card">
 
@@ -582,35 +705,37 @@ Don't have an account?
 Create your BLX account
 </div>
 
-<h2 class="auth-title">Create Account</h2>
+<h2 class="auth-title">
+Create Account
+</h2>
 
 <div id="registerError" class="message error"></div>
-
 <div id="registerSuccess" class="message success"></div>
+<div id="registerInfo" class="message info"></div>
 
 <div class="input-group">
 <label>Email</label>
 <input id="registerEmail"
-       type="email"
-       placeholder="Email"
-       autocomplete="email">
+type="email"
+autocomplete="email"
+placeholder="Enter email">
 </div>
 
 <div class="input-group">
 <label>Username</label>
 <input id="registerUsername"
-       type="text"
-       placeholder="Username"
-       autocomplete="username">
+type="text"
+autocomplete="username"
+placeholder="Choose username">
 </div>
 
 <div class="input-group">
 <label>Password</label>
 <input id="registerPassword"
-       type="password"
-       placeholder="Strong password"
-       autocomplete="new-password"
-       oninput="checkPassword()">
+type="password"
+autocomplete="new-password"
+placeholder="Create strong password"
+oninput="checkPassword()">
 </div>
 
 <div class="password-box">
@@ -636,9 +761,9 @@ Create your BLX account
 </div>
 
 <button id="createAccountButton"
-        class="primary-button"
-        onclick="createAccount()"
-        disabled>
+class="primary-button"
+onclick="createAccount()"
+disabled>
 CREATE ACCOUNT
 </button>
 
@@ -651,7 +776,38 @@ Already have an account?
 </section>
 
 
-<!-- HOME -->
+<!-- ==================================================
+VERIFY EMAIL
+================================================== -->
+
+<section id="verifyPage" class="auth-page hidden">
+
+<div class="auth-card">
+
+<div class="logo">BLX</div>
+
+<h2 class="auth-title">
+Email Verification
+</h2>
+
+<div id="verifyMessage"
+class="message info"
+style="display:block">
+Checking your BLX account...
+</div>
+
+<button class="primary-button"
+onclick="showLogin()">
+GO TO LOGIN
+</button>
+
+</div>
+</section>
+
+
+<!-- ==================================================
+HOME
+================================================== -->
 
 <section id="homePage" class="hidden">
 
@@ -670,7 +826,10 @@ Already have an account?
 <option>Tamil</option>
 </select>
 
-<button class="profile-button" onclick="profile()">👤</button>
+<button class="profile-button"
+onclick="profile()">
+👤
+</button>
 
 </div>
 </div>
@@ -679,15 +838,24 @@ Already have an account?
 <div class="home-container">
 
 <div class="greeting">
+
 <h1>Good morning 👋</h1>
-<p id="welcomeText">Welcome to BLX</p>
+
+<p id="welcomeText">
+Welcome to BLX
+</p>
+
 </div>
 
 <div class="bursa-card">
 
-<div class="bursa-label">BURSA MALAYSIA</div>
+<div class="bursa-label">
+BURSA MALAYSIA
+</div>
 
-<div class="bursa-number">1,089</div>
+<div class="bursa-number">
+1,089
+</div>
 
 <div class="bursa-subtitle">
 Total listed equities
@@ -714,13 +882,16 @@ Total listed equities
 <span>🔎</span>
 
 <input id="companySearch"
-       type="text"
-       placeholder="Search company name or ticker..."
-       onkeydown="searchEnter(event)">
+type="text"
+placeholder="Search company name or ticker..."
+oninput="liveSearch()"
+onkeydown="searchEnter(event)">
 
 </div>
-</div>
 
+<div id="searchResults"></div>
+
+</div>
 
 <div class="feature-grid">
 
@@ -799,7 +970,6 @@ Total listed equities
 </div>
 </div>
 
-
 <nav class="bottom-nav">
 
 <button class="nav-button"
@@ -831,7 +1001,9 @@ Profile
 </section>
 
 
-<!-- COMPANY -->
+<!-- ==================================================
+COMPANY
+================================================== -->
 
 <section id="companyPage" class="hidden">
 
@@ -839,7 +1011,10 @@ Profile
 
 <div class="company-top-inner">
 
-<button class="back-button" onclick="backHome()">‹</button>
+<button class="back-button"
+onclick="backHome()">
+‹
+</button>
 
 <div>
 <strong>BLX</strong>
@@ -854,13 +1029,17 @@ Company Research
 
 <div class="company-summary">
 
-<div id="companyName" class="company-name"></div>
+<div id="companyName"
+class="company-name"></div>
 
-<div id="companyTicker" class="company-ticker"></div>
+<div id="companyTicker"
+class="company-ticker"></div>
 
-<div id="companyPrice" class="price"></div>
+<div id="companyPrice"
+class="price"></div>
 
-<div id="companyChange" class="price-change"></div>
+<div id="companyChange"
+class="price-change"></div>
 
 </div>
 
@@ -870,13 +1049,26 @@ Company Research
 
 <div class="chart-buttons">
 
-<button onclick="drawChart(1)">1Y</button>
-<button onclick="drawChart(5)">5Y</button>
-<button onclick="drawChart(10)">10Y</button>
+<button id="chart1"
+onclick="drawChart(1)">
+1Y
+</button>
+
+<button id="chart5"
+onclick="drawChart(5)">
+5Y
+</button>
+
+<button id="chart10"
+onclick="drawChart(10)">
+10Y
+</button>
 
 </div>
 
+<div class="chart-wrap">
 <canvas id="stockChart"></canvas>
+</div>
 
 </div>
 
@@ -884,7 +1076,8 @@ Company Research
 Fundamental Analysis
 </div>
 
-<div id="fundamentals" class="fundamental-grid"></div>
+<div id="fundamentals"
+class="fundamental-grid"></div>
 
 <div class="section-title">
 Chief Executive Officer
@@ -892,18 +1085,20 @@ Chief Executive Officer
 
 <div class="ceo-card">
 
-<div class="ceo-picture">👤</div>
+<div class="ceo-picture">
+👤
+</div>
 
 <div>
 
-<div id="ceoName" class="ceo-name"></div>
+<div id="ceoName"
+class="ceo-name"></div>
 
 <div class="ceo-position">
 Chief Executive Officer
 </div>
 
 </div>
-
 </div>
 
 <div class="source-card">
@@ -912,7 +1107,9 @@ Chief Executive Officer
 
 <br><br>
 
-Current company information in this prototype is demonstration data.
+The financial figures in this Phase 1 prototype are demonstration data.
+Live Bursa financial statements, company announcements, news and real-time
+stock prices require appropriate market-data/API connections.
 
 </div>
 
@@ -920,11 +1117,100 @@ Current company information in this prototype is demonstration data.
 </section>
 
 
+<!-- ==================================================
+PROFILE
+================================================== -->
+
+<section id="profilePage" class="hidden">
+
+<div class="company-top">
+
+<div class="company-top-inner">
+
+<button class="back-button"
+onclick="backHome()">
+‹
+</button>
+
+<div>
+<strong>BLX</strong>
+<br>
+My Profile
+</div>
+
+</div>
+</div>
+
+<div class="profile-panel">
+
+<div class="profile-card">
+
+<h2>My BLX Account</h2>
+
+<div class="profile-row">
+
+<div class="profile-label">
+Username
+</div>
+
+<div id="profileUsername"
+class="profile-value">
+</div>
+
+</div>
+
+<div class="profile-row">
+
+<div class="profile-label">
+Email
+</div>
+
+<div id="profileEmail"
+class="profile-value">
+</div>
+
+</div>
+
+<div class="profile-row">
+
+<div class="profile-label">
+Country
+</div>
+
+<div id="profileCountry"
+class="profile-value">
+</div>
+
+</div>
+
+<div class="profile-row">
+
+<div class="profile-label">
+State
+</div>
+
+<div id="profileState"
+class="profile-value">
+</div>
+
+</div>
+
+<button class="logout-button"
+onclick="logout()">
+LOG OUT
+</button>
+
+</div>
+</div>
+
+</section>
+
+
 <script>
 
-/* =====================================================
+/* ==================================================
 SUPABASE
-===================================================== */
+================================================== */
 
 const SUPABASE_URL =
 "https://btawseldhlziykekbidu.supabase.co";
@@ -935,13 +1221,28 @@ const SUPABASE_KEY =
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_KEY,
+    {
+        auth:{
+            persistSession:true,
+            autoRefreshToken:true,
+            detectSessionInUrl:true
+        }
+    }
 );
 
 
-/* =====================================================
+/* ==================================================
+REDIRECT
+================================================== */
+
+const BLX_URL =
+"https://numannabil03-ship-it.github.io/BLX/";
+
+
+/* ==================================================
 COUNTRIES
-===================================================== */
+================================================== */
 
 const countries = [
 "Afghanistan","Albania","Algeria","Andorra","Angola",
@@ -966,9 +1267,9 @@ const countries = [
 ];
 
 
-/* =====================================================
+/* ==================================================
 MALAYSIA STATES
-===================================================== */
+================================================== */
 
 const malaysiaStates = [
 "Johor",
@@ -990,9 +1291,9 @@ const malaysiaStates = [
 ];
 
 
-/* =====================================================
+/* ==================================================
 COMPANIES
-===================================================== */
+================================================== */
 
 const companies = [
 
@@ -1539,192 +1840,270 @@ ceo:"Sally Herawati Rohat"
 ];
 
 
-/* =====================================================
+/* ==================================================
 PAGE CONTROL
-===================================================== */
+================================================== */
 
 function hideAll(){
 
-    document.getElementById("loginPage").classList.add("hidden");
-    document.getElementById("registerPage").classList.add("hidden");
-    document.getElementById("homePage").classList.add("hidden");
-    document.getElementById("companyPage").classList.add("hidden");
+    [
+        "loginPage",
+        "registerPage",
+        "verifyPage",
+        "homePage",
+        "companyPage",
+        "profilePage"
+    ].forEach(id=>{
+        document.getElementById(id)
+        .classList.add("hidden");
+    });
 
 }
+
 
 function showLogin(){
 
     hideAll();
 
-    document
-        .getElementById("loginPage")
-        .classList.remove("hidden");
+    clearMessages();
+
+    document.getElementById("loginPage")
+    .classList.remove("hidden");
 
 }
+
 
 function showRegister(){
 
     hideAll();
 
-    document
-        .getElementById("registerPage")
-        .classList.remove("hidden");
+    clearMessages();
+
+    document.getElementById("registerPage")
+    .classList.remove("hidden");
 
 }
 
 
-/* =====================================================
+/* ==================================================
+MESSAGES
+================================================== */
+
+function clearMessages(){
+
+    document.querySelectorAll(".message")
+    .forEach(el=>{
+        el.style.display="none";
+    });
+
+}
+
+
+function loginError(message){
+
+    const box=
+    document.getElementById("loginError");
+
+    box.textContent=message;
+    box.style.display="block";
+
+}
+
+
+function loginSuccess(message){
+
+    const box=
+    document.getElementById("loginSuccess");
+
+    box.textContent=message;
+    box.style.display="block";
+
+}
+
+
+function registerError(message){
+
+    const box=
+    document.getElementById("registerError");
+
+    box.textContent=message;
+    box.style.display="block";
+
+}
+
+
+function registerSuccess(message){
+
+    const box=
+    document.getElementById("registerSuccess");
+
+    box.textContent=message;
+    box.style.display="block";
+
+}
+
+
+/* ==================================================
 PASSWORD
-===================================================== */
+================================================== */
 
 function checkPassword(){
 
-    const password =
-        document.getElementById("registerPassword").value;
+    const password=
+    document.getElementById("registerPassword").value;
 
-    const tests = {
+    const tests={
 
-        reqLength: password.length >= 8,
+        reqLength:password.length>=8,
 
-        reqUpper: /[A-Z]/.test(password),
+        reqUpper:/[A-Z]/.test(password),
 
-        reqLower: /[a-z]/.test(password),
+        reqLower:/[a-z]/.test(password),
 
-        reqNumber: /[0-9]/.test(password),
+        reqNumber:/[0-9]/.test(password),
 
-        reqSpecial: /[^A-Za-z0-9]/.test(password)
+        reqSpecial:/[^A-Za-z0-9]/.test(password)
 
     };
 
-    Object.keys(tests).forEach(id => {
+    Object.keys(tests).forEach(id=>{
 
-        const element =
-            document.getElementById(id);
+        const element=
+        document.getElementById(id);
 
-        const label =
-            element.textContent.substring(2);
+        const original=
+        element.textContent
+        .replace(/^✓ /,"")
+        .replace(/^✗ /,"");
 
-        if(tests[id]){
+        element.classList.toggle(
+            "valid",
+            tests[id]
+        );
 
-            element.classList.add("valid");
-            element.textContent = "✓ " + label;
-
-        }else{
-
-            element.classList.remove("valid");
-            element.textContent = "✗ " + label;
-
-        }
+        element.textContent=
+        (tests[id]?"✓ ":"✗ ")+original;
 
     });
 
-    document
-        .getElementById("createAccountButton")
-        .disabled =
-        !Object.values(tests).every(Boolean);
+    document.getElementById(
+        "createAccountButton"
+    ).disabled=
+    !Object.values(tests).every(Boolean);
 
 }
 
 
-/* =====================================================
+/* ==================================================
 CREATE ACCOUNT
-===================================================== */
+================================================== */
 
 async function createAccount(){
 
     clearMessages();
 
-    const email =
-        document.getElementById("registerEmail")
-        .value.trim();
+    const email=
+    document.getElementById(
+        "registerEmail"
+    ).value.trim().toLowerCase();
 
-    const username =
-        document.getElementById("registerUsername")
-        .value.trim();
+    const username=
+    document.getElementById(
+        "registerUsername"
+    ).value.trim();
 
-    const password =
-        document.getElementById("registerPassword")
-        .value;
+    const password=
+    document.getElementById(
+        "registerPassword"
+    ).value;
 
-    const country =
-        document.getElementById("registerCountry")
-        .value;
+    const country=
+    document.getElementById(
+        "registerCountry"
+    ).value;
 
-    const state =
-        document.getElementById("registerState")
-        .value;
+    const state=
+    document.getElementById(
+        "registerState"
+    ).value;
 
 
-    if(!email || !username || !password || !country || !state){
+    if(
+        !email ||
+        !username ||
+        !password ||
+        !country ||
+        !state
+    ){
 
-        registerError("Please complete all fields.");
+        registerError(
+            "Please complete all fields."
+        );
 
         return;
-
-    }
-
-
-    if(username.length < 3){
-
-        registerError("Username must contain at least 3 characters.");
-
-        return;
-
     }
 
 
     if(!email.includes("@")){
 
-        registerError("Please enter a valid email.");
+        registerError(
+            "Please enter a valid email."
+        );
 
         return;
-
     }
 
 
-    const button =
-        document.getElementById("createAccountButton");
+    if(username.length<3){
 
-    button.disabled = true;
+        registerError(
+            "Username must contain at least 3 characters."
+        );
 
-    button.textContent = "CREATING ACCOUNT...";
+        return;
+    }
+
+
+    const button=
+    document.getElementById(
+        "createAccountButton"
+    );
+
+    button.disabled=true;
+
+    button.textContent=
+    "CREATING ACCOUNT...";
 
 
     try{
 
         /*
-         IMPORTANT FIX:
+        Store profile information inside
+        Supabase Auth user metadata first.
 
-         We DO NOT insert into profiles here.
-
-         Instead, username/country/state are stored
-         as Supabase Auth metadata.
-
-         The database trigger creates the profile row.
+        This means we do NOT depend on a
+        profiles INSERT before email verification.
         */
 
-        const { data, error } =
-            await supabaseClient.auth.signUp({
+        const {data,error}=
+        await supabaseClient.auth.signUp({
 
-                email: email,
+            email:email,
 
-                password: password,
+            password:password,
 
-                options: {
+            options:{
+                emailRedirectTo:BLX_URL,
 
-                    data: {
-
-                        username: username,
-
-                        country: country,
-
-                        state: state
-
-                    }
-
+                data:{
+                    username:username,
+                    country:country,
+                    state:state,
+                    email:email
                 }
+            }
 
-            });
+        });
 
 
         if(error){
@@ -1735,71 +2114,209 @@ async function createAccount(){
 
 
         /*
-         If email confirmation is enabled,
-         Supabase normally returns a user but
-         no session.
-
-         That is normal.
+        If Supabase returns a session immediately,
+        create the profile now.
+        If email verification is required,
+        createProfileFromUser() will run after
+        verification.
         */
 
+        if(data.user){
+
+            if(data.session){
+
+                await createProfileFromUser(
+                    data.user
+                );
+
+            }
+
+        }
+
+
         registerSuccess(
-            "Account created successfully. Please check your email and verify your BLX account."
+            "Account created! Please check your email and verify your BLX account."
         );
 
 
-        document.getElementById("registerEmail").value = "";
-        document.getElementById("registerUsername").value = "";
-        document.getElementById("registerPassword").value = "";
-        document.getElementById("registerCountry").value = "";
-        document.getElementById("registerState").value = "";
+        /*
+        Show resend option.
+        */
+
+        document.getElementById(
+            "registerInfo"
+        ).textContent=
+        "Didn't receive the email? Check Spam/Junk or use Resend Verification below.";
+
+        document.getElementById(
+            "registerInfo"
+        ).style.display="block";
 
 
-        setTimeout(() => {
+        /*
+        Give user a resend button through
+        a simple delayed prompt.
+        */
 
-            showLogin();
+        setTimeout(()=>{
 
-            document.getElementById("loginSuccess").textContent =
-                "Account created. Please verify your email before logging in.";
+            const resend=
+            confirm(
+                "Didn't receive the verification email? Would you like BLX to send it again?"
+            );
 
-            document.getElementById("loginSuccess").style.display =
-                "block";
+            if(resend){
 
-        }, 3000);
+                resendVerification(email);
+
+            }
+
+        },2000);
 
 
     }catch(error){
 
-        console.error("BLX registration error:", error);
+        console.error(error);
 
         registerError(
-            error.message || "Unable to create account."
+            getFriendlyError(error)
         );
 
     }
 
 
-    button.disabled = false;
+    button.disabled=false;
 
-    button.textContent = "CREATE ACCOUNT";
+    button.textContent=
+    "CREATE ACCOUNT";
 
 }
 
 
-/* =====================================================
+/* ==================================================
+CREATE PROFILE AFTER AUTH
+================================================== */
+
+async function createProfileFromUser(user){
+
+    if(!user){
+
+        return null;
+
+    }
+
+
+    const metadata=
+    user.user_metadata || {};
+
+
+    const profile={
+
+        id:user.id,
+
+        username:
+        metadata.username || "",
+
+        email:
+        user.email || metadata.email || "",
+
+        country:
+        metadata.country || "",
+
+        state:
+        metadata.state || ""
+
+    };
+
+
+    /*
+    First check whether profile already exists.
+    */
+
+    const {data:existing,error:selectError}=
+    await supabaseClient
+    .from("profiles")
+    .select("id")
+    .eq("id",user.id)
+    .maybeSingle();
+
+
+    if(selectError){
+
+        console.warn(
+            "Profile check:",
+            selectError
+        );
+
+    }
+
+
+    if(existing){
+
+        return existing;
+
+    }
+
+
+    const {data,error}=
+    await supabaseClient
+    .from("profiles")
+    .insert(profile)
+    .select()
+    .single();
+
+
+    if(error){
+
+        /*
+        If profile was created by another
+        process at the same time, don't break
+        the login.
+        */
+
+        if(
+            error.code==="23505" ||
+            String(error.message)
+            .toLowerCase()
+            .includes("duplicate")
+        ){
+
+            return null;
+
+        }
+
+        console.error(
+            "Profile creation error:",
+            error
+        );
+
+        throw error;
+
+    }
+
+
+    return data;
+
+}
+
+
+/* ==================================================
 LOGIN
-===================================================== */
+================================================== */
 
 async function login(){
 
     clearMessages();
 
-    const username =
-        document.getElementById("loginUsername")
-        .value.trim();
+    const username=
+    document.getElementById(
+        "loginUsername"
+    ).value.trim();
 
-    const password =
-        document.getElementById("loginPassword")
-        .value;
+    const password=
+    document.getElementById(
+        "loginPassword"
+    ).value;
 
 
     if(!username || !password){
@@ -1809,22 +2326,39 @@ async function login(){
         );
 
         return;
-
     }
+
+
+    const button=
+    document.getElementById(
+        "loginButton"
+    );
+
+    button.disabled=true;
+
+    button.textContent="LOGGING IN...";
 
 
     try{
 
         /*
-         Find profile using username.
+        Username login requires finding the
+        email belonging to the username.
+
+        For Phase 1 we use the profiles table.
         */
 
-        const { data: profile, error: profileError } =
-            await supabaseClient
-                .from("profiles")
-                .select("id,username,country,state")
-                .ilike("username", username)
-                .maybeSingle();
+        const {data:profile,error:profileError}=
+        await supabaseClient
+        .from("profiles")
+        .select(
+            "id,username,email,country,state"
+        )
+        .eq(
+            "username",
+            username
+        )
+        .maybeSingle();
 
 
         if(profileError){
@@ -1836,71 +2370,85 @@ async function login(){
 
         if(!profile){
 
-            loginError("Username not found.");
-
-            return;
-
-        }
-
-
-        /*
-         IMPORTANT:
-
-         Browser cannot safely obtain another user's
-         email from auth.users.
-
-         So this version stores the email locally
-         after registration and uses it for login.
-        */
-
-        let email =
-            localStorage.getItem("blxLoginEmail");
-
-
-        if(!email){
-
-            email = prompt(
-                "Enter the email address used when creating your BLX account:"
+            loginError(
+                "Username not found. Please check your username or create an account."
             );
 
-            if(!email){
-
-                return;
-
-            }
-
+            return;
         }
 
 
-        const { data, error } =
-            await supabaseClient.auth.signInWithPassword({
+        if(!profile.email){
 
-                email: email.trim(),
+            loginError(
+                "This account does not have an email saved in the BLX profile."
+            );
 
-                password: password
+            return;
+        }
 
-            });
+
+        const {data,error}=
+        await supabaseClient.auth
+        .signInWithPassword({
+
+            email:profile.email,
+
+            password:password
+
+        });
 
 
         if(error){
 
-            loginError(
-                "Incorrect email, username or password."
-            );
-
-            return;
+            throw error;
 
         }
 
 
-        localStorage.setItem(
-            "blxLoggedIn",
-            "true"
-        );
+        if(!data.user){
 
-        localStorage.setItem(
-            "blxProfile",
-            JSON.stringify(profile)
+            throw new Error(
+                "Login was not completed."
+            );
+
+        }
+
+
+        if(!data.user.email_confirmed_at){
+
+            loginError(
+                "Please verify your email before logging in."
+            );
+
+            await supabaseClient.auth.signOut();
+
+            return;
+        }
+
+
+        /*
+        Make sure profile exists.
+        */
+
+        try{
+
+            await createProfileFromUser(
+                data.user
+            );
+
+        }catch(profileError){
+
+            console.warn(
+                "Profile sync warning:",
+                profileError
+            );
+
+        }
+
+
+        saveProfile(
+            profile
         );
 
 
@@ -1909,10 +2457,69 @@ async function login(){
 
     }catch(error){
 
-        console.error("BLX login error:", error);
+        console.error(error);
 
         loginError(
-            error.message || "Login failed."
+            getFriendlyError(error)
+        );
+
+    }finally{
+
+        button.disabled=false;
+
+        button.textContent="LOGIN";
+
+    }
+
+}
+
+
+/* ==================================================
+FORGOT PASSWORD
+================================================== */
+
+async function forgotPassword(){
+
+    const email=
+    prompt(
+        "Enter the email address used for your BLX account:"
+    );
+
+
+    if(!email){
+
+        return;
+    }
+
+
+    try{
+
+        const {error}=
+        await supabaseClient.auth
+        .resetPasswordForEmail(
+            email.trim().toLowerCase(),
+            {
+                redirectTo:BLX_URL
+            }
+        );
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert(
+            "Password reset email sent. Please check your inbox."
+        );
+
+
+    }catch(error){
+
+        alert(
+            getFriendlyError(error)
         );
 
     }
@@ -1920,69 +2527,379 @@ async function login(){
 }
 
 
-/* =====================================================
-HOME
-===================================================== */
+/* ==================================================
+RESEND VERIFICATION
+================================================== */
 
-function openHome(profile=null){
+async function resendVerification(email){
 
-    hideAll();
+    if(!email){
 
-    document
-        .getElementById("homePage")
-        .classList.remove("hidden");
+        email=
+        prompt(
+            "Enter the email address used for your BLX account:"
+        );
+
+    }
 
 
-    if(!profile){
+    if(!email){
 
-        const saved =
-            localStorage.getItem("blxProfile");
+        return;
 
-        if(saved){
+    }
 
-            try{
 
-                profile = JSON.parse(saved);
+    try{
 
-            }catch(e){
+        const {error}=
+        await supabaseClient.auth
+        .resend({
 
-                profile = null;
+            type:"signup",
+
+            email:email.trim().toLowerCase(),
+
+            options:{
+                emailRedirectTo:BLX_URL
+            }
+
+        });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert(
+            "Verification email sent again. Please check your inbox and Spam/Junk folder."
+        );
+
+
+    }catch(error){
+
+        alert(
+            getFriendlyError(error)
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+EMAIL VERIFICATION CALLBACK
+================================================== */
+
+async function handleAuthCallback(){
+
+    const hash=
+    window.location.hash;
+
+    const search=
+    window.location.search;
+
+
+    /*
+    Supabase may process the hash automatically
+    because detectSessionInUrl is enabled.
+    */
+
+    const looksLikeAuthCallback=
+    hash.includes("access_token=") ||
+    hash.includes("type=signup") ||
+    hash.includes("type=recovery") ||
+    search.includes("code=");
+
+
+    if(looksLikeAuthCallback){
+
+        hideAll();
+
+        document.getElementById(
+            "verifyPage"
+        ).classList.remove("hidden");
+
+        document.getElementById(
+            "verifyMessage"
+        ).textContent=
+        "Verifying your BLX account...";
+
+    }
+
+
+    /*
+    Give Supabase a moment to process the URL.
+    */
+
+    const {data,error}=
+    await supabaseClient.auth.getSession();
+
+
+    if(error){
+
+        console.error(
+            "Session error:",
+            error
+        );
+
+    }
+
+
+    if(data && data.session){
+
+        const user=
+        data.session.user;
+
+
+        /*
+        User has authenticated.
+        Create/sync profile.
+        */
+
+        try{
+
+            const profile=
+            await createProfileFromUser(
+                user
+            );
+
+
+            let finalProfile=profile;
+
+
+            if(!finalProfile){
+
+                const {data:existing}=
+                await supabaseClient
+                .from("profiles")
+                .select(
+                    "id,username,email,country,state"
+                )
+                .eq("id",user.id)
+                .maybeSingle();
+
+
+                finalProfile=existing;
 
             }
+
+
+            if(finalProfile){
+
+                saveProfile(
+                    finalProfile
+                );
+
+            }else{
+
+                saveProfile({
+
+                    id:user.id,
+
+                    username:
+                    user.user_metadata?.username ||
+                    "BLX User",
+
+                    email:user.email || "",
+
+                    country:
+                    user.user_metadata?.country ||
+                    "",
+
+                    state:
+                    user.user_metadata?.state ||
+                    ""
+
+                });
+
+            }
+
+
+            /*
+            Remove tokens from browser URL.
+            */
+
+            window.history.replaceState(
+                {},
+                document.title,
+                BLX_URL
+            );
+
+
+            document.getElementById(
+                "verifyMessage"
+            ).textContent=
+            "Email verified successfully! Welcome to BLX.";
+
+
+            setTimeout(()=>{
+
+                const saved=
+                getSavedProfile();
+
+                openHome(saved);
+
+            },1000);
+
+
+            return true;
+
+
+        }catch(error){
+
+            console.error(
+                "Verification profile error:",
+                error
+            );
+
+            document.getElementById(
+                "verifyMessage"
+            ).textContent=
+            "Your email was verified, but BLX could not finish creating your profile. Please try logging in.";
+
+            return true;
 
         }
 
     }
 
 
-    if(profile){
+    /*
+    No session.
+    */
 
-        document
-            .getElementById("welcomeText")
-            .textContent =
-            "Welcome back, " + profile.username;
+    if(looksLikeAuthCallback){
+
+        document.getElementById(
+            "verifyMessage"
+        ).textContent=
+        "Verification link processed. Please go to login.";
+
+        setTimeout(()=>{
+
+            showLogin();
+
+        },1800);
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* ==================================================
+SAVE PROFILE
+================================================== */
+
+function saveProfile(profile){
+
+    if(!profile){
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "blxProfile",
+        JSON.stringify(profile)
+    );
+
+}
+
+
+/* ==================================================
+GET PROFILE
+================================================== */
+
+function getSavedProfile(){
+
+    try{
+
+        const saved=
+        localStorage.getItem(
+            "blxProfile"
+        );
+
+        return saved?
+        JSON.parse(saved):
+        null;
+
+    }catch(error){
+
+        return null;
 
     }
 
 }
 
 
-/* =====================================================
-SEARCH
-===================================================== */
+/* ==================================================
+HOME
+================================================== */
 
-function focusSearch(){
+function openHome(profile=null){
 
-    const input =
-        document.getElementById("companySearch");
+    hideAll();
 
-    input.focus();
+    document.getElementById(
+        "homePage"
+    ).classList.remove("hidden");
+
+
+    if(!profile){
+
+        profile=
+        getSavedProfile();
+
+    }
+
+
+    if(profile){
+
+        document.getElementById(
+            "welcomeText"
+        ).textContent=
+        "Welcome back, "+
+        (profile.username || "BLX User");
+
+    }
 
 }
 
+
+/* ==================================================
+SEARCH
+================================================== */
+
+function focusSearch(){
+
+    const input=
+    document.getElementById(
+        "companySearch"
+    );
+
+    input.focus();
+
+    input.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
 function searchEnter(event){
 
-    if(event.key === "Enter"){
+    if(event.key==="Enter"){
 
         searchCompany();
 
@@ -1990,43 +2907,144 @@ function searchEnter(event){
 
 }
 
-function searchCompany(){
 
-    const query =
-        document
-            .getElementById("companySearch")
-            .value
-            .trim()
-            .toLowerCase();
+function liveSearch(){
+
+    const query=
+    document.getElementById(
+        "companySearch"
+    ).value
+    .trim()
+    .toLowerCase();
+
+    const results=
+    document.getElementById(
+        "searchResults"
+    );
 
 
     if(!query){
 
-        alert("Please enter a company name.");
+        results.innerHTML="";
 
         return;
 
     }
 
 
-    const company =
-        companies.find(c =>
+    const matches=
+    companies
+    .filter(company=>
 
-            c.name.toLowerCase().includes(query)
+        company.name
+        .toLowerCase()
+        .includes(query)
 
-            ||
+        ||
 
-            c.ticker.toLowerCase().includes(query)
+        company.ticker
+        .toLowerCase()
+        .includes(query)
 
+    )
+    .slice(0,5);
+
+
+    if(!matches.length){
+
+        results.innerHTML=
+        `<div style="
+            padding:12px;
+            color:#667085;
+            font-size:13px;
+        ">
+            No company found.
+        </div>`;
+
+        return;
+
+    }
+
+
+    results.innerHTML=
+    matches.map(company=>`
+
+        <button
+        onclick='openCompanyByTicker("${company.ticker}")'
+        style="
+            display:block;
+            width:100%;
+            border:0;
+            border-top:1px solid #eaecf0;
+            background:#fff;
+            padding:12px 4px;
+            text-align:left;
+        ">
+
+            <strong>
+                ${escapeHtml(company.name)}
+            </strong>
+
+            <div style="
+                color:#667085;
+                font-size:12px;
+                margin-top:3px;
+            ">
+                ${escapeHtml(company.ticker)}
+                ·
+                ${escapeHtml(company.sector)}
+            </div>
+
+        </button>
+
+    `).join("");
+
+}
+
+
+function searchCompany(){
+
+    const query=
+    document.getElementById(
+        "companySearch"
+    ).value
+    .trim()
+    .toLowerCase();
+
+
+    if(!query){
+
+        alert(
+            "Please enter a company name or ticker."
         );
+
+        return;
+    }
+
+
+    const company=
+    companies.find(c=>
+
+        c.name
+        .toLowerCase()
+        .includes(query)
+
+        ||
+
+        c.ticker
+        .toLowerCase()
+        .includes(query)
+
+    );
 
 
     if(!company){
 
-        alert("Company not found.");
+        alert(
+            "Company not found."
+        );
 
         return;
-
     }
 
 
@@ -2035,99 +3053,126 @@ function searchCompany(){
 }
 
 
-/* =====================================================
-COMPANY
-===================================================== */
+function openCompanyByTicker(ticker){
+
+    const company=
+    companies.find(
+        c=>c.ticker===ticker
+    );
+
+
+    if(company){
+
+        openCompany(company);
+
+    }
+
+}
+
+
+/* ==================================================
+COMPANY PAGE
+================================================== */
+
+let currentCompany=null;
+
 
 function openCompany(company){
 
+    currentCompany=company;
+
     hideAll();
 
-    document
-        .getElementById("companyPage")
-        .classList.remove("hidden");
+    document.getElementById(
+        "companyPage"
+    ).classList.remove("hidden");
 
 
-    document
-        .getElementById("companyName")
-        .textContent =
-        company.name;
+    document.getElementById(
+        "companyName"
+    ).textContent=
+    company.name;
 
 
-    document
-        .getElementById("companyTicker")
-        .textContent =
-        "Bursa Malaysia: " +
-        company.ticker +
-        " • " +
-        company.sector;
+    document.getElementById(
+        "companyTicker"
+    ).textContent=
+    "Bursa Malaysia: "+
+    company.ticker+
+    " • "+
+    company.sector;
 
 
-    document
-        .getElementById("companyPrice")
-        .textContent =
-        company.price;
+    document.getElementById(
+        "companyPrice"
+    ).textContent=
+    company.price;
 
 
-    document
-        .getElementById("companyChange")
-        .textContent =
-        company.change + " today";
+    const changeElement=
+    document.getElementById(
+        "companyChange"
+    );
+
+    changeElement.textContent=
+    company.change+
+    " today";
 
 
-    document
-        .getElementById("ceoName")
-        .textContent =
-        company.ceo;
+    changeElement.style.color=
+    company.change.startsWith("-")
+    ?"#d92d20"
+    :"#039855";
 
 
-    const data = [
+    document.getElementById(
+        "ceoName"
+    ).textContent=
+    company.ceo;
 
-        ["Revenue", company.revenue],
 
-        ["Profit After Tax", company.profit],
+    const data=[
 
-        ["Total Assets", company.assets],
+        ["Revenue",company.revenue],
 
-        ["Total Liabilities", company.liabilities],
+        ["Profit After Tax",company.profit],
 
-        ["Number of Shares", company.shares],
+        ["Total Assets",company.assets],
 
-        ["ROE", company.roe],
+        ["Total Liabilities",company.liabilities],
 
-        ["ROA", company.roa],
+        ["Number of Shares",company.shares],
 
-        ["P/E Ratio", company.pe],
+        ["ROE",company.roe],
 
-        ["Dividend Yield", company.dividend]
+        ["ROA",company.roa],
+
+        ["P/E Ratio",company.pe],
+
+        ["Dividend Yield",company.dividend]
 
     ];
 
 
-    document
-        .getElementById("fundamentals")
-        .innerHTML =
+    document.getElementById(
+        "fundamentals"
+    ).innerHTML=
 
-        data.map(item => `
+    data.map(item=>`
 
-            <div class="fundamental">
+        <div class="fundamental">
 
-                <div class="fundamental-label">
-                    ${item[0]}
-                </div>
-
-                <div class="fundamental-value">
-                    ${item[1]}
-                </div>
-
+            <div class="fundamental-label">
+                ${escapeHtml(item[0])}
             </div>
 
-        `).join("");
+            <div class="fundamental-value">
+                ${escapeHtml(item[1])}
+            </div>
 
+        </div>
 
-    document
-        .getElementById("stockChart")
-        .style.display = "block";
+    `).join("");
 
 
     drawChart(1);
@@ -2135,46 +3180,103 @@ function openCompany(company){
 }
 
 
-/* =====================================================
+/* ==================================================
 CHART
-===================================================== */
+================================================== */
 
 function drawChart(years){
 
-    const canvas =
-        document.getElementById("stockChart");
+    if(!currentCompany){
 
-    const ctx =
-        canvas.getContext("2d");
+        return;
 
-
-    const width =
-        canvas.clientWidth || 500;
-
-    const height = 230;
+    }
 
 
-    canvas.width = width * 2;
-    canvas.height = height * 2;
+    ["chart1","chart5","chart10"]
+    .forEach(id=>{
 
-    ctx.scale(2,2);
+        document.getElementById(id)
+        .classList.remove("active");
 
-    ctx.clearRect(0,0,width,height);
-
-
-    const points = [];
-
-    let value = .35;
+    });
 
 
-    for(let i=0;i<50;i++){
+    document.getElementById(
+        years===1
+        ?"chart1"
+        :years===5
+        ?"chart5"
+        :"chart10"
+    ).classList.add("active");
+
+
+    const canvas=
+    document.getElementById(
+        "stockChart"
+    );
+
+
+    const width=
+    canvas.clientWidth ||
+    500;
+
+    const height=230;
+
+    const ratio=
+    window.devicePixelRatio ||
+    1;
+
+
+    canvas.width=
+    width*ratio;
+
+    canvas.height=
+    height*ratio;
+
+
+    const ctx=
+    canvas.getContext("2d");
+
+    ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+    );
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+    Demo chart.
+    Replace with live market-data API later.
+    */
+
+    const points=[];
+
+    let value=.45;
+
+
+    for(let i=0;i<60;i++){
 
         value +=
-            (Math.random()-.45)*.07;
+        (Math.random()-.45)*.07;
 
 
-        value =
-            Math.max(.08,Math.min(.92,value));
+        value=
+        Math.max(
+            .08,
+            Math.min(.92,value)
+        );
 
 
         points.push(value);
@@ -2182,232 +3284,270 @@ function drawChart(years){
     }
 
 
-    ctx.beginPath();
+    /*
+    Grid
+    */
 
+    ctx.strokeStyle="#eaecf0";
+    ctx.lineWidth=1;
 
-    points.forEach((point,index)=>{
 
-        const x =
-            10 +
-            index *
-            ((width-20)/(points.length-1));
+    for(let i=1;i<5;i++){
 
+        const y=
+        i*(height/5);
 
-        const y =
-            height -
-            20 -
-            point *
-            (height-45);
+        ctx.beginPath();
 
+        ctx.moveTo(0,y);
 
-        if(index === 0){
+        ctx.lineTo(width,y);
 
-            ctx.moveTo(x,y);
-
-        }else{
-
-            ctx.lineTo(x,y);
-
-        }
-
-    });
-
-
-    ctx.strokeStyle = "#1769ff";
-    ctx.lineWidth = 3;
-
-    ctx.stroke();
-
-}
-
-
-/* =====================================================
-PROFILE
-===================================================== */
-
-async function profile(){
-
-    try{
-
-        const { data, error } =
-            await supabaseClient.auth.getUser();
-
-
-        if(error || !data.user){
-
-            showLogin();
-
-            return;
-
-        }
-
-
-        const user = data.user;
-
-
-        const { data:profileData, error:profileError } =
-            await supabaseClient
-                .from("profiles")
-                .select("id,username,country,state")
-                .eq("id", user.id)
-                .maybeSingle();
-
-
-        if(profileError){
-
-            throw profileError;
-
-        }
-
-
-        if(!profileData){
-
-            alert("Profile information is not available yet.");
-
-            return;
-
-        }
-
-
-        hideAll();
-
-        document
-            .getElementById("companyPage")
-            .classList.remove("hidden");
-
-
-        document
-            .getElementById("companyName")
-            .textContent =
-            "BLX Profile";
-
-
-        document
-            .getElementById("companyTicker")
-            .textContent =
-            "Account Information";
-
-
-        document
-            .getElementById("companyPrice")
-            .textContent =
-            profileData.username;
-
-
-        document
-            .getElementById("companyChange")
-            .textContent =
-            profileData.country;
-
-
-        document
-            .getElementById("ceoName")
-            .textContent =
-            profileData.state;
-
-
-        document
-            .getElementById("fundamentals")
-            .innerHTML = `
-
-                <div class="fundamental">
-                    <div class="fundamental-label">
-                        Username
-                    </div>
-                    <div class="fundamental-value">
-                        ${profileData.username}
-                    </div>
-                </div>
-
-                <div class="fundamental">
-                    <div class="fundamental-label">
-                        Email
-                    </div>
-                    <div class="fundamental-value">
-                        ${user.email || ""}
-                    </div>
-                </div>
-
-                <div class="fundamental">
-                    <div class="fundamental-label">
-                        Country
-                    </div>
-                    <div class="fundamental-value">
-                        ${profileData.country}
-                    </div>
-                </div>
-
-                <div class="fundamental">
-                    <div class="fundamental-label">
-                        State
-                    </div>
-                    <div class="fundamental-value">
-                        ${profileData.state}
-                    </div>
-                </div>
-
-            `;
-
-
-        document
-            .getElementById("stockChart")
-            .style.display = "none";
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert("Unable to load profile.");
+        ctx.stroke();
 
     }
 
+
+    /*
+    Line
+    */
+
+    ctx.beginPath();
+
+
+    points.forEach(
+        (point,index)=>{
+
+            const x=
+            10+
+            index*
+            ((width-20)/
+            (points.length-1));
+
+
+            const y=
+            height-
+            25-
+            point*
+            (height-55);
+
+
+            if(index===0){
+
+                ctx.moveTo(x,y);
+
+            }else{
+
+                ctx.lineTo(x,y);
+
+            }
+
+        }
+    );
+
+
+    ctx.strokeStyle=
+    "#1769ff";
+
+    ctx.lineWidth=3;
+
+    ctx.stroke();
+
+
+    /*
+    Fill
+    */
+
+    const lastX=
+    width-10;
+
+    ctx.lineTo(
+        lastX,
+        height-15
+    );
+
+    ctx.lineTo(
+        10,
+        height-15
+    );
+
+    ctx.closePath();
+
+
+    const gradient=
+    ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        height
+    );
+
+
+    gradient.addColorStop(
+        0,
+        "rgba(23,105,255,.22)"
+    );
+
+    gradient.addColorStop(
+        1,
+        "rgba(23,105,255,0)"
+    );
+
+
+    ctx.fillStyle=
+    gradient;
+
+    ctx.fill();
+
 }
 
 
-/* =====================================================
-BACK
-===================================================== */
+/* ==================================================
+PROFILE
+================================================== */
+
+async function profile(){
+
+    const {data,error}=
+    await supabaseClient.auth
+    .getUser();
+
+
+    if(error || !data.user){
+
+        showLogin();
+
+        return;
+
+    }
+
+
+    const user=
+    data.user;
+
+
+    let profile=
+    getSavedProfile();
+
+
+    if(!profile || profile.id!==user.id){
+
+        const {data:dbProfile}=
+        await supabaseClient
+        .from("profiles")
+        .select(
+            "id,username,email,country,state"
+        )
+        .eq("id",user.id)
+        .maybeSingle();
+
+
+        profile=
+        dbProfile;
+
+    }
+
+
+    if(!profile){
+
+        profile={
+
+            id:user.id,
+
+            username:
+            user.user_metadata?.username ||
+            "BLX User",
+
+            email:user.email || "",
+
+            country:
+            user.user_metadata?.country ||
+            "",
+
+            state:
+            user.user_metadata?.state ||
+            ""
+
+        };
+
+    }
+
+
+    document.getElementById(
+        "profileUsername"
+    ).textContent=
+    profile.username || "-";
+
+
+    document.getElementById(
+        "profileEmail"
+    ).textContent=
+    profile.email || user.email || "-";
+
+
+    document.getElementById(
+        "profileCountry"
+    ).textContent=
+    profile.country || "-";
+
+
+    document.getElementById(
+        "profileState"
+    ).textContent=
+    profile.state || "-";
+
+
+    hideAll();
+
+    document.getElementById(
+        "profilePage"
+    ).classList.remove("hidden");
+
+}
+
+
+/* ==================================================
+BACK HOME
+================================================== */
 
 function backHome(){
-
-    document
-        .getElementById("stockChart")
-        .style.display = "block";
 
     openHome();
 
 }
 
 
-/* =====================================================
+/* ==================================================
 LOGOUT
-===================================================== */
+================================================== */
 
 async function logout(){
 
     await supabaseClient.auth.signOut();
 
-    localStorage.removeItem("blxLoggedIn");
+    localStorage.removeItem(
+        "blxProfile"
+    );
 
-    localStorage.removeItem("blxProfile");
-
-    localStorage.removeItem("blxLoginEmail");
+    localStorage.removeItem(
+        "blxLoggedIn"
+    );
 
     showLogin();
 
 }
 
 
-/* =====================================================
-BUTTONS
-===================================================== */
+/* ==================================================
+OTHER BUTTONS
+================================================== */
 
 function showMessage(message){
 
     alert(message);
 
 }
+
 
 function community(){
 
@@ -2417,145 +3557,305 @@ function community(){
 
 }
 
+
 function openBursa(){
 
     window.open(
         "https://www.bursamalaysia.com/",
-        "_blank"
+        "_blank",
+        "noopener"
     );
 
 }
+
 
 function openBNM(){
 
     window.open(
         "https://www.bnm.gov.my/",
-        "_blank"
+        "_blank",
+        "noopener"
     );
 
 }
 
 
-/* =====================================================
-ERRORS
-===================================================== */
-
-function clearMessages(){
-
-    document
-        .querySelectorAll(".message")
-        .forEach(element => {
-
-            element.style.display = "none";
-
-        });
-
-}
-
-function loginError(message){
-
-    const box =
-        document.getElementById("loginError");
-
-    box.textContent = message;
-
-    box.style.display = "block";
-
-}
-
-function registerError(message){
-
-    const box =
-        document.getElementById("registerError");
-
-    box.textContent = message;
-
-    box.style.display = "block";
-
-}
-
-function registerSuccess(message){
-
-    const box =
-        document.getElementById("registerSuccess");
-
-    box.textContent = message;
-
-    box.style.display = "block";
-
-}
-
-
-/* =====================================================
+/* ==================================================
 DROPDOWNS
-===================================================== */
+================================================== */
 
 function loadDropdowns(){
 
-    const country =
-        document.getElementById("registerCountry");
+    const country=
+    document.getElementById(
+        "registerCountry"
+    );
 
 
-    country.innerHTML =
-        '<option value="">Select country</option>';
+    country.innerHTML=
+    '<option value="">Select country</option>';
 
 
-    countries.forEach(item => {
+    countries.forEach(item=>{
 
-        country.innerHTML +=
-            `<option value="${item}">${item}</option>`;
+        const option=
+        document.createElement("option");
+
+        option.value=item;
+        option.textContent=item;
+
+        country.appendChild(option);
 
     });
 
 
-    const state =
-        document.getElementById("registerState");
+    const state=
+    document.getElementById(
+        "registerState"
+    );
 
 
-    state.innerHTML =
-        '<option value="">Select Malaysian state</option>';
+    state.innerHTML=
+    '<option value="">Select Malaysian state</option>';
 
 
-    malaysiaStates.forEach(item => {
+    malaysiaStates.forEach(item=>{
 
-        state.innerHTML +=
-            `<option value="${item}">${item}</option>`;
+        const option=
+        document.createElement("option");
+
+        option.value=item;
+        option.textContent=item;
+
+        state.appendChild(option);
 
     });
 
 }
 
 
-/* =====================================================
-START
-===================================================== */
+/* ==================================================
+FRIENDLY ERRORS
+================================================== */
 
-loadDropdowns();
+function getFriendlyError(error){
+
+    const message=
+    String(
+        error?.message ||
+        error ||
+        "Unknown error"
+    );
 
 
-window.addEventListener("load", async function(){
+    const lower=
+    message.toLowerCase();
+
+
+    if(
+        lower.includes("invalid login credentials")
+    ){
+
+        return "Incorrect username or password.";
+
+    }
+
+
+    if(
+        lower.includes("email not confirmed")
+    ){
+
+        return "Please verify your email before logging in.";
+
+    }
+
+
+    if(
+        lower.includes("user already registered")
+    ){
+
+        return "This email is already registered. Try logging in.";
+
+    }
+
+
+    if(
+        lower.includes("username")
+        &&
+        lower.includes("duplicate")
+    ){
+
+        return "That username is already being used.";
+
+    }
+
+
+    if(
+        lower.includes("row-level security")
+    ){
+
+        return "BLX profile security policy rejected this action. Check the profiles RLS policy in Supabase.";
+
+    }
+
+
+    return message;
+
+}
+
+
+/* ==================================================
+ESCAPE HTML
+================================================== */
+
+function escapeHtml(value){
+
+    return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+SUPABASE AUTH STATE
+================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+    async (event,session)=>{
+
+        console.log(
+            "BLX Auth:",
+            event
+        );
+
+
+        if(
+            event==="SIGNED_OUT"
+        ){
+
+            localStorage.removeItem(
+                "blxProfile"
+            );
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+START BLX
+================================================== */
+
+async function startBLX(){
+
+    loadDropdowns();
+
+
+    /*
+    First handle email verification callback.
+    */
+
+    const callbackHandled=
+    await handleAuthCallback();
+
+
+    if(callbackHandled){
+
+        return;
+
+    }
+
+
+    /*
+    Normal page load.
+    */
 
     try{
 
-        const { data } =
-            await supabaseClient.auth.getSession();
+        const {data,error}=
+        await supabaseClient.auth
+        .getSession();
+
+
+        if(error){
+
+            throw error;
+
+        }
 
 
         if(data && data.session){
 
-            const saved =
-                localStorage.getItem("blxProfile");
+            const user=
+            data.session.user;
 
 
-            if(saved){
+            /*
+            Check if email is confirmed.
+            */
 
-                openHome(JSON.parse(saved));
+            if(!user.email_confirmed_at){
 
-            }else{
+                showLogin();
 
-                openHome();
+                loginError(
+                    "Please verify your email before logging in."
+                );
+
+                return;
 
             }
+
+
+            /*
+            Synchronize profile.
+            */
+
+            let profile=
+            getSavedProfile();
+
+
+            try{
+
+                await createProfileFromUser(
+                    user
+                );
+
+            }catch(error){
+
+                console.warn(
+                    "Profile synchronization:",
+                    error
+                );
+
+            }
+
+
+            const {data:dbProfile}=
+            await supabaseClient
+            .from("profiles")
+            .select(
+                "id,username,email,country,state"
+            )
+            .eq("id",user.id)
+            .maybeSingle();
+
+
+            if(dbProfile){
+
+                profile=dbProfile;
+
+                saveProfile(profile);
+
+            }
+
+
+            openHome(profile);
 
         }else{
 
@@ -2565,37 +3865,25 @@ window.addEventListener("load", async function(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "BLX startup error:",
+            error
+        );
 
         showLogin();
 
     }
 
-});
+}
 
 
-/* =====================================================
-AUTH STATE
-===================================================== */
+/* ==================================================
+START
+================================================== */
 
-supabaseClient.auth.onAuthStateChange(
-    (event, session) => {
-
-        console.log(
-            "BLX Auth:",
-            event
-        );
-
-        if(event === "SIGNED_OUT"){
-
-            localStorage.removeItem("blxLoggedIn");
-            localStorage.removeItem("blxProfile");
-
-            showLogin();
-
-        }
-
-    }
+window.addEventListener(
+    "load",
+    startBLX
 );
 
 </script>
