@@ -1,1 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>BLX - Financial Intelligence</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#f4f7fb;
+    color:#101828;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+.hidden{
+    display:none!important;
+}
+
+
+/* =========================
+HEADER
+========================= */
+
+.header{
+    background:linear-gradient(135deg,#06101d,#12304f);
+    color:white;
+    padding:18px 20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:5px;
+}
+
+.header-subtitle{
+    font-size:12px;
+    opacity:.7;
+}
+
+
+/* =========================
+HOME
+========================= */
+
+.home{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 18px 50px;
+}
+
+.hero{
+    text-align:center;
+    padding:35px 10px 20px;
+}
+
+.hero h1{
+    margin:0;
+    font-size:38px;
+    font-weight:900;
+}
+
+.hero p{
+    color:#667085;
+    margin-top:10px;
+    font-size:16px;
+}
+
+
+/* =========================
+SEARCH
+========================= */
+
+.search-box{
+    max-width:750px;
+    margin:25px auto;
+    background:white;
+    border-radius:18px;
+    padding:8px;
+    display:flex;
+    box-shadow:0 8px 30px rgba(16,24,40,.1);
+    border:1px solid #eaecf0;
+}
+
+.search-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:16px;
+    font-size:16px;
+    min-width:0;
+}
+
+.search-button{
+    border:none;
+    border-radius:13px;
+    background:#1769ff;
+    color:white;
+    padding:0 25px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.search-button:hover{
+    background:#0d5be0;
+}
+
+
+/* =========================
+BURSA CARD
+========================= */
+
+.bursa-card{
+    background:linear-gradient(135deg,#0b1f36,#1769ff);
+    color:white;
+    border-radius:22px;
+    padding:25px;
+    margin-top:25px;
+}
+
+.bursa-label{
+    font-size:13px;
+    opacity:.8;
+}
+
+.bursa-number{
+    font-size:42px;
+    font-weight:900;
+    margin:5px 0;
+}
+
+.bursa-text{
+    font-size:14px;
+}
+
+
+/* =========================
+FEATURES
+========================= */
+
+.section-title{
+    font-size:22px;
+    font-weight:900;
+    margin:30px 0 15px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.feature{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    border:1px solid #eaecf0;
+}
+
+.feature-icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.feature-title{
+    font-weight:900;
+}
+
+.feature-text{
+    color:#667085;
+    font-size:13px;
+    margin-top:5px;
+}
+
+
+/* =========================
+COMPANY PAGE
+========================= */
+
+.company-page{
+    max-width:1100px;
+    margin:auto;
+    padding:20px 18px 50px;
+}
+
+.back-button{
+    border:none;
+    background:#e9eef5;
+    border-radius:10px;
+    padding:10px 16px;
+    font-weight:800;
+    cursor:pointer;
+    margin-bottom:15px;
+}
+
+.company-header{
+    background:linear-gradient(135deg,#06101d,#12304f);
+    color:white;
+    border-radius:22px;
+    padding:25px;
+}
+
+.company-name{
+    font-size:28px;
+    font-weight:900;
+}
+
+.company-ticker{
+    margin-top:5px;
+    opacity:.75;
+}
+
+.company-price{
+    font-size:38px;
+    font-weight:900;
+    margin-top:20px;
+}
+
+.company-change{
+    color:#86efac;
+    font-weight:800;
+}
+
+
+/* =========================
+CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    margin-top:15px;
+    border:1px solid #eaecf0;
+}
+
+.card-title{
+    font-size:19px;
+    font-weight:900;
+    margin-bottom:15px;
+}
+
+
+/* =========================
+FUNDAMENTALS
+========================= */
+
+.fundamental-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.fundamental{
+    background:#f8fafc;
+    border-radius:14px;
+    padding:16px;
+}
+
+.fundamental-label{
+    color:#667085;
+    font-size:12px;
+}
+
+.fundamental-value{
+    font-size:18px;
+    font-weight:900;
+    margin-top:5px;
+}
+
+
+/* =========================
+CHART
+========================= */
+
+.chart-buttons{
+    display:flex;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.chart-buttons button{
+    border:1px solid #d0d5dd;
+    background:white;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.chart-buttons button.active{
+    background:#1769ff;
+    color:white;
+    border-color:#1769ff;
+}
+
+canvas{
+    width:100%;
+    height:260px;
+}
+
+
+/* =========================
+CEO
+========================= */
+
+.ceo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.ceo-icon{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#eef4ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+
+.ceo-name{
+    font-size:18px;
+    font-weight:900;
+}
+
+.ceo-position{
+    color:#667085;
+    font-size:13px;
+    margin-top:3px;
+}
+
+
+/* =========================
+SEARCH RESULTS
+========================= */
+
+.results{
+    max-width:750px;
+    margin:10px auto;
+}
+
+.result{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:8px;
+    cursor:pointer;
+    border:1px solid #eaecf0;
+}
+
+.result:hover{
+    border-color:#1769ff;
+}
+
+.result-name{
+    font-weight:900;
+}
+
+.result-ticker{
+    color:#667085;
+    font-size:13px;
+}
+
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+    text-align:center;
+    color:#667085;
+    font-size:12px;
+    padding:30px;
+}
+
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .search-box{
+        flex-direction:column;
+        padding:8px;
+    }
+
+    .search-button{
+        padding:13px;
+        margin-top:5px;
+    }
+
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .fundamental-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .company-name{
+        font-size:23px;
+    }
+
+    .company-price{
+        font-size:32px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="header">
+
+<div class="header-inner">
+
+<div>
+<div class="logo">BLX</div>
+<div class="header-subtitle">
+Financial Intelligence
+</div>
+</div>
+
+<div>
+🇲🇾 Malaysia
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+HOME
+========================= -->
+
+<section id="homePage">
+
+<div class="home">
+
+<div class="hero">
+
+<h1>
+Search Malaysian Companies
+</h1>
+
+<p>
+Financial information, company fundamentals and stock data in one place.
+</p>
+
+
+<div class="search-box">
+
+<input
+id="searchInput"
+type="text"
+placeholder="Search company name or ticker..."
+autocomplete="off"
+>
+
+<button
+class="search-button"
+onclick="searchCompany()"
+>
+SEARCH
+</button>
+
+</div>
+
+
+<div id="searchResults"
+class="results">
+</div>
+
+</div>
+
+
+<!-- BURSA -->
+
+<div class="bursa-card">
+
+<div class="bursa-label">
+BURSA MALAYSIA
+</div>
+
+<div class="bursa-number">
+1,089
+</div>
+
+<div class="bursa-text">
+Listed companies and securities
+</div>
+
+</div>
+
+
+<!-- FEATURES -->
+
+<div class="section-title">
+BLX Financial Tools
+</div>
+
+<div class="feature-grid">
+
+<div class="feature">
+
+<div class="feature-icon">🏢</div>
+
+<div class="feature-title">
+Company Search
+</div>
+
+<div class="feature-text">
+Search Malaysian listed companies.
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">📊</div>
+
+<div class="feature-title">
+Fundamentals
+</div>
+
+<div class="feature-text">
+Revenue, profit, assets and liabilities.
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">📈</div>
+
+<div class="feature-title">
+Stock Chart
+</div>
+
+<div class="feature-text">
+View historical stock price charts.
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">👔</div>
+
+<div class="feature-title">
+CEO
+</div>
+
+<div class="feature-text">
+View company leadership information.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+COMPANY PAGE
+========================= -->
+
+<section
+id="companyPage"
+class="company-page hidden"
+>
+
+<button
+class="back-button"
+onclick="backHome()"
+>
+← Back to BLX
+</button>
+
+
+<div class="company-header">
+
+<div
+id="companyName"
+class="company-name"
+>
+</div>
+
+<div
+id="companyTicker"
+class="company-ticker"
+>
+</div>
+
+<div
+id="companyPrice"
+class="company-price"
+>
+</div>
+
+<div
+id="companyChange"
+class="company-change"
+>
+</div>
+
+</div>
+
+
+<!-- FUNDAMENTALS -->
+
+<div class="card">
+
+<div class="card-title">
+Financial Fundamentals
+</div>
+
+<div
+id="fundamentals"
+class="fundamental-grid"
+>
+</div>
+
+</div>
+
+
+<!-- CHART -->
+
+<div class="card">
+
+<div class="card-title">
+Stock Price Chart
+</div>
+
+<div class="chart-buttons">
+
+<button
+id="chart1"
+onclick="drawChart(1)"
+>
+1Y
+</button>
+
+<button
+id="chart5"
+onclick="drawChart(5)"
+>
+5Y
+</button>
+
+<button
+id="chart10"
+onclick="drawChart(10)"
+>
+10Y
+</button>
+
+</div>
+
+<canvas id="stockChart"></canvas>
+
+</div>
+
+
+<!-- CEO -->
+
+<div class="card">
+
+<div class="card-title">
+Chief Executive Officer
+</div>
+
+<div class="ceo">
+
+<div class="ceo-icon">
+👤
+</div>
+
+<div>
+
+<div
+id="ceoName"
+class="ceo-name"
+>
+</div>
+
+<div class="ceo-position">
+Chief Executive Officer
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SOURCE -->
+
+<div class="card">
+
+<div class="card-title">
+BLX Data
+</div>
+
+<div style="color:#667085;font-size:13px;line-height:1.6">
+
+This Phase 1 BLX prototype uses demonstration financial data.
+
+The next stage can connect this page to live financial APIs and Bursa Malaysia data.
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<div class="footer">
+
+BLX Financial Intelligence • Phase 1 Prototype
+
+</div>
+
+
+<script>
+
+
+/* ==================================================
+COMPANY DATABASE
+================================================== */
+
+const companies = [
+
+{
+name:"Malayan Banking Berhad",
+ticker:"MAYBANK",
+sector:"Financial Services",
+price:"RM 10.90",
+change:"+1.11%",
+revenue:"RM 61.2B",
+profitBeforeTax:"RM 13.5B",
+profitAfterTax:"RM 10.1B",
+assets:"RM 1.02T",
+liabilities:"RM 950B",
+shares:"12.1B",
+ceo:"Khairussaleh Ramli"
+},
+
+{
+name:"CIMB Group Holdings Berhad",
+ticker:"CIMB",
+sector:"Financial Services",
+price:"RM 7.80",
+change:"+1.56%",
+revenue:"RM 22.4B",
+profitBeforeTax:"RM 10.2B",
+profitAfterTax:"RM 7.8B",
+assets:"RM 750B",
+liabilities:"RM 690B",
+shares:"10.8B",
+ceo:"Novan Amirudin"
+},
+
+{
+name:"RHB Bank Berhad",
+ticker:"RHB",
+sector:"Financial Services",
+price:"RM 6.30",
+change:"+0.32%",
+revenue:"RM 16.8B",
+profitBeforeTax:"RM 4.1B",
+profitAfterTax:"RM 3.1B",
+assets:"RM 320B",
+liabilities:"RM 295B",
+shares:"4.2B",
+ceo:"Mohd Rashid Abdullah"
+},
+
+{
+name:"Public Bank Berhad",
+ticker:"PBBANK",
+sector:"Financial Services",
+price:"RM 5.18",
+change:"+1.37%",
+revenue:"RM 18.2B",
+profitBeforeTax:"RM 8.2B",
+profitAfterTax:"RM 6.4B",
+assets:"RM 520B",
+liabilities:"RM 480B",
+shares:"19.4B",
+ceo:"Tan Sri Dato' Sri Dr. Tay Ah Lek"
+},
+
+{
+name:"Bank Islam Malaysia Berhad",
+ticker:"BIMB",
+sector:"Financial Services",
+price:"RM 2.40",
+change:"+0.42%",
+revenue:"RM 6.5B",
+profitBeforeTax:"RM 1.1B",
+profitAfterTax:"RM 0.8B",
+assets:"RM 90B",
+liabilities:"RM 84B",
+shares:"2.1B",
+ceo:"Mohd Shukor Ahmad"
+},
+
+{
+name:"Hong Leong Bank Berhad",
+ticker:"HLBANK",
+sector:"Financial Services",
+price:"RM 21.50",
+change:"+0.37%",
+revenue:"RM 7.0B",
+profitBeforeTax:"RM 3.8B",
+profitAfterTax:"RM 3.0B",
+assets:"RM 310B",
+liabilities:"RM 285B",
+shares:"4.3B",
+ceo:"Domenic Fuda"
+},
+
+{
+name:"Tenaga Nasional Berhad",
+ticker:"TENAGA",
+sector:"Utilities",
+price:"RM 14.46",
+change:"+0.70%",
+revenue:"RM 65.4B",
+profitBeforeTax:"RM 6.5B",
+profitAfterTax:"RM 4.8B",
+assets:"RM 195B",
+liabilities:"RM 125B",
+shares:"5.8B",
+ceo:"Datuk Megat Jalaluddin Megat Hassan"
+},
+
+{
+name:"IHH Healthcare Berhad",
+ticker:"IHH",
+sector:"Healthcare",
+price:"RM 8.34",
+change:"+0.48%",
+revenue:"RM 26.0B",
+profitBeforeTax:"RM 4.0B",
+profitAfterTax:"RM 3.0B",
+assets:"RM 58B",
+liabilities:"RM 28B",
+shares:"8.8B",
+ceo:"Kelvin Loh"
+},
+
+{
+name:"Press Metal Aluminium Holdings Berhad",
+ticker:"PMETAL",
+sector:"Industrial Products",
+price:"RM 7.82",
+change:"-0.51%",
+revenue:"RM 16.4B",
+profitBeforeTax:"RM 2.4B",
+profitAfterTax:"RM 1.8B",
+assets:"RM 35B",
+liabilities:"RM 16B",
+shares:"8.3B",
+ceo:"Tan Sri Koon Poh Keong"
+},
+
+{
+name:"SD Guthrie Berhad",
+ticker:"SDG",
+sector:"Plantation",
+price:"RM 6.59",
+change:"-0.60%",
+revenue:"RM 20.8B",
+profitBeforeTax:"RM 2.7B",
+profitAfterTax:"RM 2.0B",
+assets:"RM 75B",
+liabilities:"RM 28B",
+shares:"7.0B",
+ceo:"Mohd Haris Mohd Arif"
+},
+
+{
+name:"Telekom Malaysia Berhad",
+ticker:"TM",
+sector:"Telecommunications",
+price:"RM 7.10",
+change:"+0.28%",
+revenue:"RM 11.9B",
+profitBeforeTax:"RM 1.5B",
+profitAfterTax:"RM 1.1B",
+assets:"RM 20B",
+liabilities:"RM 11B",
+shares:"3.8B",
+ceo:"Amar Huzaimi Md Deris"
+},
+
+{
+name:"CelcomDigi Berhad",
+ticker:"CELCOMDIGI",
+sector:"Telecommunications",
+price:"RM 4.20",
+change:"+0.24%",
+revenue:"RM 11.0B",
+profitBeforeTax:"RM 2.3B",
+profitAfterTax:"RM 1.8B",
+assets:"RM 30B",
+liabilities:"RM 20B",
+shares:"11.8B",
+ceo:"Albern Murty"
+},
+
+{
+name:"Sime Darby Berhad",
+ticker:"SIME",
+sector:"Conglomerate",
+price:"RM 2.20",
+change:"+0.45%",
+revenue:"RM 65B",
+profitBeforeTax:"RM 1.6B",
+profitAfterTax:"RM 1.2B",
+assets:"RM 40B",
+liabilities:"RM 24B",
+shares:"6.8B",
+ceo:"Jeffrey Gan"
+},
+
+{
+name:"Axiata Group Berhad",
+ticker:"AXIATA",
+sector:"Telecommunications",
+price:"RM 2.10",
+change:"+0.48%",
+revenue:"RM 24B",
+profitBeforeTax:"RM 1.8B",
+profitAfterTax:"RM 1.2B",
+assets:"RM 70B",
+liabilities:"RM 45B",
+shares:"9.2B",
+ceo:"Nik Rizal Kamil"
+},
+
+{
+name:"Maxis Berhad",
+ticker:"MAXIS",
+sector:"Telecommunications",
+price:"RM 3.65",
+change:"+0.27%",
+revenue:"RM 10.0B",
+profitBeforeTax:"RM 1.7B",
+profitAfterTax:"RM 1.3B",
+assets:"RM 23B",
+liabilities:"RM 20B",
+shares:"7.8B",
+ceo:"Goh Seow Eng"
+},
+
+{
+name:"Genting Berhad",
+ticker:"GENTING",
+sector:"Leisure",
+price:"RM 3.05",
+change:"-0.33%",
+revenue:"RM 26B",
+profitBeforeTax:"RM 1.7B",
+profitAfterTax:"RM 1.2B",
+assets:"RM 90B",
+liabilities:"RM 55B",
+shares:"3.8B",
+ceo:"Lim Kok Thay"
+},
+
+{
+name:"Nestlé Malaysia Berhad",
+ticker:"NESTLE",
+sector:"Consumer Products",
+price:"RM 95.00",
+change:"+0.10%",
+revenue:"RM 7.1B",
+profitBeforeTax:"RM 0.9B",
+profitAfterTax:"RM 0.7B",
+assets:"RM 3.5B",
+liabilities:"RM 2.7B",
+shares:"0.23B",
+ceo:"Juan Aranols"
+},
+
+{
+name:"Top Glove Corporation Berhad",
+ticker:"TOPGLOVE",
+sector:"Healthcare Equipment",
+price:"RM 0.82",
+change:"+1.23%",
+revenue:"RM 3.2B",
+profitBeforeTax:"RM 0.25B",
+profitAfterTax:"RM 0.2B",
+assets:"RM 8B",
+liabilities:"RM 2B",
+shares:"8.0B",
+ceo:"Lee Kim Meow"
+},
+
+{
+name:"IOI Corporation Berhad",
+ticker:"IOI",
+sector:"Plantation",
+price:"RM 3.80",
+change:"+0.26%",
+revenue:"RM 3.2B",
+profitBeforeTax:"RM 1.3B",
+profitAfterTax:"RM 1.0B",
+assets:"RM 32B",
+liabilities:"RM 10B",
+shares:"6.3B",
+ceo:"Dato' Lee Yeow Chor"
+},
+
+{
+name:"Kuala Lumpur Kepong Berhad",
+ticker:"KLK",
+sector:"Plantation",
+price:"RM 21.00",
+change:"+0.48%",
+revenue:"RM 22B",
+profitBeforeTax:"RM 2.0B",
+profitAfterTax:"RM 1.5B",
+assets:"RM 38B",
+liabilities:"RM 16B",
+shares:"1.1B",
+ceo:"Tan Sri Lee Oi Hian"
+},
+
+{
+name:"Sunway Berhad",
+ticker:"SUNWAY",
+sector:"Conglomerate",
+price:"RM 4.10",
+change:"+0.74%",
+revenue:"RM 7.0B",
+profitBeforeTax:"RM 1.1B",
+profitAfterTax:"RM 0.8B",
+assets:"RM 25B",
+liabilities:"RM 14B",
+shares:"5.7B",
+ceo:"Jeffrey Cheah"
+},
+
+{
+name:"YTL Corporation Berhad",
+ticker:"YTL",
+sector:"Utilities / Conglomerate",
+price:"RM 2.50",
+change:"+0.80%",
+revenue:"RM 32B",
+profitBeforeTax:"RM 4.0B",
+profitAfterTax:"RM 3.0B",
+assets:"RM 75B",
+liabilities:"RM 50B",
+shares:"11.0B",
+ceo:"Francis Yeoh"
+},
+
+{
+name:"YTL Power International Berhad",
+ticker:"YTLPOWER",
+sector:"Utilities",
+price:"RM 3.30",
+change:"+0.61%",
+revenue:"RM 18B",
+profitBeforeTax:"RM 3.3B",
+profitAfterTax:"RM 2.5B",
+assets:"RM 45B",
+liabilities:"RM 28B",
+shares:"8.2B",
+ceo:"Yeoh Seok Hong"
+},
+
+{
+name:"KPJ Healthcare Berhad",
+ticker:"KPJ",
+sector:"Healthcare",
+price:"RM 2.30",
+change:"+0.44%",
+revenue:"RM 4.0B",
+profitBeforeTax:"RM 0.4B",
+profitAfterTax:"RM 0.3B",
+assets:"RM 12B",
+liabilities:"RM 7B",
+shares:"4.3B",
+ceo:"Nurul A'ishah Mohamed"
+},
+
+{
+name:"IJM Corporation Berhad",
+ticker:"IJM",
+sector:"Construction",
+price:"RM 3.00",
+change:"+0.67%",
+revenue:"RM 6.0B",
+profitBeforeTax:"RM 0.7B",
+profitAfterTax:"RM 0.5B",
+assets:"RM 25B",
+liabilities:"RM 14B",
+shares:"3.5B",
+ceo:"Lee Chun Fai"
+},
+
+{
+name:"S P Setia Berhad",
+ticker:"SPSETIA",
+sector:"Property",
+price:"RM 1.30",
+change:"+0.77%",
+revenue:"RM 4.0B",
+profitBeforeTax:"RM 0.4B",
+profitAfterTax:"RM 0.3B",
+assets:"RM 20B",
+liabilities:"RM 13B",
+shares:"5.6B",
+ceo:"Choong Kai Wai"
+},
+
+{
+name:"AMMB Holdings Berhad",
+ticker:"AMMB",
+sector:"Financial Services",
+price:"RM 5.00",
+change:"+0.60%",
+revenue:"RM 3.0B",
+profitBeforeTax:"RM 1.0B",
+profitAfterTax:"RM 0.8B",
+assets:"RM 190B",
+liabilities:"RM 175B",
+shares:"3.3B",
+ceo:"Sally Herawati Rohat"
+}
+
+];
+
+
+/* ==================================================
+SEARCH
+================================================== */
+
+const searchInput =
+document.getElementById("searchInput");
+
+searchInput.addEventListener(
+"keydown",
+function(event){
+
+if(event.key === "Enter"){
+
+searchCompany();
+
+}
+
+});
+
+
+searchInput.addEventListener(
+"input",
+function(){
+
+showSearchResults();
+
+});
+
+
+function showSearchResults(){
+
+const query =
+searchInput.value
+.trim()
+.toLowerCase();
+
+const results =
+document.getElementById(
+"searchResults"
+);
+
+if(!query){
+
+results.innerHTML="";
+
+return;
+
+}
+
+const matches =
+companies.filter(company =>
+
+company.name
+.toLowerCase()
+.includes(query)
+
+||
+
+company.ticker
+.toLowerCase()
+.includes(query)
+
+);
+
+if(matches.length === 0){
+
+results.innerHTML=`
+<div class="result">
+Company not found
+</div>
+`;
+
+return;
+
+}
+
+results.innerHTML =
+matches
+.slice(0,8)
+.map(company=>`
+
+<div
+class="result"
+onclick="openCompany('${company.ticker}')"
+>
+
+<div class="result-name">
+${company.name}
+</div>
+
+<div class="result-ticker">
+${company.ticker} • ${company.sector}
+</div>
+
+</div>
+
+`)
+.join("");
+
+}
+
+
+function searchCompany(){
+
+const query =
+searchInput.value
+.trim()
+.toLowerCase();
+
+if(!query){
+
+alert("Please enter a company name or ticker.");
+
+return;
+
+}
+
+const company =
+companies.find(c =>
+
+c.name
+.toLowerCase()
+.includes(query)
+
+||
+
+c.ticker
+.toLowerCase()
+=== query
+
+);
+
+if(!company){
+
+alert(
+"Company not found. Try MAYBANK, CIMB, RHB, TENAGA, NESTLE or another listed company."
+);
+
+return;
+
+}
+
+openCompany(company.ticker);
+
+}
+
+
+/* ==================================================
+OPEN COMPANY
+================================================== */
+
+function openCompany(ticker){
+
+const company =
+companies.find(
+c => c.ticker === ticker
+);
+
+if(!company){
+
+return;
+
+}
+
+document
+.getElementById("homePage")
+.classList.add("hidden");
+
+document
+.getElementById("companyPage")
+.classList.remove("hidden");
+
+
+document
+.getElementById("companyName")
+.textContent =
+company.name;
+
+
+document
+.getElementById("companyTicker")
+.textContent =
+"Bursa Malaysia • "+
+company.ticker+
+" • "+
+company.sector;
+
+
+document
+.getElementById("companyPrice")
+.textContent =
+company.price;
+
+
+document
+.getElementById("companyChange")
+.textContent =
+company.change+
+" today";
+
+
+document
+.getElementById("ceoName")
+.textContent =
+company.ceo;
+
+
+const fundamentals = [
+
+["Revenue",company.revenue],
+
+["Profit Before Tax",company.profitBeforeTax],
+
+["Profit After Tax",company.profitAfterTax],
+
+["Total Assets",company.assets],
+
+["Total Liabilities",company.liabilities],
+
+["Number of Shares",company.shares]
+
+];
+
+
+document
+.getElementById("fundamentals")
+.innerHTML =
+
+fundamentals
+.map(item=>`
+
+<div class="fundamental">
+
+<div class="fundamental-label">
+${item[0]}
+</div>
+
+<div class="fundamental-value">
+${item[1]}
+</div>
+
+</div>
+
+`)
+.join("");
+
+
+drawChart(1);
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* ==================================================
+BACK
+================================================== */
+
+function backHome(){
+
+document
+.getElementById("companyPage")
+.classList.add("hidden");
+
+document
+.getElementById("homePage")
+.classList.remove("hidden");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* ==================================================
+CHART
+================================================== */
+
+function drawChart(years){
+
+const canvas =
+document.getElementById(
+"stockChart"
+);
+
+const ctx =
+canvas.getContext("2d");
+
+const width =
+canvas.clientWidth || 600;
+
+const height = 260;
+
+const ratio =
+window.devicePixelRatio || 1;
+
+canvas.width =
+width * ratio;
+
+canvas.height =
+height * ratio;
+
+ctx.setTransform(
+ratio,
+0,
+0,
+ratio,
+0,
+0
+);
+
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
+
+
+/* GRID */
+
+ctx.strokeStyle="#e4e7ec";
+
+ctx.lineWidth=1;
+
+for(let i=1;i<5;i++){
+
+const y =
+i * height / 5;
+
+ctx.beginPath();
+
+ctx.moveTo(0,y);
+
+ctx.lineTo(width,y);
+
+ctx.stroke();
+
+}
+
+
+/* DATA */
+
+let points=[];
+
+let value=.45;
+
+const numberOfPoints =
+years === 1 ? 30 :
+years === 5 ? 60 :
+90;
+
+for(
+let i=0;
+i<numberOfPoints;
+i++
+){
+
+value +=
+(Math.random()-.46)*.07;
+
+value =
+Math.max(
+.12,
+Math.min(.88,value)
+);
+
+points.push(value);
+
+}
+
+
+/* LINE */
+
+ctx.beginPath();
+
+points.forEach(
+(point,index)=>{
+
+const x =
+10 +
+index *
+((width-20)/
+(points.length-1));
+
+const y =
+height -
+20 -
+point *
+(height-45);
+
+if(index===0){
+
+ctx.moveTo(x,y);
+
+}else{
+
+ctx.lineTo(x,y);
+
+}
+
+});
+
+ctx.strokeStyle =
+"#1769ff";
+
+ctx.lineWidth=3;
+
+ctx.stroke();
+
+
+/* LABEL */
+
+ctx.fillStyle =
+"#667085";
+
+ctx.font =
+"12px Arial";
+
+ctx.fillText(
+years+" Year View",
+10,
+20
+);
+
+
+/* ACTIVE BUTTON */
+
+document
+.querySelectorAll(".chart-buttons button")
+.forEach(button=>{
+
+button.classList.remove("active");
+
+});
+
+document
+.getElementById(
+"chart"+years
+)
+.classList.add("active");
+
+}
+
+
+/* ==================================================
+START
+================================================== */
+
+console.log(
+"BLX Phase 1 loaded successfully."
+);
+
+</script>
+
+</body>
+</html>
